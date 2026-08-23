@@ -1622,6 +1622,45 @@
       }catch(e){}
     }
 
+
+    let lastScheduleSyncAt=0;
+    let scheduleSyncTimer=null;
+
+    function markScheduleSynced(){
+      lastScheduleSyncAt=Date.now();
+    }
+
+    function startScheduleHeartbeat(){
+      if(scheduleSyncTimer) clearInterval(scheduleSyncTimer);
+      scheduleSyncTimer=setInterval(async()=>{
+        if(!state.user || !db) return;
+        try{
+          if(state.booking?.professional && state.booking?.date){
+            await renderTimes();
+          }
+          if(!$("appointmentsSection").classList.contains("hidden")){
+            await loadAppointments();
+          }
+          markScheduleSynced();
+        }catch(e){
+          console.warn("Agenda heartbeat:",e);
+        }
+      },60000);
+    }
+
+    async function verifyAgendaAccess(){
+      if(!db || !state.user) return false;
+      try{
+        await getDoc(doc(db,"users",state.user.uid));
+        markScheduleSynced();
+        return true;
+      }catch(err){
+        // Profile may not exist yet. A permission error here is handled silently;
+        // reservation will surface a friendly message only if it actually fails.
+        return String(err?.code||"").includes("not-found");
+      }
+    }
+
     let unsubscribeSlots = null;
     let unsubscribeAppointments = null;
 
@@ -1750,7 +1789,7 @@
       try{
         const snap=await getDoc(doc(db,"users",user.uid));
         if(snap.exists()) return snap.data();
-      }catch(err){ console.warn("Perfil:",err); }
+      }catch(err){}
       return null;
     }
 
@@ -1767,7 +1806,9 @@
           updatedAt:serverTimestamp()
         },{merge:true});
         state.userProfile={...(state.userProfile||{}),customerName:name,customerPhone:phone};
-      }catch(err){ console.warn("Perfil:",err); }
+      }catch(err){
+        // Perfil complementar não bloqueia a agenda.
+      }
     }
 
     function refreshAccountUI(){
@@ -1996,17 +2037,21 @@
 
       const toMinutes=v=>{const [h,m]=v.split(":").map(Number);return h*60+m};
       const toClock=m=>`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
-      const start=toMinutes(hours.open), end=toMinutes(hours.close);
+      const startM=toMinutes(hours.open), endM=toMinutes(hours.close);
       const times=[];
-      for(let m=start;m<end;m+=30) times.push(toClock(m));
+      for(let m=startM;m<endM;m+=30) times.push(toClock(m));
 
-      const paint=(booked=[],own=[])=>{
-        const previous=state.booking.time;
-        if(previous && booked.includes(previous)) state.booking.time=null;
+      const paint=(slots=[])=>{
+        const booked=slots.filter(s=>s.status==="confirmed").map(s=>s.time).filter(Boolean);
+        const own=state.user
+          ? slots.filter(s=>s.status==="confirmed" && s.userId===state.user.uid).map(s=>s.time).filter(Boolean)
+          : [];
+
+        if(state.booking.time && booked.includes(state.booking.time)) state.booking.time=null;
 
         el.innerHTML=`
           <div class="availability-summary">
-            <span><strong>Disponibilidade</strong><br><span>Atualização automática</span></span>
+            <span><strong>Disponibilidade ao vivo</strong><br><span>Atualização automática</span></span>
             <span><b>${times.length-booked.length}</b> horários livres</span>
           </div>
           ${times.map(t=>{
@@ -2015,6 +2060,7 @@
             return `<button class="time ${busy?"disabled":""} ${mine?"user-owned":""} ${state.booking.time===t?"selected":""}" data-time="${t}" ${busy?"disabled":""}>${t}</button>`;
           }).join("")}
         `;
+
         el.querySelectorAll(".time:not(.disabled)").forEach(btn=>btn.addEventListener("click",()=>{
           state.booking.time=btn.dataset.time;
           el.querySelectorAll(".time").forEach(x=>x.classList.remove("selected"));
@@ -2026,7 +2072,6 @@
 
       if(!db || !state.booking.professional || !state.booking.date) return;
 
-      setFirestoreStatus("syncing","AGENDA • SINCRONIZANDO");
       const slotsQuery=query(
         collection(db,"bookingSlots"),
         where("professionalId","==",state.booking.professional.id),
@@ -2034,15 +2079,12 @@
       );
 
       unsubscribeSlots=onSnapshot(slotsQuery,(snap)=>{
-        const slots=snap.docs.map(d=>d.data()).filter(s=>s.status==="confirmed");
-        const booked=slots.map(s=>s.time).filter(Boolean);
-        const own=state.user ? slots.filter(s=>s.userId===state.user.uid).map(s=>s.time).filter(Boolean) : [];
-        paint(booked,own);
-        setFirestoreStatus("online","AGENDA • AO VIVO");
-      },(err)=>{
-        console.warn("Realtime slots:",err);
-        setFirestoreStatus("offline","AGENDA • INDISPONÍVEL");
-        toast("Não foi possível atualizar a agenda em tempo real.");
+        paint(snap.docs.map(d=>d.data()));
+        markScheduleSynced();
+      },async(err)=>{
+        console.warn("Agenda indisponível:",err);
+        // If access is temporarily unavailable, don't pretend all slots are free.
+        el.innerHTML='<div style="grid-column:1/-1" class="selection-card"><strong>Não foi possível consultar os horários.</strong><div class="selection-sub">Atualize a página em instantes. Nenhuma reserva será confirmada sem uma nova validação.</div></div>';
       });
     }
 
@@ -2172,7 +2214,7 @@
           updateStep(2);
           await renderTimes();
         }else if(String(err?.code||"").includes("permission-denied")){
-          toast("Não foi possível concluir a reserva. Tente novamente.");
+          toast("A agenda ainda não tem permissão para gravar reservas. Atualize a configuração de acesso do projeto.");
         }else{
           toast("Não foi possível confirmar agora. Tente novamente.");
         }
@@ -2554,11 +2596,13 @@ $("accountLogout")?.addEventListener("click",async()=>{
       updateStep(3);
     };
     $("back3").onclick=()=>updateStep(2);
-    $("next3").onclick=()=>{
+    $("next3").onclick=async()=>{
       state.booking.name=$("customerName").value.trim();
       state.booking.phone=$("customerPhone").value.trim();
       state.booking.note=$("customerNote").value.trim();
       if(!state.booking.name||!state.booking.phone){toast("Informe nome e WhatsApp.");return}
+      await renderTimes();
+      if(!state.booking.time){toast("Esse horário não está mais disponível. Escolha outro.");updateStep(2);return}
       updateStep(4);
     };
     $("back4").onclick=()=>updateStep(3);
@@ -2586,10 +2630,13 @@ $("accountLogout")?.addEventListener("click",async()=>{
 
           await loadAppointments();
           refreshAccountUI();
+          startScheduleHeartbeat();
+          verifyAgendaAccess();
 
           if(!$("appointmentsSection").classList.contains("hidden")) renderAppointmentsList();
         }else{
           state.userProfile=null;
+          if(scheduleSyncTimer){clearInterval(scheduleSyncTimer);scheduleSyncTimer=null;}
           $("loginBtn").innerHTML='◉ <span>Entrar</span>';
           $("loginBtn").onclick=openLogin;
           $("bottomLoginText").textContent="Entrar";
@@ -2639,3 +2686,5 @@ $("accountLogout")?.addEventListener("click",async()=>{
   </script>
 </body>
 </html>
+
+<style>.firestore-status{display:none!important}</style>
