@@ -12,7 +12,8 @@ service cloud.firestore {
     }
 
     function admin() {
-      return signedIn() && request.auth.uid == "QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1";
+      return signedIn()
+        && request.auth.token.email == "eduardo@usuarios.eduardo.app";
     }
 
     match /users/{uid} {

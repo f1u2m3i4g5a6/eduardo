@@ -1,29 +1,35 @@
-# EDUARDO • D'MASSA V13 — ADMIN DIRETO
+# EDUARDO • D'MASSA V14 — ADMIN POR CONTA EDUARDO
 
-Esta versão já está configurada para reconhecer como administrador a conta com UID:
+O print mostrou no Console:
+`Conta autenticada sem acesso administrativo.`
 
-QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1
+Isso confirma que o site V13 estava funcionando, mas o UID da conta atualmente logada não era o mesmo UID configurado anteriormente.
 
-Não precisa mais consultar a coleção `admins` para mostrar o painel.
+A V14 elimina esse problema.
 
-## Para o painel aparecer
-1. Publique este `index.html`.
-2. Publique o `firestore.rules` desta V13.
-3. Saia da conta no site.
-4. Entre novamente com a conta Eduardo que possui o UID acima.
-5. O botão `◆ Painel` aparecerá no topo.
-6. No celular também aparece um botão `◆ PAINEL` flutuante.
+## Como o ADM é reconhecido agora
+A conta administrativa é a conta autenticada internamente como:
 
-## IMPORTANTE
-O UID não é senha. Ele pode estar nas regras.
-A senha continua somente no sistema de autenticação.
+eduardo@usuarios.eduardo.app
 
-## Publicar as regras
-Firebase Console:
-Firestore Database → Rules → cole todo o conteúdo de `firestore.rules` → Publicar.
+Essa é exatamente a identidade técnica gerada quando você entra com usuário:
 
-## Se ainda não aparecer
-Authentication → Users → confirme que o UID da conta logada é exatamente:
-QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1
+Eduardo
 
-Se o UID for diferente, você está entrando em outra conta Eduardo.
+O cliente continua vendo e digitando apenas `Eduardo` + senha.
+
+## O que fazer
+1. Substitua seu index.html pela V14.
+2. Firestore > Rules.
+3. Cole o firestore.rules da V14.
+4. Clique em Publicar.
+5. No site, saia da conta.
+6. Atualize com Ctrl+Shift+R.
+7. Entre novamente como Eduardo.
+
+O botão `◆ Painel` deve aparecer.
+
+## Segurança
+A senha NÃO está no HTML.
+O painel depende de uma conta autenticada real.
+As regras do servidor também conferem a identidade autenticada antes de liberar leitura de todos os agendamentos e funções administrativas.

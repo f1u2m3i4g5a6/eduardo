@@ -1506,7 +1506,7 @@
           </div>
           
           <div id="adminAccountStatus" class="hidden" style="margin-top:10px;padding:10px 11px;border:1px solid rgba(243,35,59,.16);background:rgba(243,35,59,.055);border-radius:12px;font-size:8px;color:#8b878f">
-            Conta administrativa reconhecida. O botão <strong style="color:#ff5b69">◆ Painel</strong> aparece no topo.
+            Conta Eduardo reconhecida como administradora. O botão <strong style="color:#ff5b69">◆ Painel</strong> aparece no topo.
           </div>
 
           <div class="account-actions">
@@ -1615,7 +1615,7 @@
       appId: "1:1066379972250:web:64e38df2faa51dbde45923"
     };
 
-    const EDUARDO_ADMIN_UID = "QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1";
+    const EDUARDO_ADMIN_LOGIN = "eduardo@usuarios.eduardo.app";
         const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
 
     let db = null;
@@ -2897,7 +2897,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
 
           await checkAdminAccess(user);
           if(!adminState.isAdmin){
-            console.info("Conta autenticada sem acesso administrativo.");
+            console.info("Conta autenticada sem acesso administrativo.", {usuario:user?.email||"", esperado:EDUARDO_ADMIN_LOGIN});
           }
           const access=await checkAgendaPermissions();
           if(access.ok){
@@ -2979,7 +2979,8 @@ $("accountLogout")?.addEventListener("click",async()=>{
     }
 
     async function checkAdminAccess(user){
-      adminState.isAdmin=Boolean(user && user.uid===EDUARDO_ADMIN_UID);
+      const email=String(user?.email||"").toLowerCase();
+      adminState.isAdmin=Boolean(user && email===EDUARDO_ADMIN_LOGIN);
       toggleAdminEntry();
       return adminState.isAdmin;
     }
