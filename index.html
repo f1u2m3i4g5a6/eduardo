@@ -1623,6 +1623,52 @@
     }
 
 
+
+    let agendaAccessState="unknown";
+
+    async function ensureSignedIn(){
+      if(!auth) return false;
+      if(auth.currentUser){
+        state.user=auth.currentUser;
+        return true;
+      }
+      return await new Promise(resolve=>{
+        const stop=onAuthStateChanged(auth,user=>{
+          stop();
+          state.user=user||null;
+          resolve(Boolean(user));
+        });
+        setTimeout(()=>resolve(Boolean(auth.currentUser)),3000);
+      });
+    }
+
+    async function checkAgendaPermissions(){
+      if(!db) return {ok:false,reason:"database"};
+      const signed=await ensureSignedIn();
+      if(!signed) return {ok:false,reason:"auth"};
+
+      // Query a date that should have no practical impact.
+      // If rules reject this, we know before the user gets to confirmation.
+      try{
+        const probe=query(
+          collection(db,"bookingSlots"),
+          where("professionalId","==","__permission_probe__"),
+          where("date","==","2099-12-31")
+        );
+        await getDocs(probe);
+        agendaAccessState="ok";
+        return {ok:true};
+      }catch(err){
+        const code=String(err?.code||"");
+        agendaAccessState=code.includes("permission-denied")?"permission":"error";
+        return {ok:false,reason:agendaAccessState,error:err};
+      }
+    }
+
+    function showAgendaSetupError(){
+      toast("A agenda online ainda não está liberada no servidor. Publique as regras de acesso incluídas no pacote.");
+    }
+
     let lastScheduleSyncAt=0;
     let scheduleSyncTimer=null;
 
@@ -1785,12 +1831,11 @@
     }
 
     async function loadUserProfile(user){
-      if(!user || !db) return null;
-      try{
-        const snap=await getDoc(doc(db,"users",user.uid));
-        if(snap.exists()) return snap.data();
-      }catch(err){}
-      return null;
+      if(!user) return null;
+      return {
+        uid:user.uid,
+        username:normalizeUsername((user.email||"").split("@")[0])
+      };
     }
 
     async function saveUserBookingProfile(){
@@ -2082,9 +2127,8 @@
         paint(snap.docs.map(d=>d.data()));
         markScheduleSynced();
       },async(err)=>{
-        console.warn("Agenda indisponível:",err);
-        // If access is temporarily unavailable, don't pretend all slots are free.
-        el.innerHTML='<div style="grid-column:1/-1" class="selection-card"><strong>Não foi possível consultar os horários.</strong><div class="selection-sub">Atualize a página em instantes. Nenhuma reserva será confirmada sem uma nova validação.</div></div>';
+        agendaAccessState=String(err?.code||"").includes("permission-denied")?"permission":"error";
+        el.innerHTML='<div style="grid-column:1/-1" class="selection-card"><strong>Agenda online indisponível.</strong><div class="selection-sub">A configuração de acesso do servidor ainda precisa ser publicada.</div></div>';
       });
     }
 
@@ -2121,7 +2165,14 @@
       const b=state.booking;
 
       if(!db || !firebaseReady){
-        toast("A agenda ainda não está pronta para reservas.");
+        toast("A agenda está temporariamente indisponível.");
+        return;
+      }
+
+      const access=await checkAgendaPermissions();
+      if(!access.ok){
+        if(access.reason==="auth"){ $("appointmentModal").classList.add("hidden"); openLogin(); toast("Entre na sua conta para confirmar."); }
+        else showAgendaSetupError();
         return;
       }
 
@@ -2152,8 +2203,7 @@
       const slotId=slotIdFor(b.professional.id,b.date,b.time);
       const slotRef=doc(db,"bookingSlots",slotId);
 
-      await saveUserBookingProfile();
-
+      // O perfil é complementar e nunca bloqueia uma reserva.
       const payload={
         userId:state.user.uid,
         customerName:b.name.trim().slice(0,80),
@@ -2214,7 +2264,7 @@
           updateStep(2);
           await renderTimes();
         }else if(String(err?.code||"").includes("permission-denied")){
-          toast("A agenda ainda não tem permissão para gravar reservas. Atualize a configuração de acesso do projeto.");
+          showAgendaSetupError();
         }else{
           toast("Não foi possível confirmar agora. Tente novamente.");
         }
@@ -2347,7 +2397,12 @@
       $("appointmentsSection").classList.remove("hidden");
       document.querySelectorAll(".nav-item").forEach(x=>x.classList.remove("active"));
       document.querySelector('[data-nav="appointments"]').classList.add("active");
-      $("appointmentsList").innerHTML='<div class="loading"><div><div class="spinner"></div>Sincronizando seus agendamentos...</div></div>';
+      $("appointmentsList").innerHTML='<div class="loading"><div><div class="spinner"></div>Carregando seus agendamentos...</div></div>';
+      const access=await checkAgendaPermissions();
+      if(!access.ok){
+        $("appointmentsList").innerHTML='<div class="smart-empty"><div class="empty-icon">!</div><strong>Agenda online ainda não liberada.</strong><p>As permissões do servidor precisam ser publicadas antes de usar os agendamentos.</p></div>';
+        return;
+      }
       await loadAppointments();
       renderAppointmentsList();
     }
@@ -2360,7 +2415,13 @@
     }
 
 
-    function openAvailability(){
+    async function openAvailability(){
+      const permission=await checkAgendaPermissions();
+      if(!permission.ok){
+        if(permission.reason==="auth"){ openLogin(); toast("Entre na sua conta para ver a disponibilidade."); }
+        else showAgendaSetupError();
+        return;
+      }
       const firstService=state.services[0];
       if(!firstService){
         toast("Os serviços ainda estão carregando.");
@@ -2586,9 +2647,16 @@ $("accountLogout")?.addEventListener("click",async()=>{
     // Modal
     $("closeModal").onclick=()=>$("appointmentModal").classList.add("hidden");
     $("cancelStep1").onclick=()=>$("appointmentModal").classList.add("hidden");
-    $("next1").onclick=()=>{
+    $("next1").onclick=async()=>{
       if(!state.booking.professional){toast("Escolha um profissional.");return}
-      renderTimes();updateStep(2);
+      const permission=await checkAgendaPermissions();
+      if(!permission.ok){
+        if(permission.reason==="auth"){ $("appointmentModal").classList.add("hidden"); openLogin(); toast("Entre para continuar o agendamento."); }
+        else showAgendaSetupError();
+        return;
+      }
+      await renderTimes();
+      updateStep(2);
     };
     $("back2").onclick=()=>updateStep(1);
     $("next2").onclick=()=>{
@@ -2628,10 +2696,12 @@ $("accountLogout")?.addEventListener("click",async()=>{
           $("loginBtn").onclick=openLogin;
           $("bottomLoginText").textContent="Conta";
 
-          await loadAppointments();
+          const access=await checkAgendaPermissions();
+          if(access.ok){
+            await loadAppointments();
+            startScheduleHeartbeat();
+          }
           refreshAccountUI();
-          startScheduleHeartbeat();
-          verifyAgendaAccess();
 
           if(!$("appointmentsSection").classList.contains("hidden")) renderAppointmentsList();
         }else{
