@@ -1072,6 +1072,101 @@
   @media(min-width:761px){.admin-mobile-fab{display:none!important}}
 </style>
 
+
+<style id="eduardo-v15-visual">
+  .contact-number{
+    display:inline-flex;margin-top:12px;padding:8px 10px;border-radius:999px;
+    border:1px solid rgba(32,197,106,.2);background:rgba(32,197,106,.06);
+    color:#58df99;font-size:9px;font-weight:900;letter-spacing:.04em
+  }
+  .hero{
+    background:
+      linear-gradient(90deg,rgba(6,6,7,.995),rgba(11,7,9,.92) 52%,rgba(17,6,10,.74)),
+      radial-gradient(circle at 82% 34%,rgba(243,35,59,.28),transparent 29%)!important;
+  }
+  .hero h1{filter:drop-shadow(0 18px 55px rgba(0,0,0,.22))}
+  .hero-actions .btn{box-shadow:0 10px 28px rgba(0,0,0,.16)}
+  #heroSchedule:hover{box-shadow:0 13px 35px rgba(255,255,255,.12)}
+  #heroAppointments:hover{box-shadow:0 13px 35px rgba(243,35,59,.2)}
+
+  .portfolio-card img,.gallery-item img{background:#17171a}
+  .portfolio-card img[data-error="1"],.gallery-item img[data-error="1"]{
+    object-fit:contain;padding:35px;opacity:.35
+  }
+
+  .studio-proof{
+    margin:16px 18px 0;border:1px solid #26252b;border-radius:19px;background:#0f0f11;
+    display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden
+  }
+  .proof-item{padding:15px;border-right:1px solid #242329}
+  .proof-item:last-child{border-right:0}
+  .proof-item strong{display:block;color:#fff;font:800 16px "Manrope";letter-spacing:-.04em}
+  .proof-item span{display:block;color:#656169;font-size:8px;margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
+
+  /* Content admin */
+  .admin-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .admin-content-list{display:grid;gap:8px}
+  .admin-highlight-row{
+    display:grid;grid-template-columns:78px minmax(0,1fr) auto;align-items:center;gap:11px;
+    border:1px solid #29282e;border-radius:16px;background:#111113;padding:8px
+  }
+  .admin-highlight-row img{width:78px;height:66px;object-fit:cover;border-radius:12px;background:#19191c}
+  .admin-highlight-row strong{display:block;font-size:10px;color:#fff}
+  .admin-highlight-row span{display:block;color:#6e6a72;font-size:8px;margin-top:4px}
+  .admin-content-actions{display:flex;gap:6px}
+  .admin-review-row{
+    border:1px solid #29282e;border-radius:16px;background:#111113;padding:12px
+  }
+  .admin-review-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+  .admin-review-row strong{font-size:10px}
+  .admin-review-row p{color:#7b7780;font-size:8px;line-height:1.6;margin:7px 0 0}
+  .admin-stars{color:#ffb02e;font-size:9px;letter-spacing:1px}
+  .admin-file{
+    border:1px dashed #39373e!important;background:#0d0d0f!important;padding:14px!important
+  }
+  .admin-image-preview{
+    width:100%;aspect-ratio:16/9;border-radius:14px;object-fit:cover;background:#17171a;
+    border:1px solid #29282e;margin-top:8px
+  }
+  .admin-save-row{display:flex;gap:8px;margin-top:14px}
+  .admin-save-row .admin-primary{flex:1}
+
+  @media(max-width:780px){
+    .studio-proof{grid-template-columns:1fr 1fr;margin-left:10px;margin-right:10px}
+    .proof-item:nth-child(2){border-right:0}
+    .proof-item:nth-child(-n+2){border-bottom:1px solid #242329}
+    .admin-content-grid{grid-template-columns:1fr}
+  }
+</style>
+
+
+<style id="eduardo-v17-image-upload">
+  .image-upload-help{
+    margin-top:7px;color:#6f6b73;font-size:8px;line-height:1.6
+  }
+  .image-process-row{
+    margin-top:9px;padding:9px 10px;border:1px solid #29282e;border-radius:11px;background:#0d0d0f
+  }
+  .image-process-bar{
+    height:3px;border-radius:99px;background:#27262b;overflow:hidden
+  }
+  .image-process-bar i{
+    display:block;height:100%;width:20%;border-radius:99px;
+    background:linear-gradient(90deg,#f3233b,#ff6674);transition:.25s
+  }
+  .image-process-row span{
+    display:block;margin-top:6px;color:#747079;font-size:8px
+  }
+  .admin-file::file-selector-button{
+    border:0;border-radius:9px;background:#f3233b;color:#fff;
+    padding:8px 10px;margin-right:10px;font-size:8px;font-weight:900;cursor:pointer
+  }
+  .image-size-note{
+    display:inline-flex;margin-top:7px;padding:5px 7px;border-radius:999px;
+    background:rgba(50,213,131,.07);color:#54d995;font-size:7px;font-weight:900
+  }
+</style>
+
 </head>
 
 <body>
@@ -1203,7 +1298,7 @@
           <div>
             <div class="eyebrow">CONTATO DIRETO</div>
             <div class="contact-word">Fale com o <span>Eduardo.</span></div>
-            <p class="contact-desc">Dúvida sobre corte, horário ou atendimento? Abra uma conversa direto no WhatsApp.</p>
+            <p class="contact-desc">Dúvida sobre corte, horário ou atendimento? Fale direto com o Eduardo pelo WhatsApp.</p><div class="contact-number">◉ +55 49 9838-4230</div>
           </div>
           <a href="#" class="whatsapp-action" id="whatsappAction">
             <span>Chamar no WhatsApp<small>Abre uma conversa com mensagem pronta</small></span>
@@ -1530,8 +1625,7 @@
       getAuth, onAuthStateChanged, signInWithEmailAndPassword,
       createUserWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence
     } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-
-    /*
+/*
       ==========================================================
       CONFIGURAÇÃO FIREBASE
       ==========================================================
@@ -1678,7 +1772,7 @@
 
     const EDUARDO_BUSINESS_DEFAULT = {
       name:"EDUARDO • D'MASSA",
-      whatsapp:"",
+      whatsapp:"554998384230",
       amenities:["Wi-Fi","Acessibilidade","Aceita crianças"],
       payments:["PIX","Cartão de crédito","Cartão de débito","Dinheiro"],
       hours:{
@@ -1761,12 +1855,33 @@
 
 
 
+
+    const IMAGE_FALLBACK_SVG = "data:image/svg+xml;charset=UTF-8," + encodeURIComponent(`
+      <svg xmlns="http://www.w3.org/2000/svg" width="900" height="1100" viewBox="0 0 900 1100">
+        <defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#121214"/><stop offset="1" stop-color="#260d12"/></linearGradient></defs>
+        <rect width="900" height="1100" fill="url(#g)"/>
+        <circle cx="700" cy="220" r="250" fill="none" stroke="#ef233c" stroke-opacity=".18" stroke-width="3"/>
+        <text x="70" y="850" fill="#ffffff" font-family="Arial" font-size="92" font-weight="800">EDUARDO</text>
+        <text x="70" y="940" fill="#ef233c" font-family="Arial" font-size="66" font-weight="800">D'MASSA</text>
+        <text x="72" y="1000" fill="#777" font-family="Arial" font-size="25">CORTE • PRESENÇA • ESTILO</text>
+      </svg>`);
+    function safeImage(img){
+      img.onerror=()=>{
+        img.onerror=null;
+        img.src=IMAGE_FALLBACK_SVG;
+        img.dataset.error="1";
+      };
+    }
+    function wireImageFallbacks(root=document){
+      root.querySelectorAll("img").forEach(safeImage);
+    }
+
     const DEFAULT_CUTS = [
       {id:"degrade", title:"Degradê", category:"Fade", image:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=86", active:true, order:1},
       {id:"texturizado", title:"Texturizado", category:"Texture", image:"https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86", active:true, order:2},
       {id:"barba", title:"Barba alinhada", category:"Beard", image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=86", active:true, order:3},
-      {id:"classico", title:"Clássico", category:"Classic", image:"https://images.unsplash.com/photo-1622288432450-277d0fef5ed8?auto=format&fit=crop&w=900&q=86", active:true, order:4},
-      {id:"acabamento", title:"Acabamento", category:"Finish", image:"https://images.unsplash.com/photo-1593702295094-aea639b5d9c9?auto=format&fit=crop&w=900&q=86", active:true, order:5},
+      {id:"classico", title:"Clássico", category:"Classic", image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=86", active:true, order:4},
+      {id:"acabamento", title:"Acabamento", category:"Finish", image:"https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86", active:true, order:5},
       {id:"navalhado", title:"Navalhado", category:"Detail", image:"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=86", active:true, order:6}
     ];
     let cutsGallery=[...DEFAULT_CUTS];
@@ -1774,6 +1889,48 @@
     async function loadCutsGallery(){
       cutsGallery=[...DEFAULT_CUTS];
       renderPortfolio();
+    }
+
+
+    let publicContentUnsubs=[];
+
+    function mergeHighlights(remote){
+      const byId=new Map(DEFAULT_CUTS.map(x=>[x.id,{...x}]));
+      remote.forEach(x=>{
+        if(x.active===false) byId.delete(x.id);
+        else byId.set(x.id,{...(byId.get(x.id)||{}),...x});
+      });
+      return [...byId.values()].filter(x=>x.active!==false).sort((a,b)=>(a.order||0)-(b.order||0));
+    }
+
+    function mergeReviews(remote){
+      const byId=new Map(DEFAULT_REVIEWS.map(x=>[x.id,{...x,active:true}]));
+      remote.forEach(x=>{
+        if(x.active===false) byId.delete(x.id);
+        else byId.set(x.id,{...(byId.get(x.id)||{}),...x});
+      });
+      return [...byId.values()].filter(x=>x.active!==false);
+    }
+
+    function startPublicContentRealtime(){
+      publicContentUnsubs.forEach(fn=>{try{fn()}catch(e){}});
+      publicContentUnsubs=[];
+      if(!db) return;
+
+      publicContentUnsubs.push(onSnapshot(collection(db,"highlights"),snap=>{
+        const remote=snap.docs.map(d=>({id:d.id,...d.data()}));
+        cutsGallery=mergeHighlights(remote);
+        renderPortfolio();
+        if(!$("cutsGalleryModal")?.classList.contains("hidden")) openCutsGallery();
+        if(adminState?.isAdmin) renderAdminContent();
+      },()=>{}));
+
+      publicContentUnsubs.push(onSnapshot(collection(db,"reviews"),snap=>{
+        const remote=snap.docs.map(d=>({id:d.id,...d.data()}));
+        state.reviews=mergeReviews(remote);
+        renderReviews();
+        if(adminState?.isAdmin) renderAdminContent();
+      },()=>{}));
     }
 
     function renderPortfolio(){
@@ -1787,6 +1944,7 @@
           <span class="portfolio-copy"><small>${escapeHtml(item.category||"Destaque")}</small><strong>${escapeHtml(item.title)}</strong></span>
         </button>`).join("");
       grid.querySelectorAll("[data-cut]").forEach(btn=>btn.addEventListener("click",()=>openCutsGallery(btn.dataset.cut)));
+      wireImageFallbacks(grid);
     }
 
     function openCutsGallery(focusId=null){
@@ -1799,6 +1957,7 @@
           <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy">
           <div><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.category||"Referência")}</span></div>
         </article>`).join("");
+      wireImageFallbacks($("galleryGrid"));
       $("cutsGalleryModal").classList.remove("hidden");
       $("cutsGalleryModal").setAttribute("aria-hidden","false");
       document.body.style.overflow="hidden";
@@ -2606,6 +2765,25 @@
       renderAppointmentsList();
     }
 
+
+    function heroStartBooking(){
+      if(!state.services.length){
+        toast("Os serviços ainda estão carregando.");
+        return;
+      }
+      openAppointment(state.services[0].id);
+    }
+
+    async function heroOpenAppointments(){
+      if(!state.user){
+        openLogin();
+        toast("Entre na sua conta para ver seus horários.");
+        return;
+      }
+      await showAppointments();
+      setTimeout(()=>$("appointmentsSection")?.scrollIntoView({behavior:"smooth",block:"start"}),50);
+    }
+
     function showBooking(){
       $("appointmentsSection").classList.add("hidden");
       $("bookingSection").classList.remove("hidden");
@@ -2796,8 +2974,8 @@
       else if(nav==="appointments")showAppointments();
       else openLogin();
     }));
-    $("heroSchedule").onclick=()=>showBooking();
-    $("heroAppointments").onclick=()=>showAppointments();
+    $("heroSchedule").onclick=heroStartBooking;
+    $("heroAppointments").onclick=heroOpenAppointments;
     $("newAppointmentBtn").onclick=()=>showBooking();
     $("refreshBtn").onclick=()=>loadData();
     $("loginBtn").onclick=openLogin;
@@ -3062,6 +3240,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
       renderAdminAgenda();
       renderAdminClients();
       renderAdminBlocks();
+      renderAdminContent();
     }
 
     function renderAdminWeekStrip(){
@@ -3318,6 +3497,284 @@ $("accountLogout")?.addEventListener("click",async()=>{
       }catch(err){toast("Não foi possível liberar o horário.")}
     }
 
+
+
+    let pendingHighlightImageData=null;
+
+    function formatBytes(bytes){
+      if(bytes<1024) return `${bytes} B`;
+      if(bytes<1024*1024) return `${(bytes/1024).toFixed(0)} KB`;
+      return `${(bytes/1024/1024).toFixed(1)} MB`;
+    }
+
+    function dataUrlBytes(dataUrl){
+      if(!dataUrl) return 0;
+      const comma=dataUrl.indexOf(",");
+      const b64=comma>=0?dataUrl.slice(comma+1):dataUrl;
+      return Math.ceil(b64.length*0.75);
+    }
+
+    function setImageProcess(percent,text){
+      const row=$("imageProcessRow");
+      if(!row) return;
+      row.classList.remove("hidden");
+      $("imageProcessFill").style.width=`${Math.max(5,Math.min(100,percent))}%`;
+      $("imageProcessText").textContent=text||"Processando...";
+    }
+
+    async function loadImageFromFile(file){
+      return await new Promise((resolve,reject)=>{
+        const url=URL.createObjectURL(file);
+        const img=new Image();
+        img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};
+        img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error("IMAGE_LOAD_FAILED"))};
+        img.src=url;
+      });
+    }
+
+    async function compressImageFile(file){
+      if(!file) return null;
+      if(file.size>15*1024*1024) throw new Error("IMAGE_TOO_LARGE");
+
+      setImageProcess(15,`Abrindo ${formatBytes(file.size)}...`);
+      const img=await loadImageFromFile(file);
+
+      const maxSide=1280;
+      let width=img.naturalWidth||img.width;
+      let height=img.naturalHeight||img.height;
+      const scale=Math.min(1,maxSide/Math.max(width,height));
+      width=Math.max(1,Math.round(width*scale));
+      height=Math.max(1,Math.round(height*scale));
+
+      setImageProcess(35,`Otimizando ${width}×${height}...`);
+
+      const canvas=document.createElement("canvas");
+      canvas.width=width;
+      canvas.height=height;
+      const ctx=canvas.getContext("2d",{alpha:false});
+      ctx.fillStyle="#111";
+      ctx.fillRect(0,0,width,height);
+      ctx.drawImage(img,0,0,width,height);
+
+      // Keep each image safely below Firestore's 1 MiB document limit.
+      // Target is ~350 KB to leave room for metadata.
+      const target=350*1024;
+      let quality=.82;
+      let data=canvas.toDataURL("image/jpeg",quality);
+      let bytes=dataUrlBytes(data);
+
+      setImageProcess(58,`Comprimindo • ${formatBytes(bytes)}...`);
+
+      while(bytes>target && quality>.34){
+        quality-=.08;
+        data=canvas.toDataURL("image/jpeg",quality);
+        bytes=dataUrlBytes(data);
+      }
+
+      // If still large, shrink one more time.
+      if(bytes>target){
+        const factor=Math.sqrt(target/bytes)*.92;
+        const w2=Math.max(480,Math.round(width*factor));
+        const h2=Math.max(480,Math.round(height*factor));
+        const c2=document.createElement("canvas");
+        c2.width=w2;c2.height=h2;
+        const c2x=c2.getContext("2d",{alpha:false});
+        c2x.fillStyle="#111";c2x.fillRect(0,0,w2,h2);
+        c2x.drawImage(canvas,0,0,w2,h2);
+        data=c2.toDataURL("image/jpeg",.68);
+        bytes=dataUrlBytes(data);
+      }
+
+      if(bytes>700*1024) throw new Error("IMAGE_STILL_TOO_LARGE");
+
+      setImageProcess(100,`Pronta • ${formatBytes(bytes)}`);
+      return {dataUrl:data,bytes,width,height};
+    }
+
+    async function prepareHighlightFile(file){
+      pendingHighlightImageData=null;
+      if(!file){
+        $("imageProcessRow")?.classList.add("hidden");
+        return;
+      }
+
+      try{
+        const result=await compressImageFile(file);
+        pendingHighlightImageData=result.dataUrl;
+        $("highlightPreview").src=result.dataUrl;
+        $("highlightImageUrl").value="";
+        safeImage($("highlightPreview"));
+      }catch(err){
+        console.error(err);
+        pendingHighlightImageData=null;
+        $("imageProcessRow")?.classList.remove("hidden");
+        $("imageProcessFill").style.width="100%";
+        $("imageProcessText").textContent=
+          err.message==="IMAGE_TOO_LARGE"
+            ?"A foto é muito grande. Escolha uma imagem com até 15 MB."
+            :"Não foi possível processar essa foto. Tente JPG, PNG ou WEBP.";
+      }
+    }
+
+    let editingHighlightId=null;
+    let editingReviewId=null;
+
+    function renderAdminContent(){
+      const h=$("adminHighlightsList"),r=$("adminReviewsList");
+      if(h){
+        h.innerHTML=cutsGallery.map(item=>`
+          <div class="admin-highlight-row">
+            <img src="${escapeHtml(item.image||IMAGE_FALLBACK_SVG)}" alt="">
+            <div><strong>${escapeHtml(item.title||"Destaque")}</strong><span>${escapeHtml(item.category||"")} • ordem ${Number(item.order||0)}</span></div>
+            <div class="admin-content-actions">
+              <button class="admin-mini-btn" data-edit-highlight="${escapeHtml(item.id)}">Editar</button>
+              <button class="admin-mini-btn red" data-delete-highlight="${escapeHtml(item.id)}">Excluir</button>
+            </div>
+          </div>`).join("");
+        wireImageFallbacks(h);
+        h.querySelectorAll("[data-edit-highlight]").forEach(btn=>btn.addEventListener("click",()=>openHighlightEditor(btn.dataset.editHighlight)));
+        h.querySelectorAll("[data-delete-highlight]").forEach(btn=>btn.addEventListener("click",()=>deleteHighlight(btn.dataset.deleteHighlight)));
+      }
+
+      if(r){
+        r.innerHTML=state.reviews.map(item=>`
+          <div class="admin-review-row">
+            <div class="admin-review-top">
+              <div><strong>${escapeHtml(item.name||"Cliente")}</strong><div class="admin-stars">${"★".repeat(Number(item.rating||5))}</div></div>
+              <div class="admin-content-actions">
+                <button class="admin-mini-btn" data-edit-review="${escapeHtml(item.id)}">Editar</button>
+                <button class="admin-mini-btn red" data-delete-review="${escapeHtml(item.id)}">Excluir</button>
+              </div>
+            </div>
+            <p>${escapeHtml(item.text||"")}</p>
+          </div>`).join("");
+        r.querySelectorAll("[data-edit-review]").forEach(btn=>btn.addEventListener("click",()=>openReviewEditor(btn.dataset.editReview)));
+        r.querySelectorAll("[data-delete-review]").forEach(btn=>btn.addEventListener("click",()=>deleteReview(btn.dataset.deleteReview)));
+      }
+    }
+
+    function openHighlightEditor(id=null){
+      editingHighlightId=id;
+      const item=id?cutsGallery.find(x=>x.id===id):null;
+      $("adminHighlightModalTitle").textContent=item?"Editar destaque":"Novo destaque";
+      $("highlightTitle").value=item?.title||"";
+      $("highlightCategory").value=item?.category||"";
+      $("highlightOrder").value=Number(item?.order||cutsGallery.length+1);
+      pendingHighlightImageData=null;
+      $("highlightImageFile").value="";
+      $("imageProcessRow")?.classList.add("hidden");
+      const existingImage=item?.image||"";
+      $("highlightImageUrl").value=existingImage.startsWith("http")?existingImage:"";
+      $("highlightPreview").src=existingImage||IMAGE_FALLBACK_SVG;
+      safeImage($("highlightPreview"));
+      $("highlightStatus").textContent="";
+      $("adminHighlightModal").classList.remove("hidden");
+    }
+
+    async function saveHighlight(){
+      if(!db||!adminState.isAdmin)return;
+      const title=$("highlightTitle").value.trim();
+      const category=$("highlightCategory").value.trim()||"Destaque";
+      const order=Number($("highlightOrder").value||1);
+      const urlImage=$("highlightImageUrl").value.trim();
+      const current=editingHighlightId?cutsGallery.find(x=>x.id===editingHighlightId):null;
+      const image=pendingHighlightImageData || urlImage || current?.image || "";
+      const status=$("highlightStatus");
+
+      if(!title){
+        status.textContent="Informe o título.";
+        status.className="auth-status error";
+        return;
+      }
+      if(!image){
+        status.textContent="Escolha uma foto do aparelho ou informe uma URL.";
+        status.className="auth-status error";
+        return;
+      }
+      if(urlImage && !pendingHighlightImageData && !/^https?:\/\//i.test(urlImage)){
+        status.textContent="A URL precisa começar com http:// ou https://";
+        status.className="auth-status error";
+        return;
+      }
+
+      const approxBytes=image.startsWith("data:")?dataUrlBytes(image):0;
+      if(approxBytes>700*1024){
+        status.textContent="Essa imagem ficou grande demais. Escolha outra.";
+        status.className="auth-status error";
+        return;
+      }
+
+      const id=editingHighlightId||`destaque-${Date.now()}`;
+      status.textContent="Salvando...";
+      status.className="auth-status loading";
+
+      try{
+        await setDoc(doc(db,"highlights",id),{
+          title,category,image,order,active:true,
+          imageSource:image.startsWith("data:")?"embedded":"url",
+          imageBytes:approxBytes||null,
+          updatedAt:serverTimestamp(),
+          ...(editingHighlightId?{}:{createdAt:serverTimestamp()})
+        },{merge:true});
+        status.textContent="Foto e destaque salvos.";
+        status.className="auth-status success";
+        pendingHighlightImageData=null;
+        setTimeout(()=>$("adminHighlightModal").classList.add("hidden"),350);
+      }catch(err){
+        console.error(err);
+        status.textContent=String(err?.code||"").includes("resource-exhausted")
+          ?"A imagem ultrapassou o limite. Escolha uma foto menor."
+          :"Não foi possível salvar o destaque.";
+        status.className="auth-status error";
+      }
+    }
+
+    async function deleteHighlight(id){
+      if(!db||!adminState.isAdmin||!confirm("Remover este destaque do site?"))return;
+      try{
+        await setDoc(doc(db,"highlights",id),{active:false,updatedAt:serverTimestamp()},{merge:true});
+        toast("Destaque removido.");
+      }catch(err){toast("Não foi possível remover.")}
+    }
+
+    function openReviewEditor(id=null){
+      editingReviewId=id;
+      const item=id?state.reviews.find(x=>x.id===id):null;
+      $("adminReviewModalTitle").textContent=item?"Editar avaliação":"Nova avaliação";
+      $("reviewName").value=item?.name||"";
+      $("reviewRating").value=String(item?.rating||5);
+      $("reviewText").value=item?.text||"";
+      $("reviewStatus").textContent="";
+      $("adminReviewModal").classList.remove("hidden");
+    }
+
+    async function saveReview(){
+      if(!db||!adminState.isAdmin)return;
+      const name=$("reviewName").value.trim();
+      const rating=Number($("reviewRating").value||5);
+      const text=$("reviewText").value.trim();
+      const status=$("reviewStatus");
+      if(!name||!text){status.textContent="Informe nome e comentário.";status.className="auth-status error";return}
+      const id=editingReviewId||`avaliacao-${Date.now()}`;
+      try{
+        status.textContent="Salvando...";status.className="auth-status loading";
+        await setDoc(doc(db,"reviews",id),{
+          name,rating,text,active:true,updatedAt:serverTimestamp(),
+          ...(editingReviewId?{}:{createdAt:serverTimestamp()})
+        },{merge:true});
+        status.textContent="Avaliação salva.";status.className="auth-status success";
+        setTimeout(()=>$("adminReviewModal").classList.add("hidden"),350);
+      }catch(err){status.textContent="Não foi possível salvar a avaliação.";status.className="auth-status error"}
+    }
+
+    async function deleteReview(id){
+      if(!db||!adminState.isAdmin||!confirm("Remover esta avaliação do site?"))return;
+      try{
+        await setDoc(doc(db,"reviews",id),{active:false,updatedAt:serverTimestamp()},{merge:true});
+        toast("Avaliação removida.");
+      }catch(err){toast("Não foi possível remover.")}
+    }
+
     function setupAdminNavigation(){
       document.querySelectorAll("[data-admin-nav]").forEach(btn=>btn.addEventListener("click",()=>{
         document.querySelectorAll("[data-admin-nav]").forEach(x=>x.classList.remove("active"));
@@ -3348,9 +3805,32 @@ $("accountLogout")?.addEventListener("click",async()=>{
     $("adminSearch")?.addEventListener("input",renderAdminAgenda);
     $("adminClientSearch")?.addEventListener("input",renderAdminClients);
 
+
+    $("adminAddHighlight")?.addEventListener("click",()=>openHighlightEditor());
+    $("adminAddReview")?.addEventListener("click",()=>openReviewEditor());
+    $("saveHighlight")?.addEventListener("click",saveHighlight);
+    $("saveReview")?.addEventListener("click",saveReview);
+
+    $("highlightImageFile")?.addEventListener("change",async()=>{
+      const file=$("highlightImageFile").files?.[0]||null;
+      await prepareHighlightFile(file);
+    });
+
+    $("highlightImageUrl")?.addEventListener("input",()=>{
+      const url=$("highlightImageUrl").value.trim();
+      if(url){
+        pendingHighlightImageData=null;
+        $("highlightImageFile").value="";
+        $("imageProcessRow")?.classList.add("hidden");
+        $("highlightPreview").src=url;
+        safeImage($("highlightPreview"));
+      }
+    });
+
     // Start
     loadData();
     loadCutsGallery();
+    startPublicContentRealtime();
 
     if(!firebaseReady){
       state.services=EDUARDO_CATALOG;
@@ -3381,6 +3861,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
             <button data-admin-nav="agenda"><span class="ico">▦</span>Agenda</button>
             <button data-admin-nav="clients"><span class="ico">◉</span>Clientes</button>
             <button data-admin-nav="blocks"><span class="ico">⊘</span>Bloqueios</button>
+            <button data-admin-nav="content"><span class="ico">◆</span>Conteúdo</button>
           </nav>
         </aside>
 
@@ -3460,6 +3941,35 @@ $("accountLogout")?.addEventListener("click",async()=>{
             </div>
             <div class="admin-blocked-list" id="adminBlocksList"></div>
           </section>
+
+          <section class="admin-section" id="admin-content">
+            <div class="admin-heading">
+              <div>
+                <div class="kicker">Site & reputação</div>
+                <h1>Conteúdo</h1>
+                <p>Escolha fotos do celular ou computador e edite as avaliações que aparecem no site.</p>
+              </div>
+            </div>
+
+            <div class="admin-content-grid">
+              <article class="admin-panel">
+                <div class="admin-panel-head">
+                  <div><strong>Destaques de cortes</strong><span>Fotos exibidas na galeria</span></div>
+                  <button class="admin-primary" id="adminAddHighlight">＋ Foto</button>
+                </div>
+                <div class="admin-panel-body admin-content-list" id="adminHighlightsList"></div>
+              </article>
+
+              <article class="admin-panel">
+                <div class="admin-panel-head">
+                  <div><strong>Avaliações</strong><span>Depoimentos exibidos no site</span></div>
+                  <button class="admin-primary" id="adminAddReview">＋ Avaliação</button>
+                </div>
+                <div class="admin-panel-body admin-content-list" id="adminReviewsList"></div>
+              </article>
+            </div>
+          </section>
+
         </main>
       </div>
     </div>
@@ -3498,6 +4008,60 @@ $("accountLogout")?.addEventListener("click",async()=>{
       </div>
       <button class="admin-primary" id="adminCreateBlock" style="width:100%;margin-top:14px;min-height:44px">Bloquear horário</button>
       <p id="adminBlockStatus" class="auth-status"></p>
+    </div>
+  </div>
+
+
+  <div id="adminHighlightModal" class="admin-modal hidden">
+    <div class="admin-modal-card">
+      <div class="admin-modal-head">
+        <div><h3 id="adminHighlightModalTitle">Editar destaque</h3><p>Escolha uma foto do aparelho ou use uma URL, e ajuste título e categoria.</p></div>
+        <button class="admin-modal-close" data-admin-modal-close="adminHighlightModal">×</button>
+      </div>
+      <div class="admin-form-grid">
+        <div class="admin-field"><label>Título</label><input id="highlightTitle" placeholder="Ex.: Degradê"></div>
+        <div class="admin-field"><label>Categoria</label><input id="highlightCategory" placeholder="Ex.: Fade"></div>
+        <div class="admin-field"><label>Ordem</label><input id="highlightOrder" type="number" min="1" value="1"></div>
+        <div class="admin-field full"><label>Ou usar URL de imagem (opcional)</label><input id="highlightImageUrl" placeholder="https://exemplo.com/minha-foto.jpg"></div>
+        <div class="admin-field full">
+          <label>Escolher foto do aparelho</label>
+          <input class="admin-file" id="highlightImageFile" type="file" accept="image/jpeg,image/png,image/webp,image/heic,image/heif">
+          <div class="image-upload-help">
+            A foto é otimizada automaticamente antes de ser salva. Não precisa de Storage nem de site externo.
+          </div>
+          <div class="image-process-row hidden" id="imageProcessRow">
+            <div class="image-process-bar"><i id="imageProcessFill"></i></div>
+            <span id="imageProcessText">Preparando imagem...</span>
+          </div>
+          <img id="highlightPreview" class="admin-image-preview" alt="Prévia">
+        </div>
+      </div>
+      <div class="admin-save-row">
+        <button class="admin-primary" id="saveHighlight">Salvar destaque</button>
+      </div>
+      <p id="highlightStatus" class="auth-status"></p>
+    </div>
+  </div>
+
+  <div id="adminReviewModal" class="admin-modal hidden">
+    <div class="admin-modal-card" style="max-width:560px">
+      <div class="admin-modal-head">
+        <div><h3 id="adminReviewModalTitle">Editar avaliação</h3><p>Gerencie os depoimentos exibidos no site.</p></div>
+        <button class="admin-modal-close" data-admin-modal-close="adminReviewModal">×</button>
+      </div>
+      <div class="admin-form-grid">
+        <div class="admin-field"><label>Nome</label><input id="reviewName" placeholder="Nome do cliente"></div>
+        <div class="admin-field">
+          <label>Nota</label>
+          <select id="reviewRating">
+            <option value="5">5 estrelas</option><option value="4">4 estrelas</option>
+            <option value="3">3 estrelas</option><option value="2">2 estrelas</option><option value="1">1 estrela</option>
+          </select>
+        </div>
+        <div class="admin-field full"><label>Comentário</label><textarea id="reviewText" rows="5" placeholder="Depoimento do cliente"></textarea></div>
+      </div>
+      <div class="admin-save-row"><button class="admin-primary" id="saveReview">Salvar avaliação</button></div>
+      <p id="reviewStatus" class="auth-status"></p>
     </div>
   </div>
 

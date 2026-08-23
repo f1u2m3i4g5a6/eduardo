@@ -1,35 +1,38 @@
-# EDUARDO • D'MASSA V14 — ADMIN POR CONTA EDUARDO
+# EDUARDO • D'MASSA V17 — FOTO DIRETO DO CELULAR/PC
 
-O print mostrou no Console:
-`Conta autenticada sem acesso administrativo.`
+Esta versão NÃO usa Firebase Storage e NÃO usa serviço externo.
 
-Isso confirma que o site V13 estava funcionando, mas o UID da conta atualmente logada não era o mesmo UID configurado anteriormente.
+## Como funciona
+Painel > Conteúdo > Foto/Novo destaque
 
-A V14 elimina esse problema.
+1. Clique em Escolher arquivo.
+2. Selecione uma foto do celular ou computador.
+3. O site reduz a resolução e comprime a foto automaticamente.
+4. A imagem otimizada é salva junto com o destaque.
+5. A alteração aparece automaticamente no site.
 
-## Como o ADM é reconhecido agora
-A conta administrativa é a conta autenticada internamente como:
+## Limites
+- arquivo original: até 15 MB
+- resolução é reduzida para no máximo 1280 px no maior lado
+- imagem final tenta ficar em aproximadamente 350 KB
+- formato final: JPEG otimizado
 
-eduardo@usuarios.eduardo.app
+Isso mantém cada documento abaixo do limite do Firestore.
 
-Essa é exatamente a identidade técnica gerada quando você entra com usuário:
+## Também continua aceitando URL
+Se preferir, o campo de URL continua disponível.
 
-Eduardo
+## Não precisa
+- Firebase Storage
+- plano Blaze
+- ImgBB
+- Cloudinary
+- servidor de upload externo
 
-O cliente continua vendo e digitando apenas `Eduardo` + senha.
+## Atualização
+1. Publique o novo index.html.
+2. Publique firestore.rules.
+3. Ctrl + Shift + R no navegador.
 
-## O que fazer
-1. Substitua seu index.html pela V14.
-2. Firestore > Rules.
-3. Cole o firestore.rules da V14.
-4. Clique em Publicar.
-5. No site, saia da conta.
-6. Atualize com Ctrl+Shift+R.
-7. Entre novamente como Eduardo.
-
-O botão `◆ Painel` deve aparecer.
-
-## Segurança
-A senha NÃO está no HTML.
-O painel depende de uma conta autenticada real.
-As regras do servidor também conferem a identidade autenticada antes de liberar leitura de todos os agendamentos e funções administrativas.
+## Contato
++55 49 9838-4230
