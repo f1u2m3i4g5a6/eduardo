@@ -1566,6 +1566,128 @@
   }
 </style>
 
+
+<style id="eduardo-v19-hours">
+  .schedule-note{
+    padding:10px 12px;
+    background:rgba(240,36,61,.055);
+    color:#8d8990;
+    border-top:1px solid #232327;
+    font-size:8px;
+    line-height:1.5;
+  }
+  .hours-row span{
+    text-align:right;
+  }
+</style>
+
+
+<style id="eduardo-v20-schedule">
+  .business-special-notice{
+    margin-top:9px;padding:10px 11px;border:1px solid rgba(240,36,61,.12);
+    border-radius:13px;background:rgba(240,36,61,.045);display:grid;gap:5px
+  }
+  .business-special-notice strong{
+    color:#ff6170;font-size:8px;text-transform:uppercase;letter-spacing:.1em
+  }
+  .business-special-notice span{color:#858189;font-size:8px}
+  .hours-closed{color:#ff6876!important}
+
+  .schedule-heading-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .schedule-admin-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:12px}
+  .schedule-live-chip{
+    display:inline-flex;align-items:center;gap:5px;color:#59dc99;
+    font-size:7px;font-weight:900;letter-spacing:.1em
+  }
+
+  .admin-hours-editor{display:grid;gap:8px}
+  .admin-hours-row{
+    display:grid;grid-template-columns:minmax(130px,.8fr) minmax(0,1.2fr);
+    gap:12px;align-items:center;padding:12px;border:1px solid #29282e;
+    border-radius:16px;background:#101012;transition:.2s
+  }
+  .admin-hours-row.is-closed{opacity:.72;background:#0d0d0f}
+  .admin-hours-day{display:flex;align-items:center;gap:10px;min-width:0}
+  .admin-hours-day strong{display:block;color:#fff;font-size:10px}
+  .admin-hours-day small{display:block;color:#67636b;font-size:8px;margin-top:3px}
+  .hours-switch{
+    width:41px;height:23px;position:relative;display:inline-flex;flex:0 0 auto
+  }
+  .hours-switch input{position:absolute;opacity:0;pointer-events:none}
+  .hours-switch i{
+    width:41px;height:23px;border-radius:999px;background:#28272c;border:1px solid #35343a;
+    transition:.2s;position:relative
+  }
+  .hours-switch i:after{
+    content:"";position:absolute;width:17px;height:17px;left:2px;top:2px;border-radius:50%;
+    background:#817d84;transition:.2s
+  }
+  .hours-switch input:checked+i{background:rgba(50,213,131,.16);border-color:rgba(50,213,131,.35)}
+  .hours-switch input:checked+i:after{transform:translateX(18px);background:#55dc98}
+  .admin-hours-times{
+    display:grid;grid-template-columns:minmax(95px,1fr) 18px minmax(95px,1fr);
+    gap:7px;align-items:center
+  }
+  .admin-hours-times input{
+    width:100%;min-width:0;height:40px;border-radius:11px;border:1px solid #302f35;
+    background:#0b0b0d;color:#fff;padding:0 9px;outline:0;color-scheme:dark
+  }
+  .admin-hours-times input:disabled{opacity:.35;cursor:not-allowed}
+  .admin-hours-times span{text-align:center;color:#67636b;font-size:10px}
+
+  .special-close-form{
+    display:grid;grid-template-columns:140px minmax(0,1fr);gap:9px;align-items:end
+  }
+  .special-close-form .admin-primary{grid-column:1/-1;min-height:42px}
+  .special-closures-list{display:grid;gap:7px;margin-top:14px}
+  .special-closure-item{
+    display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:10px;align-items:center;
+    border:1px solid #30262a;border-radius:14px;background:#121014;padding:9px
+  }
+  .special-closure-date{
+    width:54px;height:49px;border-radius:11px;border:1px solid rgba(243,35,59,.18);
+    background:#211014;display:grid;place-items:center;text-align:center
+  }
+  .special-closure-date strong{font:800 15px "Manrope";line-height:1;color:#fff}
+  .special-closure-date small{display:block;color:#ff6574;font-size:7px;margin-top:3px}
+  .special-closure-copy strong{display:block;color:#fff;font-size:9px}
+  .special-closure-copy span{display:block;color:#706c74;font-size:8px;margin-top:4px}
+  .special-empty{
+    margin-top:14px;padding:18px;border:1px dashed #302f35;border-radius:14px;
+    color:#6e6a72;font-size:9px;text-align:center
+  }
+  .schedule-info-card{
+    margin-top:12px;padding:14px 15px;border:1px solid rgba(50,213,131,.13);
+    border-radius:16px;background:rgba(50,213,131,.045);display:flex;align-items:flex-start;gap:11px
+  }
+  .schedule-info-icon{
+    width:25px;height:25px;border-radius:8px;background:rgba(50,213,131,.11);
+    color:#5bdd9b;display:grid;place-items:center;font-weight:900;flex:0 0 auto
+  }
+  .schedule-info-card strong{font-size:9px;color:#d6d2d8}
+  .schedule-info-card p{font-size:8px;color:#706d74;line-height:1.6;margin:4px 0 0}
+
+  @media(max-width:950px){
+    .schedule-admin-grid{grid-template-columns:1fr}
+  }
+  @media(max-width:650px){
+    .schedule-heading-actions{width:100%;display:grid;grid-template-columns:1fr 1fr}
+    .schedule-heading-actions button{width:100%;min-width:0}
+    .admin-hours-row{grid-template-columns:1fr;gap:9px}
+    .admin-hours-times{grid-template-columns:1fr 14px 1fr}
+    .special-close-form{grid-template-columns:1fr}
+    .special-close-form .admin-primary{grid-column:auto}
+    .special-closure-item{grid-template-columns:49px minmax(0,1fr)}
+    .special-closure-date{width:49px;height:47px}
+    .special-closure-item .admin-mini-btn{grid-column:1/-1;width:100%}
+  }
+  @media(max-width:360px){
+    .schedule-heading-actions{grid-template-columns:1fr}
+    .admin-hours-times{grid-template-columns:1fr}
+    .admin-hours-times span{display:none}
+  }
+</style>
+
 </head>
 
 <body>
@@ -1672,14 +1794,16 @@
 
           <div style="margin-top:18px">
             <div class="info-label">Horários</div>
-            <div class="hours" style="margin-top:8px">
+            <div class="hours" id="businessHoursList" style="margin-top:8px">
               <div class="hours-row"><b>Segunda</b><span>14:00 — 21:00</span></div>
-              <div class="hours-row"><b>Terça</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Terça</b><span>Fechado</span></div>
               <div class="hours-row"><b>Quarta</b><span>14:00 — 21:00</span></div>
               <div class="hours-row"><b>Quinta</b><span>14:00 — 21:00</span></div>
               <div class="hours-row"><b>Sexta</b><span>14:00 — 21:00</span></div>
               <div class="hours-row"><b>Sábado</b><span>09:00 — 17:00</span></div>
+              <div class="hours-row"><b>Domingo</b><span>Fechado</span></div>
             </div>
+            <div id="businessSpecialNotice" class="business-special-notice hidden"></div>
           </div>
 
           <div class="payment-box">
@@ -2163,10 +2287,10 @@
     ];
 
     const EDUARDO_CATALOG = [
-      {id:"cabelo", name:"Cabelo", price:45, duration:30, image:"imagens/cabelo.png", active:true, order:1},
-      {id:"barba", name:"Barba", price:40, duration:30, image:"imagens/barba.png", active:true, order:2},
-      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, image:"imagens/cabelo-barba.png", active:true, order:3},
-      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, image:"imagens/completo.png", active:true, order:4}
+      {id:"cabelo", name:"Cabelo", price:45, duration:30, image:"imagens/corte.png", active:true, order:1},
+      {id:"barba", name:"Barba", price:40, duration:30, image:"imagens/corte.png", active:true, order:2},
+      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, image:"imagens/corte.png", active:true, order:3},
+      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, image:"imagens/corte.png", active:true, order:4}
     ];
 
     const EDUARDO_BUSINESS_DEFAULT = {
@@ -2176,34 +2300,195 @@
       payments:["PIX","Cartão de crédito","Cartão de débito","Dinheiro"],
       hours:{
         monday:{open:"14:00",close:"21:00"},
-        tuesday:{open:"14:00",close:"21:00"},
+        tuesday:null,
         wednesday:{open:"14:00",close:"21:00"},
         thursday:{open:"14:00",close:"21:00"},
         friday:{open:"14:00",close:"21:00"},
         saturday:{open:"09:00",close:"17:00"},
         sunday:null
-      }
+      },
+      specialClosures:[]
     };
 
-    let businessSettings = {...EDUARDO_BUSINESS_DEFAULT};
+    const BUSINESS_DAYS = [
+      {key:"monday",label:"Segunda"},
+      {key:"tuesday",label:"Terça"},
+      {key:"wednesday",label:"Quarta"},
+      {key:"thursday",label:"Quinta"},
+      {key:"friday",label:"Sexta"},
+      {key:"saturday",label:"Sábado"},
+      {key:"sunday",label:"Domingo"}
+    ];
+
+    function cloneDefaultHours(){
+      const out={};
+      BUSINESS_DAYS.forEach(({key})=>{
+        const h=EDUARDO_BUSINESS_DEFAULT.hours[key];
+        out[key]=h?{open:h.open,close:h.close}:null;
+      });
+      return out;
+    }
+
+    function normalizeTimeValue(value,fallback){
+      const v=String(value||"");
+      return /^\d{2}:\d{2}$/.test(v)?v:fallback;
+    }
+
+    function normalizeBusinessSettings(data={}){
+      const sourceHours=data?.hours||{};
+      const hours={};
+
+      BUSINESS_DAYS.forEach(({key})=>{
+        const fallback=EDUARDO_BUSINESS_DEFAULT.hours[key];
+        const remote=Object.prototype.hasOwnProperty.call(sourceHours,key)?sourceHours[key]:fallback;
+
+        if(!remote || remote.open===null || remote.close===null){
+          hours[key]=null;
+          return;
+        }
+
+        hours[key]={
+          open:normalizeTimeValue(remote.open,fallback?.open||"14:00"),
+          close:normalizeTimeValue(remote.close,fallback?.close||"21:00")
+        };
+      });
+
+      const closures=Array.isArray(data?.specialClosures)?data.specialClosures:[];
+      const byDate=new Map();
+      closures.forEach(item=>{
+        const date=String(item?.date||"");
+        if(!/^\d{4}-\d{2}-\d{2}$/.test(date)) return;
+        byDate.set(date,{
+          date,
+          reason:String(item?.reason||"Fechado").slice(0,120)
+        });
+      });
+
+      return {
+        ...EDUARDO_BUSINESS_DEFAULT,
+        ...data,
+        whatsapp:String(data?.whatsapp||EDUARDO_BUSINESS_DEFAULT.whatsapp),
+        hours,
+        specialClosures:[...byDate.values()].sort((a,b)=>a.date.localeCompare(b.date))
+      };
+    }
+
+    let businessSettings = normalizeBusinessSettings(EDUARDO_BUSINESS_DEFAULT);
+    let businessSettingsUnsub=null;
 
     async function seedEduardoDataIfNeeded(){
-      // Dados públicos usam fallback visual quando a coleção ainda está vazia.
-      // Reservas e contas continuam sendo gravadas normalmente.
       return;
     }
 
     async function loadBusinessSettings(){
-      if(!db) return;
+      if(!db){
+        businessSettings=normalizeBusinessSettings(EDUARDO_BUSINESS_DEFAULT);
+        updateBusinessUI();
+        return;
+      }
       try{
         const snap=await getDoc(doc(db,"settings","business"));
-        if(snap.exists()) businessSettings={...EDUARDO_BUSINESS_DEFAULT,...snap.data()};
-      }catch(err){ console.warn(err); }
+        businessSettings=normalizeBusinessSettings(snap.exists()?snap.data():EDUARDO_BUSINESS_DEFAULT);
+      }catch(err){
+        console.warn("Configurações do negócio:",err);
+        businessSettings=normalizeBusinessSettings(EDUARDO_BUSINESS_DEFAULT);
+      }
       updateBusinessUI();
+      if(typeof renderAdminSchedule==="function") renderAdminSchedule();
+    }
+
+    function startBusinessSettingsRealtime(){
+      if(!db){
+        updateBusinessUI();
+        return;
+      }
+
+      if(businessSettingsUnsub){
+        try{businessSettingsUnsub()}catch(e){}
+        businessSettingsUnsub=null;
+      }
+
+      businessSettingsUnsub=onSnapshot(
+        doc(db,"settings","business"),
+        snap=>{
+          businessSettings=normalizeBusinessSettings(snap.exists()?snap.data():EDUARDO_BUSINESS_DEFAULT);
+          updateBusinessUI();
+          if(typeof renderAdminSchedule==="function") renderAdminSchedule();
+
+          const modal=$("appointmentModal");
+          if(modal && !modal.classList.contains("hidden") && state?.booking){
+            if(state.step<=2) buildDates();
+            else if(state.booking.date) renderTimes();
+          }
+
+          if(adminState?.isAdmin){
+            fillAdminTimes();
+            fillBlockTimes();
+          }
+        },
+        err=>{
+          console.warn("Horários em tempo real:",err);
+          businessSettings=normalizeBusinessSettings(EDUARDO_BUSINESS_DEFAULT);
+          updateBusinessUI();
+        }
+      );
+    }
+
+    function todayISO(){
+      const d=new Date();
+      return [
+        d.getFullYear(),
+        String(d.getMonth()+1).padStart(2,"0"),
+        String(d.getDate()).padStart(2,"0")
+      ].join("-");
+    }
+
+    function specialClosureForISO(iso){
+      return (businessSettings.specialClosures||[]).find(x=>x.date===iso)||null;
+    }
+
+    function businessHoursForISO(iso){
+      if(!iso || specialClosureForISO(iso)) return null;
+      const d=new Date(iso+"T12:00:00");
+      if(Number.isNaN(d.getTime())) return null;
+      const keys=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+      return businessSettings.hours?.[keys[d.getDay()]] || null;
+    }
+
+    function renderBusinessHours(){
+      const el=$("businessHoursList");
+      if(el){
+        el.innerHTML=BUSINESS_DAYS.map(({key,label})=>{
+          const h=businessSettings.hours?.[key];
+          return `<div class="hours-row">
+            <b>${escapeHtml(label)}</b>
+            <span class="${h?"":"hours-closed"}">${h?`${escapeHtml(h.open)} — ${escapeHtml(h.close)}`:"Fechado"}</span>
+          </div>`;
+        }).join("");
+      }
+
+      const notice=$("businessSpecialNotice");
+      if(notice){
+        const today=todayISO();
+        const future=(businessSettings.specialClosures||[])
+          .filter(x=>x.date>=today)
+          .slice(0,3);
+
+        if(!future.length){
+          notice.classList.add("hidden");
+          notice.innerHTML="";
+        }else{
+          notice.classList.remove("hidden");
+          notice.innerHTML=`<strong>Fechamentos especiais</strong>${future.map(x=>{
+            const label=new Date(x.date+"T12:00:00").toLocaleDateString("pt-BR",{day:"2-digit",month:"2-digit"});
+            return `<span>${label} • ${escapeHtml(x.reason||"Fechado")}</span>`;
+          }).join("")}`;
+        }
+      }
     }
 
     function updateBusinessUI(){
-      const wa=document.getElementById("whatsappAction");
+      const wa=$("whatsappAction");
       if(wa){
         wa.onclick=(e)=>{
           e.preventDefault();
@@ -2216,31 +2501,39 @@
           window.open(`https://wa.me/${phone}?text=${text}`,"_blank","noopener");
         };
       }
+
+      renderBusinessHours();
       updateOpenBadge();
     }
 
     function updateOpenBadge(){
-      const badge=document.getElementById("openNowBadge");
+      const badge=$("openNowBadge");
       if(!badge) return;
+
       const now=new Date();
-      const keys=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-      const current=businessSettings.hours?.[keys[now.getDay()]];
+      const iso=todayISO();
+      const closure=specialClosureForISO(iso);
+      const current=businessHoursForISO(iso);
       let open=false;
+
       if(current){
         const mins=now.getHours()*60+now.getMinutes();
-        const toM=v=>{const [h,m]=v.split(":").map(Number);return h*60+m};
+        const toM=v=>{
+          const [h,m]=String(v).split(":").map(Number);
+          return h*60+m;
+        };
         open=mins>=toM(current.open)&&mins<toM(current.close);
       }
+
       badge.classList.toggle("closed",!open);
-      badge.innerHTML=`<span class="open-dot"></span><span>${open?"Aberto agora":"Fechado agora"}</span>`;
-    }
 
-    function businessHoursForISO(iso){
-      const d=new Date(iso+"T12:00:00");
-      const keys=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
-      return businessSettings.hours?.[keys[d.getDay()]] || null;
-    }
+      let text=open?"Aberto agora":"Fechado agora";
+      if(closure && !open){
+        text=`Fechado hoje • ${closure.reason||"data especial"}`;
+      }
 
+      badge.innerHTML=`<span class="open-dot"></span><span>${escapeHtml(text)}</span>`;
+    }
 
     let state = {
       services:[], professionals:[], subscriptions:[], reviews:[], appointments:[],
@@ -3744,6 +4037,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
       renderAdminClients();
       renderAdminBlocks();
       renderAdminContent();
+      renderAdminSchedule();
     }
 
     function renderAdminWeekStrip(){
@@ -3922,12 +4216,25 @@ $("accountLogout")?.addEventListener("click",async()=>{
     }
 
     function fillAdminTimes(){
-      const date=$("adminDate").value;
-      $("adminTimeSelect").innerHTML=timesForDate(date).map(t=>`<option>${t}</option>`).join("");
+      const date=$("adminDate")?.value;
+      const el=$("adminTimeSelect");
+      if(!el) return;
+      const times=timesForDate(date);
+      el.innerHTML=times.length
+        ? times.map(t=>`<option>${t}</option>`).join("")
+        : '<option value="">Fechado nesta data</option>';
+      el.disabled=!times.length;
     }
+
     function fillBlockTimes(){
-      const date=$("blockDate").value;
-      $("blockTime").innerHTML=timesForDate(date).map(t=>`<option>${t}</option>`).join("");
+      const date=$("blockDate")?.value;
+      const el=$("blockTime");
+      if(!el) return;
+      const times=timesForDate(date);
+      el.innerHTML=times.length
+        ? times.map(t=>`<option>${t}</option>`).join("")
+        : '<option value="">Fechado nesta data</option>';
+      el.disabled=!times.length;
     }
 
     async function createAdminAppointment(){
@@ -4000,6 +4307,269 @@ $("accountLogout")?.addEventListener("click",async()=>{
       }catch(err){toast("Não foi possível liberar o horário.")}
     }
 
+
+
+
+    function dayScheduleLabel(hours){
+      return hours?`${hours.open}–${hours.close}`:"Fechado";
+    }
+
+    function renderAdminSchedule(){
+      const editor=$("adminHoursEditor");
+      if(editor){
+        editor.innerHTML=BUSINESS_DAYS.map(({key,label})=>{
+          const h=businessSettings.hours?.[key];
+          const fallback=EDUARDO_BUSINESS_DEFAULT.hours[key]||{open:"14:00",close:"21:00"};
+          const open=h?.open||fallback.open;
+          const close=h?.close||fallback.close;
+          const enabled=Boolean(h);
+
+          return `<div class="admin-hours-row ${enabled?"":"is-closed"}" data-hours-row="${key}">
+            <div class="admin-hours-day">
+              <label class="hours-switch" title="${enabled?"Aberto":"Fechado"}">
+                <input type="checkbox" data-hours-enabled="${key}" ${enabled?"checked":""}>
+                <i></i>
+              </label>
+              <div>
+                <strong>${escapeHtml(label)}</strong>
+                <small data-hours-summary="${key}">${escapeHtml(dayScheduleLabel(h))}</small>
+              </div>
+            </div>
+
+            <div class="admin-hours-times">
+              <input type="time" data-hours-open="${key}" value="${escapeHtml(open)}" ${enabled?"":"disabled"}>
+              <span>até</span>
+              <input type="time" data-hours-close="${key}" value="${escapeHtml(close)}" ${enabled?"":"disabled"}>
+            </div>
+          </div>`;
+        }).join("");
+
+        editor.querySelectorAll("[data-hours-enabled]").forEach(toggle=>{
+          toggle.addEventListener("change",()=>{
+            const key=toggle.dataset.hoursEnabled;
+            const row=editor.querySelector(`[data-hours-row="${key}"]`);
+            const open=editor.querySelector(`[data-hours-open="${key}"]`);
+            const close=editor.querySelector(`[data-hours-close="${key}"]`);
+            const summary=editor.querySelector(`[data-hours-summary="${key}"]`);
+
+            row?.classList.toggle("is-closed",!toggle.checked);
+            if(open) open.disabled=!toggle.checked;
+            if(close) close.disabled=!toggle.checked;
+            if(summary){
+              summary.textContent=toggle.checked?`${open?.value||"—"}–${close?.value||"—"}`:"Fechado";
+            }
+          });
+        });
+
+        editor.querySelectorAll("[data-hours-open],[data-hours-close]").forEach(input=>{
+          input.addEventListener("input",()=>{
+            const key=input.dataset.hoursOpen||input.dataset.hoursClose;
+            const enabled=editor.querySelector(`[data-hours-enabled="${key}"]`)?.checked;
+            const open=editor.querySelector(`[data-hours-open="${key}"]`)?.value;
+            const close=editor.querySelector(`[data-hours-close="${key}"]`)?.value;
+            const summary=editor.querySelector(`[data-hours-summary="${key}"]`);
+            if(summary && enabled) summary.textContent=`${open||"—"}–${close||"—"}`;
+          });
+        });
+      }
+
+      renderSpecialClosures();
+    }
+
+    function readAdminHoursEditor(){
+      const editor=$("adminHoursEditor");
+      if(!editor) return null;
+
+      const hours={};
+      for(const {key,label} of BUSINESS_DAYS){
+        const enabled=Boolean(editor.querySelector(`[data-hours-enabled="${key}"]`)?.checked);
+
+        if(!enabled){
+          hours[key]=null;
+          continue;
+        }
+
+        const open=editor.querySelector(`[data-hours-open="${key}"]`)?.value||"";
+        const close=editor.querySelector(`[data-hours-close="${key}"]`)?.value||"";
+
+        if(!/^\d{2}:\d{2}$/.test(open)||!/^\d{2}:\d{2}$/.test(close)){
+          throw new Error(`Informe abertura e fechamento de ${label}.`);
+        }
+
+        const toM=v=>{
+          const [h,m]=v.split(":").map(Number);
+          return h*60+m;
+        };
+
+        if(toM(close)<=toM(open)){
+          throw new Error(`Em ${label}, o fechamento precisa ser depois da abertura.`);
+        }
+
+        hours[key]={open,close};
+      }
+
+      return hours;
+    }
+
+    async function saveBusinessHours(){
+      if(!db||!adminState.isAdmin) return;
+      const status=$("businessHoursStatus");
+
+      try{
+        const hours=readAdminHoursEditor();
+        status.textContent="Salvando horários...";
+        status.className="auth-status loading";
+
+        await setDoc(
+          doc(db,"settings","business"),
+          {
+            hours,
+            whatsapp:businessSettings.whatsapp||EDUARDO_BUSINESS_DEFAULT.whatsapp,
+            specialClosures:businessSettings.specialClosures||[],
+            updatedAt:serverTimestamp(),
+            updatedBy:"admin"
+          },
+          {merge:true}
+        );
+
+        status.textContent="Horários atualizados em todo o site.";
+        status.className="auth-status success";
+        toast("Horários salvos.");
+      }catch(err){
+        console.error("Salvar horários:",err);
+        status.textContent=err?.message||"Não foi possível salvar os horários.";
+        status.className="auth-status error";
+      }
+    }
+
+    function resetBusinessHoursEditor(){
+      if(!confirm("Restaurar os horários semanais padrão? As datas especiais serão mantidas.")) return;
+      businessSettings={
+        ...businessSettings,
+        hours:cloneDefaultHours()
+      };
+      renderAdminSchedule();
+      const status=$("businessHoursStatus");
+      if(status){
+        status.textContent="Padrão carregado. Clique em “Salvar horários” para confirmar.";
+        status.className="auth-status loading";
+      }
+    }
+
+    function renderSpecialClosures(){
+      const list=$("specialClosuresList");
+      if(!list) return;
+
+      const items=[...(businessSettings.specialClosures||[])].sort((a,b)=>a.date.localeCompare(b.date));
+
+      if(!items.length){
+        list.innerHTML='<div class="special-empty">Nenhum feriado ou fechamento específico cadastrado.</div>';
+        return;
+      }
+
+      list.innerHTML=items.map(item=>{
+        const date=new Date(item.date+"T12:00:00");
+        const day=String(date.getDate()).padStart(2,"0");
+        const month=date.toLocaleDateString("pt-BR",{month:"short"}).replace(".","");
+        const full=date.toLocaleDateString("pt-BR",{weekday:"short",day:"2-digit",month:"2-digit",year:"numeric"}).replace(".","");
+
+        return `<div class="special-closure-item">
+          <div class="special-closure-date">
+            <div><strong>${escapeHtml(day)}</strong><small>${escapeHtml(month.toUpperCase())}</small></div>
+          </div>
+          <div class="special-closure-copy">
+            <strong>${escapeHtml(item.reason||"Fechado")}</strong>
+            <span>${escapeHtml(full)}</span>
+          </div>
+          <button class="admin-mini-btn red" type="button" data-remove-special="${escapeHtml(item.date)}">Remover</button>
+        </div>`;
+      }).join("");
+
+      list.querySelectorAll("[data-remove-special]").forEach(btn=>{
+        btn.addEventListener("click",()=>removeSpecialClosure(btn.dataset.removeSpecial));
+      });
+    }
+
+    async function addSpecialClosure(){
+      if(!db||!adminState.isAdmin) return;
+
+      const date=$("specialClosureDate")?.value||"";
+      const reason=($("specialClosureReason")?.value||"").trim()||"Fechado";
+      const status=$("specialClosureStatus");
+
+      if(!/^\d{4}-\d{2}-\d{2}$/.test(date)){
+        status.textContent="Escolha uma data.";
+        status.className="auth-status error";
+        return;
+      }
+
+      const existingAppointments=(adminState.appointments||[]).filter(
+        a=>a.date===date && a.status!=="cancelled"
+      );
+
+      if(existingAppointments.length){
+        const ok=confirm(
+          `Existem ${existingAppointments.length} agendamento(s) nesta data. `+
+          `Fechar o dia impede novos horários, mas NÃO cancela os já existentes. Continuar?`
+        );
+        if(!ok) return;
+      }
+
+      const closures=[
+        ...(businessSettings.specialClosures||[]).filter(x=>x.date!==date),
+        {date,reason:reason.slice(0,120)}
+      ].sort((a,b)=>a.date.localeCompare(b.date));
+
+      try{
+        status.textContent="Salvando fechamento...";
+        status.className="auth-status loading";
+
+        await setDoc(
+          doc(db,"settings","business"),
+          {
+            specialClosures:closures,
+            updatedAt:serverTimestamp(),
+            updatedBy:"admin"
+          },
+          {merge:true}
+        );
+
+        if($("specialClosureDate")) $("specialClosureDate").value="";
+        if($("specialClosureReason")) $("specialClosureReason").value="";
+        status.textContent="Dia fechado no site.";
+        status.className="auth-status success";
+        toast("Data fechada.");
+      }catch(err){
+        console.error("Fechamento especial:",err);
+        status.textContent="Não foi possível salvar esta data.";
+        status.className="auth-status error";
+      }
+    }
+
+    async function removeSpecialClosure(date){
+      if(!db||!adminState.isAdmin) return;
+      const item=(businessSettings.specialClosures||[]).find(x=>x.date===date);
+      if(!item) return;
+      if(!confirm(`Liberar novamente ${new Date(date+"T12:00:00").toLocaleDateString("pt-BR")}?`)) return;
+
+      const closures=(businessSettings.specialClosures||[]).filter(x=>x.date!==date);
+
+      try{
+        await setDoc(
+          doc(db,"settings","business"),
+          {
+            specialClosures:closures,
+            updatedAt:serverTimestamp(),
+            updatedBy:"admin"
+          },
+          {merge:true}
+        );
+        toast("Data liberada.");
+      }catch(err){
+        console.error("Remover fechamento:",err);
+        toast("Não foi possível liberar a data.");
+      }
+    }
 
 
     let pendingHighlightImageData=null;
@@ -4284,6 +4854,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
         btn.classList.add("active");
         document.querySelectorAll(".admin-section").forEach(x=>x.classList.remove("active"));
         $(`admin-${btn.dataset.adminNav}`).classList.add("active");
+        if(btn.dataset.adminNav==="schedule") renderAdminSchedule();
       }));
       document.querySelectorAll("[data-admin-filter]").forEach(btn=>btn.addEventListener("click",()=>{
         document.querySelectorAll("[data-admin-filter]").forEach(x=>x.classList.remove("active"));
@@ -4307,6 +4878,10 @@ $("accountLogout")?.addEventListener("click",async()=>{
     $("adminCreateBlock")?.addEventListener("click",createAdminBlock);
     $("adminSearch")?.addEventListener("input",renderAdminAgenda);
     $("adminClientSearch")?.addEventListener("input",renderAdminClients);
+    $("saveBusinessHours")?.addEventListener("click",saveBusinessHours);
+    $("resetBusinessHours")?.addEventListener("click",resetBusinessHoursEditor);
+    $("addSpecialClosure")?.addEventListener("click",addSpecialClosure);
+    if($("specialClosureDate")) $("specialClosureDate").min=isoLocal();
 
 
     $("adminAddHighlight")?.addEventListener("click",()=>openHighlightEditor());
@@ -4361,10 +4936,12 @@ $("accountLogout")?.addEventListener("click",async()=>{
     loadData();
     loadCutsGallery();
     startPublicContentRealtime();
+    startBusinessSettingsRealtime();
 
     if(!firebaseReady){
       state.services=EDUARDO_CATALOG;
       renderServices();
+      businessSettings=normalizeBusinessSettings(EDUARDO_BUSINESS_DEFAULT);
       updateBusinessUI();
       setFirestoreStatus("offline","AGENDA • CONFIGURAÇÃO NECESSÁRIA");
       toast("Agenda em modo de demonstração.");
@@ -4390,6 +4967,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
             <button class="active" data-admin-nav="dashboard"><span class="ico">⌂</span>Visão geral</button>
             <button data-admin-nav="agenda"><span class="ico">▦</span>Agenda</button>
             <button data-admin-nav="clients"><span class="ico">◉</span>Clientes</button>
+            <button data-admin-nav="schedule"><span class="ico">◷</span>Horários</button>
             <button data-admin-nav="blocks"><span class="ico">⊘</span>Bloqueios</button>
             <button data-admin-nav="content"><span class="ico">◆</span>Conteúdo</button>
           </nav>
@@ -4461,6 +5039,69 @@ $("accountLogout")?.addEventListener("click",async()=>{
                 <thead><tr><th>Cliente</th><th>WhatsApp</th><th>Visitas</th><th>Total</th><th>Último horário</th><th>Ação</th></tr></thead>
                 <tbody id="adminClientsBody"></tbody>
               </table>
+            </div>
+          </section>
+
+
+          <section class="admin-section" id="admin-schedule">
+            <div class="admin-heading">
+              <div>
+                <div class="kicker">Disponibilidade semanal</div>
+                <h1>Horários de atendimento</h1>
+                <p>Altere os dias de trabalho, abertura, fechamento e datas especiais sem editar o código.</p>
+              </div>
+              <div class="schedule-heading-actions">
+                <button class="admin-mini-btn" id="resetBusinessHours">Restaurar padrão</button>
+                <button class="admin-primary" id="saveBusinessHours">Salvar horários</button>
+              </div>
+            </div>
+
+            <div class="schedule-admin-grid">
+              <article class="admin-panel">
+                <div class="admin-panel-head">
+                  <div>
+                    <strong>Semana padrão</strong>
+                    <span>Esses horários valem toda semana</span>
+                  </div>
+                  <span class="schedule-live-chip">● SITE INTEGRADO</span>
+                </div>
+                <div class="admin-panel-body">
+                  <div id="adminHoursEditor" class="admin-hours-editor"></div>
+                  <p id="businessHoursStatus" class="auth-status"></p>
+                </div>
+              </article>
+
+              <article class="admin-panel">
+                <div class="admin-panel-head">
+                  <div>
+                    <strong>Feriados & dias específicos</strong>
+                    <span>Feche uma data sem alterar a semana normal</span>
+                  </div>
+                </div>
+                <div class="admin-panel-body">
+                  <div class="special-close-form">
+                    <div class="admin-field">
+                      <label>Data</label>
+                      <input id="specialClosureDate" type="date">
+                    </div>
+                    <div class="admin-field">
+                      <label>Motivo</label>
+                      <input id="specialClosureReason" maxlength="120" placeholder="Ex.: feriado, viagem, compromisso">
+                    </div>
+                    <button class="admin-primary" id="addSpecialClosure">＋ Fechar este dia</button>
+                  </div>
+                  <div id="specialClosuresList" class="special-closures-list"></div>
+                  <p id="specialClosureStatus" class="auth-status"></p>
+                </div>
+              </article>
+            </div>
+
+            <div class="schedule-info-card">
+              <span class="schedule-info-icon">i</span>
+              <div>
+                <strong>Alteração automática em todo o site</strong>
+                <p>Ao salvar, a disponibilidade do cliente, a criação manual no painel, o indicador “Aberto agora” e os dias disponíveis passam a usar os novos horários.</p>
+              </div>
             </div>
           </section>
 
