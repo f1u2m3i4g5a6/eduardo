@@ -3,11 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <meta name="theme-color" content="#0b1020" />
-  <title>EDUARDO • D'MASSA — Seu estilo é assinatura</title>
-  <meta name="description" content="Agenda online de EDUARDO • D'MASSA." />
+  <meta name="theme-color" content="#08080a" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>EDUARDO - D'MASA</title>
+  <meta name="description" content="AGENDA • D'MASA." />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23ef233c'/><text x='50' y='61' font-size='38' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>ED</text></svg>">
-
+  <link rel="icon" href="imagens/logo.png" type="image/png"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -1167,6 +1170,402 @@
   }
 </style>
 
+
+<style id="eduardo-v18-polish">
+  :root{
+    --v18-bg:#070708;
+    --v18-card:#111114;
+    --v18-card-2:#16161a;
+    --v18-line:#29292f;
+    --v18-red:#f0243d;
+    --v18-red-hot:#ff5364;
+    --v18-text:#f7f5f2;
+    --v18-muted:#8c8890;
+    --v18-safe-bottom:max(12px,env(safe-area-inset-bottom));
+  }
+
+  html{background:var(--v18-bg);scroll-padding-top:92px}
+  body{
+    min-width:280px;
+    overflow-x:hidden;
+    text-rendering:optimizeLegibility;
+    -webkit-font-smoothing:antialiased;
+  }
+  body.modal-open{overflow:hidden}
+  button,a,input,textarea,select{font-family:inherit}
+  button,a{-webkit-tap-highlight-color:transparent}
+  button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{
+    outline:2px solid var(--v18-red-hot)!important;
+    outline-offset:3px!important;
+  }
+  img{user-select:none}
+  .app-shell{width:min(100%,1480px);margin-inline:auto}
+
+  /* Top navigation */
+  .topbar{
+    box-shadow:0 8px 35px rgba(0,0,0,.16);
+    backdrop-filter:blur(22px) saturate(135%);
+  }
+  .topbar-inner{max-width:1480px;margin-inline:auto}
+  .brand-mark{flex:0 0 auto}
+  .brand-title{white-space:nowrap}
+  .top-actions{align-items:center;min-width:0}
+  .icon-btn,.profile-btn,.admin-entry{flex:0 0 auto}
+  .icon-btn.is-refreshing{animation:v18Spin .65s linear infinite}
+  @keyframes v18Spin{to{transform:rotate(360deg)}}
+
+  /* Hero */
+  .hero{
+    min-height:clamp(500px,62vh,650px)!important;
+    padding:clamp(30px,4vw,54px)!important;
+    border-radius:clamp(24px,3vw,38px)!important;
+  }
+  .hero-grid{
+    grid-template-columns:minmax(0,1.15fr) minmax(330px,.85fr)!important;
+    gap:clamp(24px,4vw,58px)!important;
+  }
+  .hero-content{align-self:center}
+  .hero h1{
+    max-width:820px!important;
+    font-size:clamp(48px,6.6vw,96px)!important;
+    line-height:.91!important;
+    text-wrap:balance;
+  }
+  .hero p{font-size:clamp(13px,1.1vw,16px)!important;max-width:630px!important}
+  .hero-actions{display:flex;align-items:center;gap:10px}
+  .hero-actions .btn{min-height:50px;white-space:nowrap}
+  .hero-trust{row-gap:10px}
+  .hero-showcase{min-width:0}
+
+  /* Unified content rhythm */
+  .experience-strip,
+  .portfolio-section,
+  .quick-actions,
+  .business-zone,
+  .studio-proof,
+  main,
+  .signature-footer,
+  .signature-highlights{
+    width:auto;
+  }
+  .portfolio-section,.business-zone{margin-top:clamp(38px,5vw,66px)}
+  .portfolio-head h2,.business-title h2,.section-head h2{text-wrap:balance}
+  .portfolio-head p{font-size:11px;max-width:590px}
+
+  /* Services: cleaner and resilient */
+  .service-list{gap:14px!important}
+  .service-card{
+    grid-template-columns:112px minmax(0,1fr) auto!important;
+    min-height:138px!important;
+    padding:12px!important;
+    gap:16px!important;
+    border-radius:24px!important;
+    isolation:isolate;
+  }
+  .service-card:before{right:16px!important;top:12px!important}
+  .service-media{
+    width:112px;height:112px;border-radius:18px;overflow:hidden;
+    background:linear-gradient(145deg,#1c1c20,#101012);
+    border:1px solid rgba(255,255,255,.05);
+  }
+  .service-img{
+    width:100%!important;height:100%!important;border-radius:0!important;
+    object-fit:cover!important;filter:saturate(.9) contrast(1.03)!important;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1),filter .3s ease!important;
+  }
+  .service-card:hover .service-img{transform:scale(1.045);filter:saturate(1) contrast(1.05)!important}
+  .service-content{min-width:0;padding-right:4px}
+  .service-topline{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+  .service-name{
+    font-size:clamp(15px,1.25vw,18px)!important;
+    line-height:1.2;overflow-wrap:anywhere
+  }
+  .service-price{margin-top:0!important;white-space:nowrap;font-size:17px!important}
+  .service-meta{margin-top:10px!important;line-height:1.45}
+  .service-badge{margin-top:9px!important}
+  .schedule-btn{
+    min-width:102px!important;min-height:44px;padding:0 13px!important;
+    display:flex;align-items:center;justify-content:center;gap:7px;
+    border-radius:14px!important;white-space:nowrap
+  }
+  .schedule-btn b{font-size:12px;font-weight:700}
+
+  /* Tabs + cards */
+  .tabs{
+    position:relative;
+    padding-bottom:12px!important;
+    overscroll-behavior-inline:contain;
+  }
+  .tab{min-height:38px}
+  .grid-3,.reviews-grid{gap:14px!important}
+  .professional,.review-card,.subscription{
+    border-radius:22px!important;
+    transition:transform .22s ease,border-color .22s ease,box-shadow .22s ease
+  }
+  .professional:hover,.review-card:hover,.subscription:hover{transform:translateY(-2px)}
+  .review-copy{
+    font-size:12px;color:#b1adb5;line-height:1.68;margin:12px 0 0;
+    min-height:42px
+  }
+  .subscription-action{width:100%;min-height:42px}
+  .subscription.featured{transform:none!important}
+
+  /* Portfolio */
+  .portfolio-grid{
+    grid-template-columns:minmax(0,1.3fr) repeat(2,minmax(0,.85fr))!important;
+    grid-auto-rows:clamp(175px,16vw,230px)!important;
+  }
+  .portfolio-card{border-radius:24px!important}
+  .portfolio-card img{will-change:transform}
+  .portfolio-copy strong{font-size:15px!important}
+  .portfolio-open{transition:transform .2s ease,background .2s ease}
+  .portfolio-card:hover .portfolio-open{transform:translate(2px,-2px);background:rgba(243,35,59,.72)}
+
+  /* Quick actions */
+  .quick-actions{gap:10px!important}
+  .quick-action{
+    min-width:0;min-height:64px;padding:13px 14px!important;text-align:left;
+  }
+  .quick-action>span:last-child{min-width:0}
+  .quick-action strong,.quick-action small{overflow:hidden;text-overflow:ellipsis}
+  .quick-action:hover{border-color:#443036;transform:translateY(-2px)}
+
+  /* Business information */
+  .business-layout{gap:16px!important}
+  .business-card{border-radius:26px!important}
+  .amenity{transition:border-color .2s ease,transform .2s ease}
+  .amenity:hover{transform:translateY(-2px);border-color:#3b393f}
+  .hours-row{min-height:38px;align-items:center}
+  .whatsapp-action{min-height:52px}
+  .contact-number{white-space:nowrap}
+
+  /* Modals / forms */
+  .modal-backdrop,.gallery-modal,.story-modal,.admin-modal,.booking-success{
+    overscroll-behavior:contain;
+  }
+  .modal,.gallery-shell,.admin-modal-card,.booking-success-card{
+    scrollbar-width:thin;
+    scrollbar-color:#3a393f transparent;
+  }
+  .modal{width:min(780px,calc(100% - 24px))!important}
+  .date-strip{scroll-snap-type:x proximity}
+  .date{scroll-snap-align:start}
+  .time-grid{gap:9px!important}
+  .time{min-height:44px!important}
+  .field input,.field textarea,.admin-field input,.admin-field textarea,.admin-field select{
+    min-height:44px;
+  }
+
+  /* Bottom navigation & floating actions */
+  .bottom-nav{padding-bottom:env(safe-area-inset-bottom)}
+  .mobile-book-cta{
+    bottom:calc(82px + env(safe-area-inset-bottom))!important;
+    min-height:52px!important;
+  }
+  .admin-mobile-fab{
+    bottom:calc(146px + env(safe-area-inset-bottom))!important;
+  }
+
+  /* Admin refinement */
+  .admin-page{background:radial-gradient(circle at 88% 0,rgba(243,35,59,.08),transparent 28rem),#09090b}
+  .admin-main{max-width:1320px;width:100%;margin-inline:auto}
+  .admin-stat,.admin-panel,.admin-table-wrap{box-shadow:0 15px 45px rgba(0,0,0,.12)}
+  .admin-table td,.admin-table th{white-space:nowrap}
+  .admin-table td:nth-child(3),.admin-table td:nth-child(5){white-space:normal;min-width:140px}
+  .admin-content-actions{flex-wrap:wrap}
+
+  /* Tablet */
+  @media(max-width:1100px){
+    .hero-grid{grid-template-columns:minmax(0,1fr) 330px!important}
+    .hero-showcase{height:360px!important}
+    .main-card{width:min(340px,92%)!important;height:290px!important}
+    .portfolio-grid{grid-template-columns:1.2fr 1fr!important}
+    .portfolio-card:first-child{grid-row:span 2}
+    .portfolio-card:nth-child(4),.portfolio-card:nth-child(5){min-height:190px}
+    .service-card{grid-template-columns:96px minmax(0,1fr) auto!important}
+    .service-media{width:96px;height:96px}
+  }
+
+  /* Small tablet / large phone */
+  @media(max-width:820px){
+    html{scroll-padding-top:78px}
+    .topbar-inner{padding-inline:14px!important}
+    .hero{
+      min-height:auto!important;
+      padding:32px 25px 28px!important;
+    }
+    .hero-grid{grid-template-columns:1fr!important}
+    .hero-showcase{
+      height:250px!important;
+      margin-top:5px!important;
+      overflow:hidden;
+    }
+    .main-card{height:225px!important;width:min(390px,78%)!important}
+    .showcase-word{font-size:54px!important}
+    .float-card{transform:none!important}
+    .top-card{right:1%!important;top:8px!important}
+    .bottom-card{left:1%!important;bottom:8px!important}
+    .experience-strip{grid-template-columns:1fr 1fr!important}
+    .portfolio-head{align-items:flex-start!important}
+    .portfolio-grid{
+      grid-template-columns:1fr 1fr!important;
+      grid-auto-rows:190px!important;
+    }
+    .portfolio-card:first-child{grid-column:span 2!important;grid-row:span 1!important;height:250px!important}
+    .business-layout{grid-template-columns:1fr!important}
+    .service-list{grid-template-columns:1fr!important}
+    .service-card{grid-template-columns:105px minmax(0,1fr) auto!important}
+    .service-media{width:105px;height:105px}
+    .grid-3,.reviews-grid{grid-template-columns:1fr 1fr!important}
+    .modal{width:min(720px,calc(100% - 18px))!important}
+  }
+
+  /* Phones */
+  @media(max-width:600px){
+    .topbar-inner{height:66px!important;padding-inline:10px!important}
+    .brand-mark{width:39px!important;height:39px!important;font-size:12px!important}
+    .brand-title{font-size:12px!important}
+    .top-actions{gap:5px!important}
+    .icon-btn{display:none}
+    .profile-btn{height:38px!important;padding-inline:10px!important}
+    .admin-entry{height:38px!important;padding-inline:9px!important}
+
+    .personal-welcome{margin:10px!important;padding:12px 13px!important}
+    .personal-welcome button{max-width:42%;text-align:right}
+
+    .hero{
+      margin:10px 8px 0!important;
+      padding:28px 20px!important;
+      border-radius:24px!important;
+    }
+    .hero:before{font-size:88px!important;right:-34px!important;top:34px!important}
+    .hero h1{font-size:clamp(39px,12.7vw,58px)!important;letter-spacing:-.07em!important}
+    .hero p{font-size:13px!important;line-height:1.65!important}
+    .hero-actions{display:grid!important;grid-template-columns:1fr!important}
+    .hero-actions .btn{width:100%!important}
+    .hero-trust{display:grid!important;grid-template-columns:1fr 1fr;gap:9px!important}
+    .hero-trust span:last-child{grid-column:1/-1}
+    .hero-showcase{display:none!important}
+
+    .experience-strip{margin:9px 8px 0!important;border-radius:18px!important}
+    .experience-strip>div{padding:12px 10px!important}
+
+    .portfolio-section,.business-zone,.signature-highlights{margin-left:8px!important;margin-right:8px!important}
+    .portfolio-head{flex-direction:column!important;align-items:stretch!important}
+    .portfolio-head .btn{width:100%}
+    .portfolio-grid{grid-template-columns:1fr!important;grid-auto-rows:230px!important}
+    .portfolio-card:first-child{grid-column:auto!important;height:260px!important}
+    .portfolio-card{min-height:220px}
+
+    .quick-actions{margin:10px 8px 0!important;grid-template-columns:1fr 1fr!important;gap:7px!important}
+    .quick-action{min-height:62px!important;padding:10px!important}
+    .quick-action-icon{width:31px!important;height:31px!important}
+
+    main{padding-inline:8px!important}
+    .section-head{align-items:flex-start!important}
+    .tabs{margin-inline:-2px}
+    .tab{padding-inline:13px!important}
+
+    .service-card{
+      grid-template-columns:86px minmax(0,1fr)!important;
+      grid-template-areas:"image content" "button button";
+      min-height:0!important;
+      padding:10px!important;
+      gap:10px 12px!important;
+    }
+    .service-media{grid-area:image;width:86px;height:86px}
+    .service-content{grid-area:content;align-self:center}
+    .schedule-btn{
+      grid-area:button;width:100%!important;min-width:0!important;min-height:42px!important
+    }
+    .service-card:before{display:none}
+    .service-topline{display:block}
+    .service-price{margin-top:5px!important}
+    .service-meta{gap:7px!important;margin-top:7px!important}
+    .service-feature{display:none}
+    .service-badge{margin-top:6px!important}
+
+    .grid-3,.reviews-grid{grid-template-columns:1fr!important}
+    .professional,.review-card,.subscription{padding:16px!important}
+
+    .amenities{grid-template-columns:1fr!important}
+    .amenity{min-height:66px!important;display:grid!important;grid-template-columns:auto 1fr;align-items:center;gap:10px!important}
+    .payment-pills{gap:6px}
+    .business-card{padding:16px!important}
+    .contact-word{font-size:40px!important}
+
+    .studio-proof{margin-inline:8px!important}
+    .proof-item{padding:12px!important}
+    .proof-item strong{font-size:13px!important}
+
+    .modal-backdrop{padding:0!important;align-items:flex-end!important}
+    .modal{
+      width:100%!important;
+      max-height:94dvh!important;
+      border-radius:24px 24px 0 0!important;
+      padding-bottom:env(safe-area-inset-bottom);
+    }
+    .modal-head{padding:17px 15px 12px!important}
+    .modal-body{padding:15px 14px 20px!important}
+    .steps{padding-inline:15px!important}
+    .option-grid{grid-template-columns:1fr!important}
+    .time-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+    .form-grid{grid-template-columns:1fr!important}
+    .field.full{grid-column:auto!important}
+    .field input,.field textarea,.admin-field input,.admin-field textarea,.admin-field select{font-size:16px!important}
+    .modal-footer{position:sticky;bottom:0;background:linear-gradient(180deg,rgba(17,17,19,0),#111113 20%);padding-top:16px;z-index:2}
+    .modal-footer .btn{min-width:0!important;flex:1}
+
+    .gallery-modal,.story-modal,.admin-modal{padding:8px!important}
+    .gallery-shell,.story-view,.admin-modal-card{border-radius:22px!important}
+    .gallery-grid{grid-template-columns:1fr!important}
+    .story-view{width:100%!important;min-height:0!important;height:min(680px,calc(100dvh - 16px))!important}
+    .story-view-content{height:calc(100% - 20px)!important}
+
+    .signature-footer{margin-inline:8px!important;margin-bottom:120px!important;display:grid!important;grid-template-columns:1fr auto}
+    .signature-footer>div:nth-child(2){grid-column:1/-1;grid-row:2}
+    .footer-monogram{grid-column:2;grid-row:1}
+
+    .admin-stats{grid-template-columns:1fr 1fr!important}
+    .admin-stat{min-width:0}
+    .admin-stat strong{font-size:21px!important;overflow-wrap:anywhere}
+    .admin-content-actions{justify-content:flex-end}
+    .admin-highlight-row{grid-template-columns:64px minmax(0,1fr)!important}
+    .admin-highlight-row img{width:64px!important;height:58px!important}
+    .admin-highlight-row .admin-content-actions{grid-column:1/-1}
+  }
+
+  @media(max-width:390px){
+    .brand-copy{max-width:145px}
+    .brand-title{overflow:hidden;text-overflow:ellipsis}
+    .profile-btn span{display:none!important}
+    .profile-btn{width:38px!important;padding:0!important}
+    .hero{padding:25px 17px!important}
+    .hero h1{font-size:38px!important}
+    .hero-trust{grid-template-columns:1fr!important}
+    .hero-trust span:last-child{grid-column:auto}
+    .quick-actions{grid-template-columns:1fr!important}
+    .experience-strip{grid-template-columns:1fr!important}
+    .experience-strip>div{border-right:0!important;border-bottom:1px solid rgba(255,255,255,.06)!important}
+    .experience-strip>div:last-child{border-bottom:0!important}
+    .service-card{grid-template-columns:76px minmax(0,1fr)!important}
+    .service-media{width:76px;height:76px}
+    .service-name{font-size:14px!important}
+    .time-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+    .admin-stats{grid-template-columns:1fr!important}
+    .success-actions{grid-template-columns:1fr!important}
+  }
+
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{
+      scroll-behavior:auto!important;
+      animation-duration:.01ms!important;
+      animation-iteration-count:1!important;
+      transition-duration:.01ms!important;
+    }
+  }
+</style>
+
 </head>
 
 <body>
@@ -1179,13 +1578,13 @@
         <div class="brand">
           <div class="brand-mark">ED</div>
           <div class="brand-copy">
-            <div class="brand-title">EDUARDO • D'MASSA</div>
-            <div class="brand-sub">Agenda inteligente • atendimento especializado</div>
+            <div class="brand-title">EDUARDO • D'MASA</div>
+            <div class="brand-sub">Agenda</div>
           </div>
         </div>
         <div class="top-actions">
           <button class="admin-entry" id="adminEntry">◆ Painel</button>
-          <button class="icon-btn" id="refreshBtn" title="Atualizar dados">↻</button>
+          <button class="icon-btn" id="refreshBtn" type="button" title="Atualizar dados" aria-label="Atualizar dados">↻</button>
           <button class="profile-btn" id="loginBtn">◉ <span>Entrar</span></button>
         </div>
       </div>
@@ -1209,13 +1608,13 @@
             <button class="btn btn-primary" id="heroSchedule">＋ Agendar meu horário</button>
             <button class="btn btn-dark" id="heroAppointments">▣ Ver meus horários</button>
           </div>
-          <div class="hero-trust"><span><i></i> Agenda sincronizada</span><span><i></i> Confirmação rápida</span><span><i></i> D'MASSA</span></div>
+          <div class="hero-trust"><span><i></i> Agenda sincronizada</span><span><i></i> Confirmação rápida</span><span><i></i> D'MASA</span></div>
         </div>
         <div class="hero-showcase" aria-hidden="true">
           <div class="showcase-glow"></div>
           <div class="showcase-card main-card">
             <div class="showcase-top"><span>ED</span><b>01</b></div>
-            <div class="showcase-word">BARBEIRO</div>
+            <div class="showcase-word">D'MASA</div>
             <div class="showcase-line"></div>
             <div class="showcase-caption">PRECISÃO • PRESENÇA • ESTILO</div>
           </div>
@@ -1247,7 +1646,7 @@
     </section>
 
     <section class="quick-actions" aria-label="Ações rápidas">
-      <a href="#bookingSection" class="quick-action"><span class="quick-action-icon">＋</span><span><strong>Agendar</strong><small>Escolher horário</small></span></a>
+      <button class="quick-action" id="quickBook"><span class="quick-action-icon">＋</span><span><strong>Agendar</strong><small>Escolher serviço e horário</small></span></button>
       <button class="quick-action" id="quickViewHours"><span class="quick-action-icon">◷</span><span><strong>Ver horários</strong><small>Disponibilidade agora</small></span></button>
       <a href="#contato" class="quick-action"><span class="quick-action-icon">↗</span><span><strong>Contato</strong><small>Falar com Eduardo</small></span></a>
       <button class="quick-action" id="shareSite"><span class="quick-action-icon">⌁</span><span><strong>Compartilhar</strong><small>Enviar o site</small></span></button>
@@ -1381,7 +1780,7 @@
   <div id="storyModal" class="story-modal hidden" aria-hidden="true">
     <div class="story-view">
       <div class="story-progress"><i id="storyProgress"></i></div>
-      <button class="story-close" id="storyClose">×</button>
+      <button class="story-close" id="storyClose" type="button" aria-label="Fechar destaque">×</button>
       <div class="story-view-content">
         <div class="story-view-icon" id="storyIcon">✂</div>
         <div class="story-view-kicker" id="storyKicker">EDUARDO • DESTAQUES</div>
@@ -1396,7 +1795,7 @@
     <div class="gallery-shell">
       <div class="gallery-top">
         <div><h3 id="galleryTitle">Cortes em destaque</h3><p>Referências para escolher seu próximo estilo.</p></div>
-        <button class="gallery-close" id="galleryClose">×</button>
+        <button class="gallery-close" id="galleryClose" type="button" aria-label="Fechar galeria">×</button>
       </div>
       <div class="gallery-grid" id="galleryGrid"></div>
     </div>
@@ -1426,7 +1825,7 @@
           <h2 id="modalTitle">Agendar serviço</h2>
           <p id="modalSubtitle">Escolha as opções do seu atendimento.</p>
         </div>
-        <button class="close" id="closeModal">×</button>
+        <button class="close" id="closeModal" type="button" aria-label="Fechar agendamento">×</button>
       </div>
       <div class="steps">
         <div class="step active" data-step-line="1"></div>
@@ -1733,7 +2132,7 @@
         rating:5,
         available:true,
         order:1,
-        image:"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=85"
+        image: "imagens/eduardo.png"
       }
     ];
 
@@ -1758,20 +2157,20 @@
     ];
 
     const DEFAULT_REVIEWS = [
-      {id:"r1",name:"Cliente",rating:5,text:"Atendimento excelente, horário certinho e corte impecável."},
-      {id:"r2",name:"Cliente",rating:5,text:"Muito prático para agendar e acompanhar meu horário."},
-      {id:"r3",name:"Cliente",rating:5,text:"Ambiente bom e acabamento muito bem feito."}
+      {id:"r1",name:"Victor",rating:5,text:"Atendimento excelente, horário certinho e corte impecável."},
+      {id:"r2",name:"Victor",rating:5,text:"Obrigado pelo atendimento."},
+      {id:"r3",name:"Eduardo",rating:5,text:"Nosso ambiente é climatizado."}
     ];
 
     const EDUARDO_CATALOG = [
-      {id:"cabelo", name:"Cabelo", price:45, duration:30, active:true, order:1},
-      {id:"barba", name:"Barba", price:40, duration:30, active:true, order:2},
-      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, active:true, order:3},
-      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, active:true, order:4}
+      {id:"cabelo", name:"Cabelo", price:45, duration:30, image:"imagens/cabelo.png", active:true, order:1},
+      {id:"barba", name:"Barba", price:40, duration:30, image:"imagens/barba.png", active:true, order:2},
+      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, image:"imagens/cabelo-barba.png", active:true, order:3},
+      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, image:"imagens/completo.png", active:true, order:4}
     ];
 
     const EDUARDO_BUSINESS_DEFAULT = {
-      name:"EDUARDO • D'MASSA",
+      name:"EDUARDO • D'MASA",
       whatsapp:"554998384230",
       amenities:["Wi-Fi","Acessibilidade","Aceita crianças"],
       payments:["PIX","Cartão de crédito","Cartão de débito","Dinheiro"],
@@ -1862,7 +2261,7 @@
         <rect width="900" height="1100" fill="url(#g)"/>
         <circle cx="700" cy="220" r="250" fill="none" stroke="#ef233c" stroke-opacity=".18" stroke-width="3"/>
         <text x="70" y="850" fill="#ffffff" font-family="Arial" font-size="92" font-weight="800">EDUARDO</text>
-        <text x="70" y="940" fill="#ef233c" font-family="Arial" font-size="66" font-weight="800">D'MASSA</text>
+        <text x="70" y="940" fill="#ef233c" font-family="Arial" font-size="66" font-weight="800">D'MASA</text>
         <text x="72" y="1000" fill="#777" font-family="Arial" font-size="25">CORTE • PRESENÇA • ESTILO</text>
       </svg>`);
     function safeImage(img){
@@ -1876,14 +2275,14 @@
       root.querySelectorAll("img").forEach(safeImage);
     }
 
-    const DEFAULT_CUTS = [
-      {id:"degrade", title:"Degradê", category:"Fade", image:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=86", active:true, order:1},
-      {id:"texturizado", title:"Texturizado", category:"Texture", image:"https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86", active:true, order:2},
-      {id:"barba", title:"Barba alinhada", category:"Beard", image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=86", active:true, order:3},
-      {id:"classico", title:"Clássico", category:"Classic", image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=86", active:true, order:4},
-      {id:"acabamento", title:"Acabamento", category:"Finish", image:"https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86", active:true, order:5},
-      {id:"navalhado", title:"Navalhado", category:"Detail", image:"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=86", active:true, order:6}
-    ];
+const DEFAULT_CUTS = [
+  {id:"corte1", title:"Americano", category:"Classic", image:"imagens/corte1.png", active:true, order:1},
+  {id:"corte2", title:"Clássico", category:"Classic", image:"imagens/corte2.png", active:true, order:2},
+  {id:"corte3", title:"Clássico", category:"Classic", image:"imagens/corte3.png", active:true, order:3},
+  {id:"corte4", title:"Clássico", category:"Classic", image:"imagens/corte4.png", active:true, order:4},
+  {id:"corte5", title:"Clássico", category:"Classic", image:"imagens/corte5.png", active:true, order:5},
+  {id:"corte6", title:"Clássico", category:"Classic", image:"imagens/corte6.png", active:true, order:6}
+];
     let cutsGallery=[...DEFAULT_CUTS];
 
     async function loadCutsGallery(){
@@ -1970,7 +2369,7 @@
     }
 
     async function shareSite(){
-      const data={title:"EDUARDO • D'MASSA",text:"Agende seu horário com o Eduardo.",url:location.href};
+      const data={title:"EDUARDO • D'MASA",text:"Agende seu horário com o Eduardo.",url:location.href};
       try{
         if(navigator.share) await navigator.share(data);
         else{
@@ -2289,60 +2688,153 @@
       renderProfessionalOptions();
     }
 
+
+    function normalizeServiceKey(value){
+      return String(value||"")
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g,"-")
+        .replace(/^-+|-+$/g,"");
+    }
+
+    function serviceImage(service){
+      if(service?.image) return service.image;
+
+      const id=normalizeServiceKey(service?.id);
+      const name=normalizeServiceKey(service?.name);
+      const key=id||name;
+
+      const map={
+        "cabelo":"imagens/cabelo.png",
+        "barba":"imagens/barba.png",
+        "cabelo-barba":"imagens/cabelo-barba.png",
+        "cabelo-e-barba":"imagens/cabelo-barba.png",
+        "cabelo-barba-sobrancelha":"imagens/completo.png",
+        "cabelo-barba-e-sobrancelha":"imagens/completo.png",
+        "cabelo-e-barba-e-sobrancelha":"imagens/completo.png"
+      };
+
+      return map[key] || map[name] || "imagens/corte.png";
+    }
+
+    function openWhatsAppMessage(message){
+      const phone=normalizePhone(businessSettings?.whatsapp||"554998384230");
+      if(!phone){ toast("Contato do WhatsApp indisponível."); return; }
+      window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`,"_blank","noopener");
+    }
+
     function renderServices(){
       const el=$("servicesList");
-      if(!state.services.length){el.innerHTML='<div class="loading">Nenhum serviço disponível.</div>';return}
+      if(!el) return;
+
+      if(!state.services.length){
+        el.innerHTML='<div class="smart-empty"><div class="empty-icon">✂</div><strong>Nenhum serviço disponível.</strong><p>Tente atualizar a página em alguns instantes.</p></div>';
+        return;
+      }
+
       el.innerHTML=state.services.map((s,index)=>`
         <article class="service-card" data-index="${String(index+1).padStart(2,'0')}">
-          <img class="service-img" src="${escapeHtml(s.image || "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=300&q=80")}" alt="">
-          <div>
-            <div class="service-name">${escapeHtml(s.name)}</div>
-            <div class="service-price">${money(s.price)}</div>
-            <div class="service-meta"><span>◷ ${Number(s.duration||30)} min</span><span class="service-feature">✓ Confirmação imediata</span></div><span class="service-badge">Agenda online</span>
+          <div class="service-media">
+            <img
+              class="service-img"
+              src="${escapeHtml(serviceImage(s))}"
+              alt="${escapeHtml(s.name||"Serviço")}"
+              loading="${index<2?"eager":"lazy"}"
+              decoding="async"
+            >
           </div>
-          <button class="schedule-btn" data-service="${escapeHtml(s.id)}">Agendar</button>
-        </article>`).join("");
-      el.querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openAppointment(b.dataset.service)));
+
+          <div class="service-content">
+            <div class="service-topline">
+              <div class="service-name">${escapeHtml(s.name)}</div>
+              <div class="service-price">${money(s.price)}</div>
+            </div>
+
+            <div class="service-meta">
+              <span>◷ ${Number(s.duration||30)} min</span>
+              <span class="service-feature">✓ Confirmação imediata</span>
+            </div>
+
+            <span class="service-badge">Agenda online</span>
+          </div>
+
+          <button class="schedule-btn" type="button" data-service="${escapeHtml(s.id)}">
+            <span>Agendar</span><b>↗</b>
+          </button>
+        </article>
+      `).join("");
+
+      wireImageFallbacks(el);
+      el.querySelectorAll("[data-service]").forEach(btn=>{
+        btn.addEventListener("click",()=>openAppointment(btn.dataset.service));
+      });
     }
 
     function renderSubscriptions(){
-      $("subscriptionsList").innerHTML=state.subscriptions.map(s=>`
+      const el=$("subscriptionsList");
+      if(!el) return;
+      el.innerHTML=state.subscriptions.map(s=>`
         <article class="subscription ${s.featured?'featured':''}">
           ${s.featured?'<span class="subscription-badge">MAIS POPULAR</span>':''}
           <h3>${escapeHtml(s.name)}</h3>
           <div class="desc">${escapeHtml(s.description||"Plano para manter seu visual sempre em dia.")}</div>
           <div class="sub-price">${money(s.price)} <small>/mês</small></div>
           <ul class="sub-list">${(s.benefits||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
-          <button class="btn btn-dark" style="width:100%" data-sub="${escapeHtml(s.id)}">Ver assinatura</button>
-        </article>`).join("");
-      $("subscriptionsList").querySelectorAll("[data-sub]").forEach(b=>b.addEventListener("click",()=>{
-        const s=state.subscriptions.find(x=>x.id===b.dataset.sub);
-        toast(`Plano ${s?.name||""} selecionado.`);
+          <button class="btn btn-dark subscription-action" type="button" data-sub="${escapeHtml(s.id)}">Quero saber mais ↗</button>
+        </article>
+      `).join("");
+
+      el.querySelectorAll("[data-sub]").forEach(btn=>btn.addEventListener("click",()=>{
+        const plan=state.subscriptions.find(x=>x.id===btn.dataset.sub);
+        if(!plan) return;
+        openWhatsAppMessage(`Olá, Eduardo! Vi o plano ${plan.name} no site e gostaria de saber mais.`);
       }));
     }
 
     function renderProfessionals(){
-      $("professionalsList").innerHTML=state.professionals.map(p=>`
+      const el=$("professionalsList");
+      if(!el) return;
+      el.innerHTML=state.professionals.map(p=>`
         <article class="professional">
           <div class="professional-top">
-            <img class="avatar" src="${escapeHtml(p.image||"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=300&q=80")}" alt="">
-            <div><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.specialty||"Barbeiro")}</p><div class="rating">★ ${Number(p.rating||5).toFixed(1)}</div></div>
+            <img class="avatar" src="${escapeHtml(p.image||"imagens/eduardo.png")}" alt="${escapeHtml(p.name||"Eduardo")}" loading="lazy" decoding="async">
+            <div>
+              <h3>${escapeHtml(p.name)}</h3>
+              <p>${escapeHtml(p.specialty||"Barbeiro")}</p>
+              <div class="rating">★ ${Number(p.rating||5).toFixed(1)}</div>
+            </div>
           </div>
           <div class="availability">● Disponível para agendamento</div>
-        </article>`).join("");
+        </article>
+      `).join("");
+      wireImageFallbacks(el);
     }
 
     function renderReviews(){
-      $("reviewsList").innerHTML=state.reviews.map(r=>`
+      const el=$("reviewsList");
+      if(!el) return;
+
+      el.innerHTML=state.reviews.map(r=>`
         <article class="review-card">
-          <div class="review-stars">${"★".repeat(Math.max(1,Math.min(5,Number(r.rating||5))))}</div>
-          <p style="font-size:13px;color:#38445a;margin-top:12px">“${escapeHtml(r.text||"Excelente atendimento.")}”</p>
-          <div class="review-author">
-            <img class="avatar" src="${escapeHtml(r.image||"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80")}" alt="">
-            <div><h3>${escapeHtml(r.name||"Cliente")}</h3><span>Cliente verificado</span></div>
+          <div class="review-stars" aria-label="${Math.max(1,Math.min(5,Number(r.rating||5)))} de 5 estrelas">
+            ${"★".repeat(Math.max(1,Math.min(5,Number(r.rating||5))))}
           </div>
-        </article>`).join("");
+
+          <p class="review-copy">“${escapeHtml(r.text||"Excelente atendimento.")}”</p>
+
+          <div class="review-author">
+            <img class="avatar" src="${escapeHtml(r.image||"imagens/cliente.png")}" alt="" loading="lazy" decoding="async">
+            <div>
+              <h3>${escapeHtml(r.name||"Cliente")}</h3>
+              <span>Cliente verificado</span>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      wireImageFallbacks(el);
     }
+
 
     function renderProfessionalOptions(){
       $("professionalOptions").innerHTML=state.professionals.map(p=>`
@@ -2954,6 +3446,7 @@
     $("galleryClose")?.addEventListener("click",closeCutsGallery);
     $("cutsGalleryModal")?.addEventListener("click",e=>{if(e.target===e.currentTarget)closeCutsGallery()});
     $("shareSite")?.addEventListener("click",shareSite);
+    $("quickBook")?.addEventListener("click",heroStartBooking);
     $("quickViewHours")?.addEventListener("click",openAvailability);
     $("mobileBookCta")?.addEventListener("click",()=>{
       showBooking();
@@ -2977,7 +3470,17 @@
     $("heroSchedule").onclick=heroStartBooking;
     $("heroAppointments").onclick=heroOpenAppointments;
     $("newAppointmentBtn").onclick=()=>showBooking();
-    $("refreshBtn").onclick=()=>loadData();
+    $("refreshBtn").onclick=async()=>{
+      $("refreshBtn").classList.add("is-refreshing");
+      try{
+        await loadData();
+        renderPortfolio();
+        updateBusinessUI();
+        toast("Informações atualizadas.");
+      }finally{
+        setTimeout(()=>$("refreshBtn").classList.remove("is-refreshing"),350);
+      }
+    };
     $("loginBtn").onclick=openLogin;
     $("closeLogin").onclick=()=>$("loginModal").classList.add("hidden");
 $("accountLogout")?.addEventListener("click",async()=>{
@@ -3827,6 +4330,33 @@ $("accountLogout")?.addEventListener("click",async()=>{
       }
     });
 
+
+    function closeTopLayer(){
+      const layers=[
+        ["adminHighlightModal",()=>{}],
+        ["adminReviewModal",()=>{}],
+        ["adminAppointmentModal",()=>{}],
+        ["adminBlockModal",()=>{}],
+        ["bookingSuccess",()=>{}],
+        ["cutsGalleryModal",closeCutsGallery],
+        ["storyModal",()=>{$("storyClose")?.click()}],
+        ["appointmentModal",()=>{$("closeModal")?.click()}],
+        ["loginModal",()=>{$("closeLogin")?.click()}]
+      ];
+      for(const [id,close] of layers){
+        const el=$(id);
+        if(el && !el.classList.contains("hidden")){
+          if(close) close(); else el.classList.add("hidden");
+          return true;
+        }
+      }
+      return false;
+    }
+
+    document.addEventListener("keydown",e=>{
+      if(e.key==="Escape") closeTopLayer();
+    });
+
     // Start
     loadData();
     loadCutsGallery();
@@ -3846,7 +4376,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
       <header class="admin-topbar">
         <div class="admin-brand">
           <div class="admin-mark">ED</div>
-          <div><strong>EDUARDO • D'MASSA</strong><small>PAINEL PROFISSIONAL</small></div>
+          <div><strong>EDUARDO • D'MASA</strong><small>PAINEL PROFISSIONAL</small></div>
         </div>
         <div class="admin-top-actions">
           <button class="admin-icon-btn" id="adminRefresh">↻ Atualizar</button>
