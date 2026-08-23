@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#0b1020" />
   <title>EDUARDO • D'MASSA — Seu estilo é assinatura</title>
   <meta name="description" content="Agenda online de EDUARDO • D'MASSA." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='28' fill='%23ef233c'/><text x='50' y='61' font-size='38' text-anchor='middle' fill='white' font-family='Arial' font-weight='700'>ED</text></svg>">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -876,6 +877,11 @@
 </style>
 
 <style>.firestore-status{display:none!important}</style>
+
+<style id="v9-auth-help">
+  .auth-status strong{color:#fff}
+</style>
+
 </head>
 
 <body>
@@ -1693,16 +1699,28 @@
       btn.setAttribute("aria-label",showing?"Mostrar senha":"Ocultar senha");
     }
 
+
+    function showAuthSetupHelp(){
+      const status=$("loginStatus");
+      if(!status) return;
+      status.innerHTML='O acesso ainda não está habilitado neste projeto.<br><strong>Faça uma vez:</strong> Authentication → Começar → Email/Senha → Ativar.';
+      status.className="auth-status error";
+    }
+
     function firebaseAuthMessage(error,creating=false){
       const code=String(error?.code||"");
+      if(code.includes("configuration-not-found")){
+        return "O login ainda não foi ativado no projeto. No painel do Firebase, abra Authentication, clique em Começar e ative Email/Senha.";
+      }
       if(code.includes("invalid-credential")||code.includes("wrong-password")||code.includes("user-not-found")) return "Usuário ou senha incorretos.";
       if(code.includes("email-already-in-use")) return "Esse usuário já existe. Entre com sua senha ou escolha outro.";
       if(code.includes("weak-password")) return "Escolha uma senha mais forte.";
       if(code.includes("too-many-requests")) return "Muitas tentativas. Aguarde um pouco e tente novamente.";
       if(code.includes("network-request-failed")) return "Sem conexão. Verifique sua internet e tente novamente.";
+      if(code.includes("unauthorized-domain")) return "Este domínio ainda não está autorizado para login.";
       if(code.includes("operation-not-allowed")) return creating
-        ?"O cadastro ainda precisa ser habilitado no sistema de autenticação."
-        :"O acesso por usuário e senha ainda precisa ser habilitado.";
+        ?"O cadastro ainda não está habilitado. Ative Email/Senha no painel de autenticação."
+        :"O acesso ainda não está habilitado. Ative Email/Senha no painel de autenticação.";
       return creating?"Não foi possível criar a conta agora.":"Não foi possível entrar agora.";
     }
 
@@ -2351,7 +2369,7 @@
         toast(`Bem-vindo, @${username}.`);
       }catch(error){
         console.warn(error);
-        setAuthStatus(firebaseAuthMessage(error,false),"error");
+        if(String(error?.code||"").includes("configuration-not-found")) showAuthSetupHelp(); else setAuthStatus(firebaseAuthMessage(error,false),"error");
       }finally{
         $("doLogin").disabled=false;
       }
@@ -2405,7 +2423,7 @@
         toast(`Conta @${username} criada. Você já está conectado.`);
       }catch(error){
         console.warn(error);
-        setAuthStatus(firebaseAuthMessage(error,true),"error");
+        if(String(error?.code||"").includes("configuration-not-found")) showAuthSetupHelp(); else setAuthStatus(firebaseAuthMessage(error,true),"error");
       }finally{
         $("registerBtn").disabled=false;
       }
