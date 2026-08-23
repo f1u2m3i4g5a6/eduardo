@@ -1060,6 +1060,18 @@
   }
 </style>
 
+
+<style id="v13-admin-mobile">
+  .admin-mobile-fab{
+    display:none;position:fixed;right:14px;bottom:145px;z-index:70;
+    border:1px solid rgba(255,91,105,.3);background:linear-gradient(145deg,#2b1116,#130e10);
+    color:#ff6674;border-radius:15px;padding:11px 13px;font-size:8px;font-weight:900;
+    box-shadow:0 14px 35px rgba(0,0,0,.25)
+  }
+  .admin-mobile-fab.show{display:block}
+  @media(min-width:761px){.admin-mobile-fab{display:none!important}}
+</style>
+
 </head>
 
 <body>
@@ -1253,6 +1265,8 @@
       </section>
     </main>
   </div>
+
+  <button id="adminMobileFab" class="admin-mobile-fab">◆ PAINEL</button>
 
   <nav class="bottom-nav">
     <div class="bottom-inner">
@@ -1490,6 +1504,11 @@
             <div><strong id="accountUpcomingCount">0</strong><span>Próximos</span></div>
             <div><strong id="accountHistoryCount">0</strong><span>Total</span></div>
           </div>
+          
+          <div id="adminAccountStatus" class="hidden" style="margin-top:10px;padding:10px 11px;border:1px solid rgba(243,35,59,.16);background:rgba(243,35,59,.055);border-radius:12px;font-size:8px;color:#8b878f">
+            Conta administrativa reconhecida. O botão <strong style="color:#ff5b69">◆ Painel</strong> aparece no topo.
+          </div>
+
           <div class="account-actions">
             <button class="btn btn-dark" id="accountAppointments">▣ Meus horários</button>
             <button class="btn btn-outline" id="accountLogout">Sair da conta</button>
@@ -1596,7 +1615,8 @@
       appId: "1:1066379972250:web:64e38df2faa51dbde45923"
     };
 
-    const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
+    const EDUARDO_ADMIN_UID = "QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1";
+        const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
 
     let db = null;
     let auth = null;
@@ -2876,6 +2896,9 @@ $("accountLogout")?.addEventListener("click",async()=>{
           $("bottomLoginText").textContent="Conta";
 
           await checkAdminAccess(user);
+          if(!adminState.isAdmin){
+            console.info("Conta autenticada sem acesso administrativo.");
+          }
           const access=await checkAgendaPermissions();
           if(access.ok){
             await loadAppointments();
@@ -2956,19 +2979,15 @@ $("accountLogout")?.addEventListener("click",async()=>{
     }
 
     async function checkAdminAccess(user){
-      if(!db || !user){adminState.isAdmin=false;toggleAdminEntry();return false}
-      try{
-        const snap=await getDoc(doc(db,"admins",user.uid));
-        adminState.isAdmin=Boolean(snap.exists() && snap.data()?.active!==false);
-      }catch(err){
-        adminState.isAdmin=false;
-      }
+      adminState.isAdmin=Boolean(user && user.uid===EDUARDO_ADMIN_UID);
       toggleAdminEntry();
       return adminState.isAdmin;
     }
 
     function toggleAdminEntry(){
       $("adminEntry")?.classList.toggle("show",adminState.isAdmin);
+      $("adminMobileFab")?.classList.toggle("show",adminState.isAdmin);
+      $("adminAccountStatus")?.classList.toggle("hidden",!adminState.isAdmin);
     }
 
     function openAdmin(){
@@ -3315,6 +3334,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
 
     setupAdminNavigation();
     $("adminEntry")?.addEventListener("click",openAdmin);
+    $("adminMobileFab")?.addEventListener("click",openAdmin);
     $("adminClose")?.addEventListener("click",closeAdmin);
     $("adminRefresh")?.addEventListener("click",renderAdminAll);
     $("adminNewAppointment")?.addEventListener("click",()=>{populateAdminForm();$("adminAppointmentModal").classList.remove("hidden")});

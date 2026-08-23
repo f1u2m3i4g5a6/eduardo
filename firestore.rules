@@ -12,15 +12,7 @@ service cloud.firestore {
     }
 
     function admin() {
-      return signedIn()
-        && exists(/databases/$(database)/documents/admins/$(request.auth.uid))
-        && get(/databases/$(database)/documents/admins/$(request.auth.uid)).data.active != false;
-    }
-
-    // ADMIN LIST. Never writable from the website.
-    match /admins/{uid} {
-      allow read: if owner(uid);
-      allow write: if false;
+      return signedIn() && request.auth.uid == "QXZ3Xq4gaKgFeN9JW8jjFrvMB7x1";
     }
 
     match /users/{uid} {
