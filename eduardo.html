@@ -1,0 +1,2623 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" />
+  <title>EDUARDO • D'MASSA — Seu estilo é assinatura</title>
+  <meta name="description" content="Agenda online de EDUARDO • D'MASSA." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; color:var(--text); background:var(--bg);
+      font-family:"DM Sans",sans-serif; min-height:100vh;
+      background-image:
+        linear-gradient(rgba(20,18,15,.035) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(20,18,15,.035) 1px,transparent 1px);
+      background-size:36px 36px;
+    }
+    body:before{
+      content:""; position:fixed; inset:0; pointer-events:none; opacity:.25;
+      background:radial-gradient(circle at 75% 8%,rgba(179,107,53,.17),transparent 28%),
+                 radial-gradient(circle at 4% 72%,rgba(0,0,0,.06),transparent 24%);
+    }
+    button,input,textarea{font:inherit} button{cursor:pointer} img{display:block;max-width:100%}
+    .hidden{display:none!important}
+    .app-shell{max-width:1450px;margin:auto;min-height:100vh;padding-bottom:110px;position:relative;z-index:1}
+
+    /* header */
+    .topbar{
+      position:sticky;top:0;z-index:30;
+      background:rgba(238,234,227,.82);backdrop-filter:blur(20px);
+      border-bottom:1px solid rgba(216,209,199,.82)
+    }
+    .topbar-inner{height:82px;padding:0 30px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .brand{display:flex;align-items:center;gap:13px}
+    .brand-mark{
+      width:47px;height:47px;border-radius:50%;background:var(--ink);color:#f4eadf;
+      display:grid;place-items:center;font-family:"Space Grotesk";font-size:13px;letter-spacing:-.04em;
+      box-shadow:8px 8px 0 var(--primary)
+    }
+    .brand-title{font-family:"Space Grotesk";font-weight:700;letter-spacing:-.03em;font-size:16px}
+    .brand-sub{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;margin-top:3px}
+    .top-actions{display:flex;gap:8px}
+    .icon-btn,.profile-btn{
+      height:42px;border-radius:14px;border:1px solid var(--line);background:rgba(248,246,241,.86);
+      color:var(--text);font-weight:800
+    }
+    .icon-btn{width:42px;font-size:18px}
+    .profile-btn{padding:0 15px;background:var(--ink);color:#fff;border-color:var(--ink)}
+
+    /* hero */
+    .hero{
+      margin:28px 22px 0;min-height:390px;border-radius:34px;overflow:hidden;position:relative;
+      background:var(--ink);color:#fff;box-shadow:var(--shadow);
+      display:flex;align-items:flex-end;padding:38px
+    }
+    .hero:before{
+      content:"EDUARDO";position:absolute;right:-35px;top:15px;
+      font-family:"Space Grotesk";font-size:clamp(110px,17vw,250px);font-weight:700;
+      line-height:.8;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);
+      transform:rotate(-7deg);pointer-events:none
+    }
+    .hero:after{
+      content:"";position:absolute;width:470px;height:470px;border-radius:50%;right:4%;top:-55%;
+      background:radial-gradient(circle,rgba(179,107,53,.55),transparent 62%);
+      filter:blur(12px)
+    }
+    .hero-content{position:relative;z-index:2;max-width:760px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:8px;font-size:10px;font-weight:800;
+      text-transform:uppercase;letter-spacing:.18em;color:#d8ad8a
+    }
+    .eyebrow:before{content:"";width:28px;height:1px;background:var(--primary)}
+    .hero h1{
+      font-family:"Space Grotesk";font-size:clamp(42px,6vw,76px);line-height:.94;
+      letter-spacing:-.065em;margin:13px 0 17px;max-width:720px
+    }
+    .hero p{max-width:600px;color:rgba(255,255,255,.65);line-height:1.7;font-size:14px}
+    .hero-actions{display:flex;gap:10px;margin-top:27px;flex-wrap:wrap}
+    .btn{
+      border:0;border-radius:14px;padding:12px 17px;font-weight:800;transition:.22s;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:#f5eee7;color:#171715}
+    .btn-dark{background:var(--ink);color:#fff}
+    .hero .btn-dark{background:var(--primary);color:#fff}
+    .btn-soft{background:var(--primary-soft);color:var(--primary-2)}
+    .btn-outline{background:transparent;border:1px solid var(--line);color:var(--text)}
+    .btn-danger{background:#fbecef;color:var(--danger)}
+
+    main{padding:0 22px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin:38px 0 16px}
+    .section-head h2{font-family:"Space Grotesk";font-size:25px;letter-spacing:-.04em;margin:0}
+    .section-head p{font-size:12px;color:var(--muted);margin:6px 0 0}
+    .text-btn{border:0;background:none;color:var(--primary-2);font-weight:800}
+
+    /* navigation tabs */
+    .tabs{display:flex;gap:7px;overflow:auto;padding:2px 1px 9px;scrollbar-width:none}
+    .tabs::-webkit-scrollbar{display:none}
+    .tab{
+      border:1px solid var(--line);background:rgba(248,246,241,.76);color:#777167;
+      border-radius:999px;padding:10px 16px;font-size:11px;font-weight:800;white-space:nowrap
+    }
+    .tab.active{background:var(--ink);border-color:var(--ink);color:#fff}
+
+    /* services */
+    .service-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+    .service-card{
+      position:relative;display:grid;grid-template-columns:86px minmax(0,1fr) auto;align-items:center;gap:15px;
+      background:rgba(248,246,241,.9);border:1px solid var(--line);border-radius:21px;padding:13px;
+      box-shadow:0 3px 14px rgba(42,34,25,.035);transition:.23s;overflow:hidden
+    }
+    .service-card:after{content:"";position:absolute;left:0;bottom:0;width:0;height:3px;background:var(--primary);transition:.25s}
+    .service-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+    .service-card:hover:after{width:100%}
+    .service-img{width:86px;height:86px;border-radius:17px;object-fit:cover;filter:saturate(.78)}
+    .service-name{font-family:"Space Grotesk";font-size:16px;font-weight:700;letter-spacing:-.025em}
+    .service-price{font-weight:900;color:var(--primary-2);margin-top:7px}
+    .service-meta{display:flex;gap:11px;flex-wrap:wrap;color:var(--muted);font-size:10px;margin-top:7px}
+    .schedule-btn{
+      min-width:89px;padding:11px 12px;border:1px solid var(--ink);background:var(--ink);color:#fff;
+      border-radius:13px;font-weight:800;font-size:11px
+    }
+    .schedule-btn:hover{background:var(--primary);border-color:var(--primary)}
+
+    .grid-3,.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .professional,.review-card,.subscription{
+      background:rgba(248,246,241,.9);border:1px solid var(--line);border-radius:23px;padding:18px;
+      box-shadow:0 3px 14px rgba(42,34,25,.035)
+    }
+    .professional-top{display:flex;align-items:center;gap:13px}
+    .avatar{width:59px;height:59px;border-radius:17px;object-fit:cover;filter:saturate(.8)}
+    .professional h3,.review-card h3{margin:0;font-size:15px;font-family:"Space Grotesk"}
+    .professional p,.review-card p{margin:5px 0 0;color:var(--muted);font-size:11px;line-height:1.55}
+    .rating{color:#b36b35;font-size:11px;margin-top:8px;font-weight:800}
+    .availability{margin-top:16px;padding-top:12px;border-top:1px solid var(--line);font-size:10px;color:var(--success);font-weight:800}
+
+    .subscription{position:relative;overflow:hidden}
+    .subscription.featured{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateY(-2px)}
+    .subscription.featured .desc,.subscription.featured .sub-list li{color:rgba(255,255,255,.62)}
+    .subscription.featured .sub-price{color:#fff}
+    .subscription-badge{position:absolute;right:15px;top:15px;background:var(--primary);color:#fff;padding:6px 9px;border-radius:999px;font-size:9px;font-weight:900}
+    .subscription h3{font-family:"Space Grotesk";margin:0 0 5px;font-size:16px}
+    .subscription .desc{font-size:11px;color:var(--muted);line-height:1.5;min-height:38px}
+    .sub-price{font-family:"Space Grotesk";font-size:26px;margin:17px 0 4px}
+    .sub-price small{font-family:"DM Sans";font-size:10px;color:var(--muted);font-weight:500}
+    .sub-list{padding:0;margin:14px 0 18px;list-style:none;display:grid;gap:8px}
+    .sub-list li{font-size:11px;color:#5e5a53}
+    .sub-list li:before{content:"↳";color:var(--primary);font-weight:900;margin-right:8px}
+    .subscription.featured .btn-dark{background:#fff;color:#171715}
+
+    .review-stars{color:var(--primary);letter-spacing:2px;font-size:12px}
+    .review-author{display:flex;align-items:center;gap:9px;margin-top:16px}
+    .review-author .avatar{width:34px;height:34px;border-radius:11px}
+    .review-author span{font-size:10px;color:var(--muted)}
+
+    /* modal */
+    .modal-backdrop{
+      position:fixed;inset:0;background:rgba(18,17,15,.62);backdrop-filter:blur(12px);
+      z-index:100;display:flex;align-items:flex-end;justify-content:center;padding:0
+    }
+    .modal{
+      width:min(780px,100%);max-height:92vh;overflow:auto;background:#f8f6f1;
+      border-radius:30px 30px 0 0;box-shadow:0 -25px 90px rgba(0,0,0,.3);animation:up .25s ease
+    }
+    @keyframes up{from{transform:translateY(30px);opacity:.5}to{transform:none;opacity:1}}
+    .modal-head{padding:22px 24px 15px;display:flex;justify-content:space-between;border-bottom:1px solid var(--line)}
+    .modal-head h2{font-family:"Space Grotesk";font-size:21px;margin:0;letter-spacing:-.04em}
+    .modal-head p{font-size:11px;color:var(--muted);margin:5px 0 0}
+    .close{width:37px;height:37px;border:1px solid var(--line);background:#fff;border-radius:12px;font-size:20px}
+    .steps{display:flex;gap:7px;padding:16px 24px 0}
+    .step{height:3px;flex:1;border-radius:99px;background:#ded8cf}.step.active{background:var(--primary)}
+    .modal-body{padding:20px 24px 28px}
+    .selection-card{background:#eee9e1;border:1px solid var(--line);border-radius:18px;padding:14px}
+    .selection-row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .selection-title{font-family:"Space Grotesk";font-weight:700}
+    .selection-sub{font-size:10px;color:var(--muted);margin-top:4px}
+    .option-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .option{text-align:left;border:1px solid var(--line);background:#fff;border-radius:15px;padding:13px;transition:.2s}
+    .option:hover,.option.selected{border-color:var(--primary);background:var(--primary-soft)}
+    .option strong{display:block;font-size:12px}.option span{display:block;font-size:10px;color:var(--muted);margin-top:4px}
+    .date-strip{display:flex;gap:8px;overflow:auto;padding-bottom:6px}
+    .date{min-width:68px;border:1px solid var(--line);background:#fff;border-radius:15px;padding:10px 7px;text-align:center}
+    .date small{display:block;color:var(--muted);font-size:9px}.date strong{display:block;font-size:18px;margin-top:4px}
+    .date.selected{background:var(--ink);color:#fff;border-color:var(--ink)}.date.selected small{color:#c8c3ba}
+    .time-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}
+    .time{border:1px solid var(--line);background:#fff;border-radius:11px;padding:11px 5px;font-weight:800;font-size:11px}
+    .time.selected{background:var(--primary);border-color:var(--primary);color:#fff}.time.disabled{opacity:.35;text-decoration:line-through}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .field{display:grid;gap:7px}.field.full{grid-column:1/-1}
+    .field label{font-size:10px;font-weight:900;color:#5c574f;text-transform:uppercase;letter-spacing:.06em}
+    .field input,.field textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 13px;outline:none}
+    .field input:focus,.field textarea:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(179,107,53,.1)}
+    .modal-footer{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+    .modal-footer .btn{min-width:120px}
+
+    /* bottom */
+    .bottom-nav{
+      position:fixed;left:0;right:0;bottom:0;height:var(--nav-h);z-index:50;
+      background:rgba(248,246,241,.93);backdrop-filter:blur(20px);border-top:1px solid var(--line);
+      display:flex;justify-content:center
+    }
+    .bottom-inner{width:min(700px,100%);display:grid;grid-template-columns:repeat(3,1fr)}
+    .nav-item{border:0;background:transparent;color:#8a847b;font-size:9px;display:grid;place-items:center;gap:3px}
+    .nav-icon{font-size:18px}.nav-item.active{color:var(--primary-2);font-weight:900}
+
+    .toast{
+      position:fixed;z-index:200;left:50%;bottom:95px;transform:translate(-50%,15px);
+      background:var(--ink);color:#fff;padding:12px 16px;border-radius:13px;font-size:11px;font-weight:800;
+      box-shadow:0 15px 40px rgba(0,0,0,.22);opacity:0;pointer-events:none;transition:.25s;max-width:calc(100% - 30px);text-align:center
+    }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+    .loading{display:grid;place-items:center;padding:40px;color:var(--muted);font-size:11px}
+    .spinner{width:21px;height:21px;border:3px solid #ddd7ce;border-top-color:var(--primary);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 9px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    @media(min-width:900px){
+      .bottom-nav{position:sticky;top:82px;bottom:auto;height:0;background:transparent;border:0;backdrop-filter:none}
+      .bottom-inner{display:flex;justify-content:flex-end;gap:8px;padding:0 30px;height:0;position:relative;top:-61px}
+      .nav-item{height:42px;padding:0 13px;border-radius:13px;background:#f8f6f1;border:1px solid var(--line);display:flex;gap:7px;font-size:10px}
+      .nav-icon{font-size:14px}
+      .modal-backdrop{align-items:center;padding:20px}.modal{border-radius:30px;max-height:90vh}
+    }
+    @media(max-width:900px){
+      .service-list{grid-template-columns:1fr}
+    }
+    @media(max-width:760px){
+      .topbar-inner{height:70px;padding:0 15px}
+      .hero{margin:16px 12px 0;padding:26px 21px;min-height:370px;border-radius:27px}
+      .hero h1{font-size:clamp(38px,12vw,58px)}
+      .hero:before{font-size:100px;top:45px;right:-50px}
+      main{padding:0 12px}
+      .grid-3,.reviews-grid{grid-template-columns:1fr}
+      .service-card{grid-template-columns:58px minmax(0,1fr) auto;gap:10px}
+      .service-img{width:58px;height:58px}.service-name{font-size:14px}
+      .schedule-btn{min-width:75px;font-size:10px;padding:10px 8px}
+      .form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+      .time-grid{grid-template-columns:repeat(3,1fr)}
+      .modal-body{padding:17px}.modal-head{padding:18px 17px 12px}.steps{padding-left:17px;padding-right:17px}
+      .brand-sub{display:none}.brand-title{font-size:13px}
+    }
+    @media(max-width:420px){
+      .top-actions .profile-btn{padding:0 11px;font-size:10px}.profile-btn span{display:none}
+      .hero-actions .btn{width:100%}.option-grid{grid-template-columns:1fr}
+    }
+  
+    /* ===================== EDUARDO RED EDITION ===================== */
+    :root{
+      --bg:#09090a; --surface:#111113; --surface-2:#18181b; --text:#f7f4f1; --muted:#969298;
+      --line:#29282c; --primary:#e21f2f; --primary-2:#ff3b48; --primary-soft:#321316;
+      --success:#39c47a; --danger:#ff5d68; --ink:#f7f4f1; --shadow:0 30px 90px rgba(0,0,0,.42); --shadow-sm:0 15px 45px rgba(0,0,0,.28)
+    }
+    body{background:#09090a;color:var(--text);background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:44px 44px}
+    body:before{opacity:1;background:radial-gradient(circle at 78% 4%,rgba(226,31,47,.20),transparent 26%),radial-gradient(circle at 7% 60%,rgba(226,31,47,.09),transparent 24%)}
+    .app-shell{max-width:1480px}
+    .topbar{background:rgba(9,9,10,.78);border-bottom:1px solid rgba(255,255,255,.07)}
+    .topbar-inner{height:76px;padding:0 28px}
+    .brand-mark{width:45px;height:45px;border-radius:14px;background:linear-gradient(145deg,#ff3b48,#a80d19);color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.1),8px 8px 0 rgba(226,31,47,.18);font-family:"Space Grotesk";font-size:14px}
+    .brand-title{color:#fff;letter-spacing:-.04em}.brand-sub{color:#77747b}
+    .icon-btn,.profile-btn{border-color:#29282c;background:#111113;color:#fff}.profile-btn{background:#f4f1ee;color:#111;border-color:#f4f1ee}
+    .hero{margin:22px 18px 0;min-height:575px;border:1px solid rgba(255,255,255,.08);border-radius:36px;padding:46px 48px;background:radial-gradient(circle at 72% 42%,rgba(226,31,47,.22),transparent 28%),linear-gradient(135deg,#111113 0%,#09090a 66%);box-shadow:var(--shadow);align-items:stretch}
+    .hero:before{content:"EDUARDO";font-size:clamp(130px,18vw,270px);right:-30px;top:30px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.055);transform:rotate(-8deg)}
+    .hero:after{width:620px;height:620px;right:12%;top:-42%;background:radial-gradient(circle,rgba(226,31,47,.28),transparent 64%);filter:blur(30px)}
+    .hero-grid{width:100%;display:grid;grid-template-columns:minmax(0,1.08fr) minmax(380px,.92fr);gap:45px;align-items:center;position:relative;z-index:2}
+    .hero-content{max-width:800px}
+    .eyebrow{color:#ff5b65;letter-spacing:.2em}.eyebrow:before{background:var(--primary)}
+    .hero h1{font-family:"Manrope";font-weight:800;font-size:clamp(48px,6.3vw,88px);letter-spacing:-.075em;line-height:.91;margin:17px 0 23px}
+    .hero h1 span{color:#ff3342}
+    .hero p{font-size:14px;color:#aaa6ac;max-width:660px;line-height:1.8}
+    .hero-actions{margin-top:31px}.btn{border-radius:13px}.btn-primary{background:#f5f2ef;color:#111}.hero .btn-primary:hover{box-shadow:0 12px 32px rgba(255,255,255,.12)}.btn-dark{background:#171719;color:#fff;border:1px solid #353438}.hero .btn-dark{background:#e21f2f;border-color:#e21f2f}.hero .btn-dark:hover{background:#ff3342;box-shadow:0 12px 32px rgba(226,31,47,.3)}
+    .hero-trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:26px;color:#747178;font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em}.hero-trust span{display:flex;align-items:center;gap:7px}.hero-trust i{width:5px;height:5px;border-radius:50%;background:#e21f2f;box-shadow:0 0 10px #e21f2f}
+    .hero-showcase{height:420px;position:relative;display:grid;place-items:center;perspective:1000px}.showcase-glow{position:absolute;width:310px;height:310px;border-radius:50%;background:rgba(226,31,47,.25);filter:blur(70px)}
+    .showcase-card{position:absolute;border:1px solid rgba(255,255,255,.1);background:linear-gradient(145deg,rgba(31,31,34,.96),rgba(13,13,15,.92));box-shadow:0 35px 80px rgba(0,0,0,.42);backdrop-filter:blur(14px)}
+    .main-card{width:min(390px,78%);height:330px;border-radius:30px;padding:25px;transform:rotate(-7deg) rotateY(-8deg);overflow:hidden}.main-card:before{content:"";position:absolute;inset:15px;border:1px solid rgba(226,31,47,.35);border-radius:22px}.main-card:after{content:"";position:absolute;width:220px;height:220px;right:-90px;bottom:-90px;background:#e21f2f;border-radius:50%;filter:blur(5px);opacity:.45}
+    .showcase-top{display:flex;justify-content:space-between;align-items:center;position:relative;z-index:2}.showcase-top span{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:#e21f2f;color:#fff;font-weight:900}.showcase-top b{font-size:10px;color:#77747b}.showcase-word{font-family:"Space Grotesk";font-weight:700;font-size:72px;letter-spacing:-.08em;line-height:.9;position:absolute;bottom:68px;left:24px;color:#fff}.showcase-line{position:absolute;bottom:52px;left:25px;width:125px;height:2px;background:#e21f2f}.showcase-caption{position:absolute;bottom:26px;left:25px;font-size:8px;letter-spacing:.2em;color:#77747b}.float-card{border-radius:16px;padding:13px 15px;display:grid;gap:3px;min-width:165px}.float-card small{font-size:8px;color:#77747b;letter-spacing:.12em}.float-card strong{font-family:"Space Grotesk";font-size:12px}.float-card span{font-size:9px;color:#e21f2f}.top-card{right:0;top:26px;transform:rotate(5deg)}.bottom-card{left:0;bottom:24px;transform:rotate(-3deg)}
+    .experience-strip{margin:14px 18px 0;border:1px solid rgba(255,255,255,.07);background:#101012;border-radius:22px;display:grid;grid-template-columns:repeat(4,1fr);overflow:hidden}.experience-strip>div{padding:17px 20px;display:grid;grid-template-columns:auto 1fr;column-gap:10px;align-items:center;border-right:1px solid rgba(255,255,255,.06)}.experience-strip>div:last-child{border-right:0}.strip-number{grid-row:span 2;color:#e21f2f;font-family:"Space Grotesk";font-size:11px}.experience-strip strong{font-family:"Space Grotesk";font-size:12px}.experience-strip small{color:#706d74;font-size:9px}
+    main{padding:0 18px}.section-head{margin:42px 0 16px}.section-head h2{font-family:"Manrope";color:#fff;font-size:27px}.section-head p{color:#7f7b82}.text-btn{color:#ff4b57}
+    .tabs{padding-bottom:10px}.tab{border-color:#29282c;background:#111113;color:#7f7b82}.tab.active{background:#e21f2f;border-color:#e21f2f;color:#fff;box-shadow:0 8px 24px rgba(226,31,47,.18)}
+    .service-list{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.service-card{background:linear-gradient(145deg,#131315,#0f0f11);border-color:#29282c;border-radius:21px;box-shadow:var(--shadow-sm);color:#fff}.service-card:after{background:#e21f2f}.service-card:hover{border-color:#4a2528}.service-img{filter:saturate(.72) contrast(1.05)}.service-name{color:#fff}.service-price{color:#ff4a56}.service-meta{color:#77747b}.schedule-btn{background:#f2efeb;color:#111;border-color:#f2efeb}.schedule-btn:hover{background:#e21f2f;color:#fff;border-color:#e21f2f}
+    .professional,.review-card,.subscription,.selection-card{background:linear-gradient(145deg,#141416,#101012);border-color:#29282c;color:#fff;box-shadow:var(--shadow-sm)}.professional p,.review-card p,.subscription .desc,.sub-list li{color:#77747b}.professional .availability{border-color:#29282c;color:#42cf87}.avatar{filter:saturate(.7)}.rating,.review-stars{color:#ff4855}.subscription.featured{background:linear-gradient(145deg,#7f1019,#30090d);border-color:#a61b27}.subscription.featured .desc,.subscription.featured .sub-list li{color:#e5b8bc}.subscription .sub-price{color:#fff}.subscription-badge{background:#f5f2ef;color:#111}.subscription .btn-dark,.subscription.featured .btn-dark{background:#e21f2f;color:#fff;border-color:#e21f2f}
+    .modal-backdrop{background:rgba(0,0,0,.76)}.modal{background:#111113;border:1px solid #29282c;color:#fff;box-shadow:0 -30px 100px rgba(0,0,0,.65)}.modal-head{border-color:#29282c}.modal-head p,.selection-sub{color:#77747b}.close{background:#19191b;border-color:#303034;color:#fff}.steps .step{background:#2c2b2f}.steps .step.active{background:#e21f2f}.selection-card{background:#18181b}.option{background:#111113;border-color:#29282c;color:#fff}.option:hover,.option.selected{background:#321316;border-color:#e21f2f}.date{background:#111113;border-color:#29282c;color:#fff}.date.selected{background:#e21f2f;border-color:#e21f2f}.time{background:#111113;border-color:#29282c;color:#fff}.time.selected{background:#e21f2f;border-color:#e21f2f}.field label{color:#8d8990}.field input,.field textarea{background:#0d0d0f;border-color:#29282c;color:#fff}.field input::placeholder,.field textarea::placeholder{color:#5f5c62}.field input:focus,.field textarea:focus{border-color:#e21f2f;box-shadow:0 0 0 4px rgba(226,31,47,.12)}.modal-footer .btn-dark{background:#e21f2f;border-color:#e21f2f}.btn-outline{background:#151517;border-color:#29282c;color:#fff}.btn-soft{background:#321316;color:#ff6470;border-color:#4a1d22}
+    .bottom-nav{background:rgba(12,12,13,.92);border-color:#29282c}.nav-item{color:#6e6a71}.nav-item.active{color:#ff4b57}.nav-item.active .nav-icon{filter:drop-shadow(0 0 8px rgba(226,31,47,.45))}.toast{background:#f3f0ec;color:#111;border:1px solid #fff;box-shadow:0 18px 50px rgba(0,0,0,.4)}.spinner{border-color:#2c2b2f;border-top-color:#e21f2f}.loading{color:#77747b}
+    @media(min-width:900px){.bottom-nav{background:transparent;border:0}.nav-item{background:#111113;border-color:#29282c;color:#77747b}.nav-item.active{background:#e21f2f;color:#fff;border-color:#e21f2f}}
+    @media(max-width:900px){.hero{min-height:unset}.hero-grid{grid-template-columns:1fr}.hero-showcase{height:330px;margin-top:-4px}.main-card{height:275px}.showcase-word{font-size:58px}.experience-strip{grid-template-columns:repeat(2,1fr)}.experience-strip>div:nth-child(2){border-right:0}.experience-strip>div:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.06)}}
+    @media(max-width:760px){.hero{margin:14px 10px 0;padding:29px 22px;border-radius:28px}.hero h1{font-size:clamp(44px,13vw,62px)}.hero-showcase{height:315px}.top-card{right:-4px}.bottom-card{left:-5px}.experience-strip{margin:10px 10px 0}.experience-strip>div{padding:14px 13px}.service-list{grid-template-columns:1fr}main{padding:0 10px}.section-head{margin-top:34px}}
+    @media(max-width:430px){.hero-showcase{transform:scale(.94);margin-left:-10px;margin-right:-10px}.float-card{min-width:145px}.hero-trust{gap:10px}.experience-strip{border-radius:18px}.experience-strip>div{padding:13px 11px}.experience-strip strong{font-size:11px}}
+</style>
+
+<style id="eduardo-signature-v3">
+  :root{
+    --signature-red:#ef233c;
+    --signature-red-hot:#ff4155;
+    --signature-red-deep:#8b0917;
+    --signature-black:#070708;
+    --signature-card:#111114;
+    --signature-card-2:#17171b;
+    --signature-line:#29292f;
+  }
+
+  /* richer background */
+  body{
+    background:
+      radial-gradient(circle at 78% 7%,rgba(239,35,60,.16),transparent 23rem),
+      radial-gradient(circle at 8% 55%,rgba(239,35,60,.055),transparent 28rem),
+      #070708 !important;
+  }
+  body:after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.22;
+    background-image:
+      radial-gradient(rgba(255,255,255,.22) .55px,transparent .55px);
+    background-size:5px 5px;
+    mix-blend-mode:soft-light;
+  }
+  .app-shell{position:relative;z-index:1}
+
+  /* masthead */
+  .topbar{border-color:rgba(255,255,255,.06)!important}
+  .brand-mark{
+    border-radius:50% 50% 50% 18%!important;
+    background:linear-gradient(145deg,var(--signature-red-hot),#a20818)!important;
+    box-shadow:0 0 0 1px rgba(255,255,255,.13),0 12px 42px rgba(239,35,60,.24)!important;
+  }
+  .brand-title{font-size:15px!important;letter-spacing:-.045em!important}
+  .brand-sub{letter-spacing:.18em!important}
+
+  /* cinematic hero */
+  .hero{
+    min-height:620px!important;
+    border-radius:38px!important;
+    background:
+      linear-gradient(90deg,rgba(7,7,8,.99) 0%,rgba(9,9,11,.9) 48%,rgba(12,8,10,.72) 100%),
+      radial-gradient(circle at 78% 48%,rgba(239,35,60,.38),transparent 27%)!important;
+    border:1px solid rgba(255,255,255,.075)!important;
+    overflow:hidden;
+  }
+  .hero:before{
+    content:"EDUARDO"!important;
+    font-size:clamp(135px,19vw,285px)!important;
+    -webkit-text-stroke:1px rgba(255,255,255,.06)!important;
+    right:-45px!important;top:31px!important;
+  }
+  .hero:after{
+    content:"";position:absolute;
+    width:520px!important;height:520px!important;
+    border:1px solid rgba(239,35,60,.18);
+    border-radius:50%;right:8%!important;top:9%!important;
+    box-shadow:0 0 0 50px rgba(239,35,60,.022),0 0 0 100px rgba(239,35,60,.012);
+    background:radial-gradient(circle,rgba(239,35,60,.18),transparent 61%)!important;
+    filter:blur(0)!important;
+  }
+  .hero h1{font-size:clamp(52px,6.7vw,94px)!important;max-width:800px}
+  .hero h1 span{
+    color:var(--signature-red-hot)!important;
+    text-shadow:0 0 42px rgba(239,35,60,.24);
+  }
+  .hero p{max-width:610px!important;color:#a09ca3!important}
+  .hero-trust{
+    border-top:1px solid rgba(255,255,255,.07);
+    padding-top:18px;
+    max-width:650px;
+  }
+  .main-card{
+    transform:rotate(-5deg) rotateY(-11deg)!important;
+    box-shadow:0 45px 120px rgba(0,0,0,.55),0 0 80px rgba(239,35,60,.08)!important
+  }
+
+  /* highlights / stories */
+  .signature-highlights{margin:27px 18px 0}
+  .signature-highlights-head{
+    display:flex;align-items:end;justify-content:space-between;gap:14px;margin-bottom:13px
+  }
+  .signature-highlights-head h2{
+    margin:0;font:800 19px "Manrope";letter-spacing:-.045em;color:#fff
+  }
+  .signature-highlights-head p{margin:4px 0 0;color:#66636a;font-size:9px;text-transform:uppercase;letter-spacing:.14em}
+  .stories{display:flex;gap:14px;overflow:auto;padding:3px 2px 10px;scrollbar-width:none}
+  .stories::-webkit-scrollbar{display:none}
+  .story{
+    width:78px;flex:0 0 78px;padding:0;border:0;background:transparent;color:#fff;text-align:center
+  }
+  .story-ring{
+    width:72px;height:72px;border-radius:50%;padding:3px;margin:auto;
+    background:conic-gradient(from 210deg,#6a0710,var(--signature-red),#ff7480,var(--signature-red-deep),var(--signature-red));
+    box-shadow:0 10px 35px rgba(239,35,60,.15);
+    transition:.25s cubic-bezier(.2,.8,.2,1)
+  }
+  .story:hover .story-ring{transform:scale(1.055) rotate(3deg);box-shadow:0 12px 40px rgba(239,35,60,.32)}
+  .story-inner{
+    width:100%;height:100%;border:3px solid #080809;border-radius:50%;
+    background:linear-gradient(145deg,#242429,#0d0d0f);
+    display:grid;place-items:center;font:800 18px "Space Grotesk";overflow:hidden
+  }
+  .story-inner.red{background:linear-gradient(145deg,#ff3348,#7d0713)}
+  .story-name{display:block;margin-top:7px;font-size:9px;color:#aaa6ad;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+  /* business / about */
+  .business-zone{margin:42px 18px 0}
+  .business-title{margin-bottom:15px}
+  .business-title .kicker{font-size:9px;color:var(--signature-red-hot);font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+  .business-title h2{font:800 clamp(27px,4vw,44px) "Manrope";letter-spacing:-.065em;color:#fff;margin:7px 0 0}
+  .business-layout{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+  .business-card{
+    position:relative;overflow:hidden;
+    border:1px solid var(--signature-line);border-radius:26px;
+    background:linear-gradient(145deg,#121215,#0d0d0f);padding:23px;color:#fff;
+    box-shadow:0 20px 55px rgba(0,0,0,.18)
+  }
+  .business-card:before{
+    content:"";position:absolute;width:200px;height:200px;border-radius:50%;
+    background:rgba(239,35,60,.12);filter:blur(45px);right:-75px;top:-95px
+  }
+  .business-card>*{position:relative;z-index:1}
+  .business-card h3{font:800 19px "Manrope";margin:0;letter-spacing:-.04em}
+  .business-card .lead{font-size:10px;color:#737078;line-height:1.65;margin:6px 0 19px}
+  .amenities{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .amenity{
+    min-height:92px;border:1px solid #28282d;border-radius:17px;background:#101012;
+    padding:13px;display:flex;flex-direction:column;justify-content:space-between
+  }
+  .amenity-icon{font-size:19px}
+  .amenity strong{font-size:10px;line-height:1.3}
+  .hours{
+    display:grid;gap:0;border:1px solid #28282d;border-radius:17px;overflow:hidden;background:#101012
+  }
+  .hours-row{display:flex;justify-content:space-between;gap:15px;padding:10px 12px;border-bottom:1px solid #232327;font-size:10px}
+  .hours-row:last-child{border-bottom:0}
+  .hours-row b{font-weight:800}.hours-row span{color:#ff4a5c;font-weight:800}
+  .open-now{
+    display:inline-flex;align-items:center;gap:7px;margin-bottom:13px;padding:7px 9px;
+    border-radius:999px;background:rgba(57,196,122,.1);color:#54d992;font-size:9px;font-weight:900
+  }
+  .open-now.closed{background:rgba(239,35,60,.1);color:#ff6572}
+  .open-dot{width:6px;height:6px;border-radius:50%;background:currentColor;box-shadow:0 0 11px currentColor}
+  .payment-box{margin-top:12px}
+  .info-label{font-size:8px;color:#625f66;letter-spacing:.14em;text-transform:uppercase;font-weight:900}
+  .payment-pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px}
+  .payment-pill{border:1px solid #2c2b30;background:#151518;color:#c1bcc3;border-radius:999px;padding:7px 9px;font-size:9px;font-weight:800}
+
+  /* contact / whatsapp */
+  .contact-premium{
+    min-height:100%;display:flex;flex-direction:column;justify-content:space-between;
+    background:
+      linear-gradient(160deg,rgba(239,35,60,.12),transparent 50%),
+      linear-gradient(145deg,#141416,#0c0c0e)
+  }
+  .contact-word{
+    font:800 clamp(36px,5vw,62px) "Manrope";letter-spacing:-.075em;line-height:.88;margin:14px 0 11px
+  }
+  .contact-word span{color:var(--signature-red-hot)}
+  .contact-desc{font-size:10px;color:#77747d;line-height:1.7;max-width:390px}
+  .whatsapp-action{
+    margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:14px;
+    width:100%;padding:14px 15px;border:0;border-radius:16px;text-decoration:none;
+    background:#20c56a;color:#07190e;font-weight:900;transition:.22s
+  }
+  .whatsapp-action:hover{transform:translateY(-2px);filter:brightness(1.08);box-shadow:0 15px 38px rgba(32,197,106,.16)}
+  .whatsapp-action small{font-size:8px;opacity:.7;display:block;margin-top:2px}
+  .wa-arrow{width:34px;height:34px;border-radius:11px;background:rgba(255,255,255,.25);display:grid;place-items:center;font-size:17px}
+
+  /* service card gets more editorial */
+  .service-card{min-height:116px!important}
+  .service-card:before{
+    content:attr(data-index);position:absolute;right:105px;top:11px;
+    font:700 8px "Space Grotesk";color:#48454b;letter-spacing:.12em
+  }
+  .service-price{font-size:16px!important}
+
+  /* footer */
+  .signature-footer{
+    margin:48px 18px 105px;padding:24px 2px 0;border-top:1px solid #242329;
+    display:flex;justify-content:space-between;gap:22px;align-items:flex-end;color:#68656c
+  }
+  .signature-footer strong{display:block;font:800 13px "Space Grotesk";color:#fff;letter-spacing:-.03em;margin-bottom:5px}
+  .signature-footer p{margin:0;font-size:9px;line-height:1.7}
+  .footer-monogram{font:800 46px "Space Grotesk";letter-spacing:-.1em;color:#242329}
+
+  /* Story modal */
+  .story-modal{
+    position:fixed;inset:0;z-index:190;background:rgba(0,0,0,.84);backdrop-filter:blur(16px);
+    display:grid;place-items:center;padding:18px
+  }
+  .story-view{
+    width:min(430px,100%);min-height:590px;border:1px solid #35343a;border-radius:30px;
+    background:
+      radial-gradient(circle at 80% 8%,rgba(239,35,60,.28),transparent 30%),
+      linear-gradient(155deg,#17171b,#09090b 72%);
+    padding:18px;position:relative;overflow:hidden;box-shadow:0 35px 110px rgba(0,0,0,.6)
+  }
+  .story-progress{height:3px;background:#39383e;border-radius:99px;overflow:hidden}
+  .story-progress i{display:block;height:100%;width:100%;background:#fff;transform-origin:left}
+  .story-close{
+    position:absolute;right:18px;top:30px;width:38px;height:38px;border-radius:13px;border:1px solid #36353a;
+    background:rgba(15,15,17,.7);color:#fff;font-size:20px;z-index:3
+  }
+  .story-view-content{height:530px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px 9px}
+  .story-view-icon{font-size:58px;margin-bottom:auto;padding-top:90px;filter:drop-shadow(0 0 35px rgba(239,35,60,.35))}
+  .story-view-kicker{font-size:9px;color:#ff6572;font-weight:900;letter-spacing:.17em;text-transform:uppercase}
+  .story-view h3{font:800 38px "Manrope";letter-spacing:-.065em;line-height:.95;margin:9px 0;color:#fff}
+  .story-view p{font-size:11px;color:#918d95;line-height:1.72;margin:0;max-width:330px}
+
+  @media(max-width:900px){
+    .business-layout{grid-template-columns:1fr}
+    .signature-highlights,.business-zone{margin-left:10px;margin-right:10px}
+    .hero{min-height:560px!important}
+  }
+  @media(max-width:620px){
+    .amenities{grid-template-columns:1fr 1fr 1fr}
+    .amenity{padding:10px;min-height:82px}
+    .business-card{padding:17px}
+    .signature-footer{margin-left:10px;margin-right:10px;align-items:flex-start}
+    .footer-monogram{font-size:34px}
+  }
+</style>
+
+
+<style id="eduardo-system-v4">
+  :root{
+    --sys-red:#f3233b;
+    --sys-red-2:#ff4d60;
+    --sys-green:#32d583;
+    --sys-yellow:#fdb022;
+  }
+
+  .firestore-status{
+    position:fixed;right:16px;bottom:94px;z-index:90;
+    display:flex;align-items:center;gap:8px;padding:9px 11px;border-radius:999px;
+    border:1px solid #2a292e;background:rgba(13,13,15,.92);backdrop-filter:blur(14px);
+    color:#8a868e;font-size:9px;font-weight:900;letter-spacing:.05em;
+    box-shadow:0 12px 35px rgba(0,0,0,.28);transition:.2s
+  }
+  .firestore-status i{width:7px;height:7px;border-radius:50%;background:#777;box-shadow:0 0 10px currentColor}
+  .firestore-status.online{color:#50d890;border-color:rgba(50,216,144,.22)}
+  .firestore-status.online i{background:#50d890}
+  .firestore-status.syncing{color:#fdb022;border-color:rgba(253,176,34,.22)}
+  .firestore-status.syncing i{background:#fdb022;animation:pulseDot 1s infinite}
+  .firestore-status.offline{color:#ff6675;border-color:rgba(255,102,117,.22)}
+  .firestore-status.offline i{background:#ff6675}
+  @keyframes pulseDot{50%{opacity:.35;transform:scale(.75)}}
+
+  .live-label{
+    display:inline-flex;align-items:center;gap:6px;color:#5bdd99;
+    font-size:8px;font-weight:900;letter-spacing:.12em;text-transform:uppercase
+  }
+  .live-label:before{content:"";width:6px;height:6px;border-radius:50%;background:#32d583;box-shadow:0 0 13px rgba(50,213,131,.7)}
+  .slot-info{
+    grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;
+    font-size:9px;color:#77737b;margin-bottom:2px
+  }
+  .time{position:relative;overflow:hidden}
+  .time:not(.disabled):after{
+    content:"";position:absolute;inset:auto 8px 5px;height:2px;border-radius:99px;
+    background:linear-gradient(90deg,transparent,rgba(50,213,131,.5),transparent);opacity:0;transition:.2s
+  }
+  .time:not(.disabled):hover:after{opacity:1}
+  .time.disabled:before{
+    content:"OCUPADO";position:absolute;right:5px;top:4px;font-size:6px;font-weight:900;letter-spacing:.08em;color:#ff6876
+  }
+
+  .appointment-card-v4{
+    display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:14px;align-items:center;
+    background:linear-gradient(145deg,#141416,#0e0e10);border:1px solid #29282d;
+    border-radius:20px;padding:13px;margin-bottom:10px;color:#fff;
+    box-shadow:0 10px 35px rgba(0,0,0,.12)
+  }
+  .appointment-date-v4{
+    width:64px;height:64px;border-radius:17px;background:linear-gradient(145deg,#2b1014,#130e10);
+    border:1px solid rgba(243,35,59,.22);display:grid;place-items:center;text-align:center
+  }
+  .appointment-date-v4 strong{font:800 20px "Manrope";line-height:1;color:#fff}
+  .appointment-date-v4 small{display:block;font-size:7px;color:#ff6170;text-transform:uppercase;letter-spacing:.1em;margin-top:3px}
+  .appointment-card-v4 h3{font:800 14px "Space Grotesk";margin:0 0 5px}
+  .appointment-meta-v4{display:flex;gap:10px;flex-wrap:wrap;color:#78747c;font-size:9px}
+  .appointment-code{margin-top:7px;font-size:8px;color:#56535a;letter-spacing:.08em}
+  .appointment-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px}
+  .status-chip{padding:6px 8px;border-radius:999px;font-size:7px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+  .status-chip.confirmed{background:rgba(50,213,131,.1);color:#54dc96}
+  .status-chip.cancelled{background:rgba(255,79,96,.1);color:#ff6575}
+  .cancel-appointment{
+    border:1px solid #322f34;background:#151517;color:#8e8991;border-radius:10px;
+    padding:7px 8px;font-size:8px;font-weight:800
+  }
+  .cancel-appointment:hover{border-color:#6a2028;color:#ff6575}
+
+  .security-note{
+    display:flex;align-items:flex-start;gap:9px;margin-top:12px;padding:11px 12px;border-radius:13px;
+    background:rgba(50,213,131,.055);border:1px solid rgba(50,213,131,.12);color:#79767d;font-size:9px;line-height:1.55
+  }
+  .security-note b{color:#6de4a6}
+
+  .date.closed-day{opacity:.26;cursor:not-allowed}
+  .date.closed-day:after{content:"FECHADO";display:block;font-size:6px;font-weight:900;letter-spacing:.05em;margin-top:3px;color:#ff6675}
+
+  @media(max-width:620px){
+    .firestore-status{right:10px;bottom:86px}
+    .appointment-card-v4{grid-template-columns:54px minmax(0,1fr);align-items:start}
+    .appointment-date-v4{width:54px;height:54px}
+    .appointment-actions{grid-column:1/-1;flex-direction:row;justify-content:space-between;align-items:center}
+  }
+</style>
+
+
+<style id="eduardo-ultimate-v5">
+  :root{
+    --ux-red:#f3223b;
+    --ux-red2:#ff5668;
+    --ux-bg:#08080a;
+    --ux-card:#111114;
+    --ux-line:#27272d;
+    --ux-text:#f7f5f2;
+    --ux-muted:#89858d;
+  }
+
+  /* smoother premium feel */
+  *{-webkit-tap-highlight-color:transparent}
+  body{background-color:var(--ux-bg)!important}
+  button,a{transition:transform .2s ease,filter .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease}
+  button:active,a:active{transform:scale(.985)}
+  ::selection{background:rgba(243,34,59,.32);color:#fff}
+
+  .hero{box-shadow:0 35px 110px rgba(0,0,0,.48),0 0 0 1px rgba(255,255,255,.025) inset!important}
+  .hero-content{max-width:840px!important}
+  .hero p{font-size:15px!important}
+  .hero-actions{gap:12px!important}
+  .hero .btn{min-height:50px!important;padding:0 20px!important}
+
+  /* highlights upgraded */
+  .signature-highlights{margin-top:34px!important}
+  .stories{gap:16px!important;padding-bottom:14px!important}
+  .story{width:84px!important;flex-basis:84px!important}
+  .story-ring{width:76px!important;height:76px!important}
+  .story-inner{font-size:20px!important}
+  .story-name{font-size:10px!important;margin-top:8px!important}
+
+  /* portfolio / haircut gallery */
+  .portfolio-section{margin:46px 18px 0}
+  .portfolio-head{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:16px}
+  .portfolio-head .kicker{font-size:9px;color:#ff5a68;font-weight:900;letter-spacing:.18em;text-transform:uppercase}
+  .portfolio-head h2{font:800 clamp(28px,4.5vw,48px) "Manrope";letter-spacing:-.065em;color:#fff;margin:7px 0 0}
+  .portfolio-head p{color:#76727a;font-size:10px;line-height:1.6;margin:7px 0 0;max-width:500px}
+  .portfolio-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-auto-rows:210px;gap:10px}
+  .portfolio-card{
+    position:relative;overflow:hidden;border-radius:22px;border:1px solid #2a292f;
+    background:#111114;padding:0;isolation:isolate
+  }
+  .portfolio-card:first-child{grid-row:span 2}
+  .portfolio-card img{width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.04);transition:.45s ease}
+  .portfolio-card:hover img{transform:scale(1.045);filter:saturate(.95) contrast(1.04)}
+  .portfolio-card:after{
+    content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.84));
+    pointer-events:none
+  }
+  .portfolio-copy{position:absolute;left:15px;right:15px;bottom:14px;z-index:2;text-align:left}
+  .portfolio-copy small{display:block;color:#ff6976;font-size:7px;font-weight:900;letter-spacing:.15em;text-transform:uppercase}
+  .portfolio-copy strong{display:block;color:#fff;font:800 14px "Space Grotesk";margin-top:4px}
+  .portfolio-open{position:absolute;right:13px;top:13px;z-index:3;width:34px;height:34px;border-radius:11px;border:1px solid rgba(255,255,255,.14);background:rgba(8,8,10,.58);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center}
+
+  /* smart info bar */
+  .quick-actions{margin:14px 18px 0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .quick-action{
+    border:1px solid #27272d;background:linear-gradient(145deg,#121215,#0e0e10);
+    border-radius:16px;padding:13px;color:#fff;text-decoration:none;display:flex;gap:10px;align-items:center
+  }
+  .quick-action-icon{width:34px;height:34px;border-radius:11px;background:#1b1114;color:#ff5362;display:grid;place-items:center;font-weight:900}
+  .quick-action strong{display:block;font-size:10px}.quick-action small{display:block;color:#69666d;font-size:8px;margin-top:2px}
+
+  /* gallery fullscreen */
+  .gallery-modal{position:fixed;inset:0;z-index:220;background:rgba(0,0,0,.9);backdrop-filter:blur(16px);display:grid;place-items:center;padding:18px}
+  .gallery-shell{width:min(1050px,100%);max-height:92vh;overflow:auto;border:1px solid #303037;background:#0d0d0f;border-radius:28px;padding:18px;box-shadow:0 35px 120px rgba(0,0,0,.65)}
+  .gallery-top{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:14px}
+  .gallery-top h3{margin:0;color:#fff;font:800 22px "Manrope";letter-spacing:-.04em}
+  .gallery-top p{margin:4px 0 0;color:#6f6b73;font-size:9px}
+  .gallery-close{width:38px;height:38px;border:1px solid #303037;background:#17171a;color:#fff;border-radius:12px;font-size:20px}
+  .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+  .gallery-item{border:1px solid #29282e;border-radius:18px;overflow:hidden;background:#121215;position:relative}
+  .gallery-item img{width:100%;aspect-ratio:4/5;object-fit:cover}
+  .gallery-item div{padding:10px 11px}
+  .gallery-item strong{color:#fff;font:700 11px "Space Grotesk"}
+  .gallery-item span{display:block;color:#6f6b73;font-size:8px;margin-top:3px}
+
+  /* useful service detail badges */
+  .service-meta .service-feature{color:#9c979f}
+  .service-badge{display:inline-flex;margin-top:7px;padding:5px 7px;border-radius:999px;background:rgba(243,34,59,.08);color:#ff5c6a;font-size:7px;font-weight:900;letter-spacing:.06em;text-transform:uppercase}
+
+  /* section polish */
+  .business-card,.professional,.review-card,.subscription,.service-card{box-shadow:0 14px 42px rgba(0,0,0,.14)!important}
+  .business-card:hover,.professional:hover,.review-card:hover,.subscription:hover{border-color:#39383e}
+
+  /* mobile sticky CTA */
+  .mobile-book-cta{display:none}
+  @media(max-width:760px){
+    .portfolio-section{margin-left:10px;margin-right:10px}
+    .portfolio-grid{grid-template-columns:1fr 1fr;grid-auto-rows:180px}
+    .portfolio-card:first-child{grid-column:span 2;grid-row:span 1;height:240px}
+    .quick-actions{margin-left:10px;margin-right:10px;grid-template-columns:1fr 1fr}
+    .gallery-grid{grid-template-columns:1fr 1fr}
+    .mobile-book-cta{
+      display:flex;position:fixed;left:12px;right:12px;bottom:84px;z-index:48;
+      background:linear-gradient(135deg,#ff3c50,#b50b1b);color:#fff;border:1px solid rgba(255,255,255,.16);
+      border-radius:16px;min-height:50px;align-items:center;justify-content:center;gap:9px;
+      font-weight:900;box-shadow:0 15px 38px rgba(239,35,60,.28)
+    }
+    .firestore-status{display:none!important}
+  }
+  @media(max-width:480px){
+    .portfolio-grid{grid-template-columns:1fr}
+    .portfolio-card:first-child{grid-column:auto;height:auto}
+    .portfolio-card{min-height:220px}
+    .gallery-grid{grid-template-columns:1fr}
+  }
+</style>
+
+
+<style id="eduardo-v6">
+  .auth-hint{
+    margin-top:10px;padding:10px 11px;border:1px solid #28272d;border-radius:12px;
+    background:#0e0e10;color:#68656c;font-size:9px;line-height:1.55
+  }
+  .account-hero{
+    display:flex;align-items:center;gap:14px;padding:17px;border:1px solid #29282e;
+    border-radius:19px;background:linear-gradient(145deg,#19191c,#101012)
+  }
+  .account-avatar{
+    width:58px;height:58px;border-radius:18px;display:grid;place-items:center;
+    background:linear-gradient(145deg,#ff4054,#8d0715);color:#fff;
+    font:900 16px "Space Grotesk";box-shadow:0 12px 30px rgba(239,35,60,.2)
+  }
+  .account-kicker{font-size:7px;color:#50d890;font-weight:900;letter-spacing:.15em}
+  .account-hero h3{font:800 18px "Manrope";margin:3px 0;color:#fff;letter-spacing:-.04em}
+  .account-hero p{font-size:9px;color:#747078;margin:0}
+  .account-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+  .account-stats>div{border:1px solid #29282e;border-radius:15px;background:#111113;padding:13px}
+  .account-stats strong{display:block;color:#fff;font:800 24px "Manrope";letter-spacing:-.05em}
+  .account-stats span{display:block;color:#706c74;font-size:8px;margin-top:3px;text-transform:uppercase;letter-spacing:.08em}
+  .account-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+
+  .personal-welcome{
+    margin:14px 18px 0;border:1px solid #29282e;border-radius:18px;
+    background:linear-gradient(100deg,rgba(243,35,59,.11),rgba(17,17,20,.92) 38%);
+    padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:14px
+  }
+  .personal-welcome .hello{font-size:9px;color:#77737b}
+  .personal-welcome strong{display:block;color:#fff;font:800 14px "Space Grotesk";margin-top:3px}
+  .personal-welcome button{border:0;background:transparent;color:#ff5c6a;font-size:9px;font-weight:900}
+
+  .booking-step-title{
+    display:flex;align-items:center;gap:9px;margin-bottom:12px;color:#fff
+  }
+  .booking-step-title i{
+    width:27px;height:27px;border-radius:9px;background:rgba(243,35,59,.11);
+    display:grid;place-items:center;color:#ff5968;font-style:normal;font-size:9px;font-weight:900
+  }
+  .booking-step-title strong{font:800 12px "Space Grotesk"}
+  .booking-step-title span{color:#6f6b73;font-size:8px}
+
+  .availability-summary{
+    grid-column:1/-1;padding:10px 11px;border-radius:13px;border:1px solid #28272d;
+    background:linear-gradient(90deg,#121215,#0e0e10);
+    display:flex;align-items:center;justify-content:space-between;gap:10px
+  }
+  .availability-summary strong{font-size:9px;color:#fff}
+  .availability-summary span{font-size:8px;color:#747078}
+  .availability-summary b{color:#51da93}
+
+  .user-owned{
+    color:#5de09a!important;
+    border-color:rgba(93,224,154,.23)!important;
+  }
+  .time.user-owned{
+    background:rgba(50,213,131,.08)!important;
+    opacity:.6!important
+  }
+  .time.user-owned:before{
+    content:"SEU"!important;color:#52d993!important
+  }
+
+  .profile-save-note{font-size:8px;color:#68656d;margin-top:8px}
+  .profile-save-note:before{content:"✓ ";color:#4ed58f}
+
+  .smart-empty{
+    padding:26px;border-radius:21px;border:1px solid #29282e;
+    background:radial-gradient(circle at 90% 10%,rgba(243,35,59,.1),transparent 30%),#111113;
+    text-align:center
+  }
+  .smart-empty .empty-icon{font-size:32px;margin-bottom:9px}
+  .smart-empty strong{display:block;color:#fff;font:800 16px "Manrope"}
+  .smart-empty p{max-width:380px;margin:6px auto 14px;color:#747078;font-size:9px;line-height:1.6}
+
+  @media(max-width:760px){
+    .personal-welcome{margin-left:10px;margin-right:10px}
+    .account-actions{grid-template-columns:1fr}
+  }
+</style>
+
+
+<style id="eduardo-v7">
+  .auth-switch{
+    display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;
+    border:1px solid #29282e;background:#0e0e10;border-radius:14px;margin-bottom:15px
+  }
+  .auth-switch-btn{
+    border:0;border-radius:10px;padding:10px;background:transparent;color:#706c74;
+    font-size:9px;font-weight:900;letter-spacing:.05em
+  }
+  .auth-switch-btn.active{background:#1b1b1f;color:#fff;box-shadow:0 5px 16px rgba(0,0,0,.18)}
+  .field-help{font-size:8px;color:#5f5b63;margin-top:1px}
+  .password-wrap{position:relative}
+  .password-wrap input{padding-right:47px!important}
+  .password-toggle{
+    position:absolute;right:6px;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border:0;border-radius:9px;background:#17171a;color:#77737b
+  }
+  .password-toggle:hover{color:#fff;background:#202024}
+  .auth-main-btn{width:100%;margin-top:14px;min-height:46px;background:linear-gradient(135deg,#f3233b,#ad0b1b)!important;border:0!important}
+  .auth-status{font-size:9px;color:#77737b;line-height:1.55;min-height:14px;margin:10px 2px 0}
+  .auth-status.error{color:#ff6978}.auth-status.success{color:#53d992}
+  .auth-status.loading{color:#fdb022}
+  .auth-strength{margin-top:10px}
+  .auth-strength-bar{height:3px;background:#25242a;border-radius:99px;overflow:hidden}
+  .auth-strength-bar i{display:block;height:100%;width:0;background:#ff5968;border-radius:99px;transition:.25s}
+  .auth-strength span{display:block;margin-top:6px;color:#68656c;font-size:8px}
+
+  .booking-identity{
+    border:1px solid #2a292f;border-radius:16px;padding:12px 13px;
+    background:linear-gradient(110deg,rgba(243,35,59,.08),#111113 38%);
+    margin-bottom:13px;display:flex;justify-content:space-between;gap:12px;align-items:center
+  }
+  .booking-identity small{display:block;font-size:7px;color:#69656d;letter-spacing:.11em;text-transform:uppercase}
+  .booking-identity strong{display:block;font:800 12px "Space Grotesk";color:#fff;margin-top:3px}
+  .booking-identity span{font-size:8px;color:#54d993;font-weight:800}
+
+  .date{transition:.2s}
+  .date:hover:not(.selected){border-color:#4a3539;transform:translateY(-1px)}
+  .time{min-height:43px}
+  .time.selected{box-shadow:0 8px 23px rgba(243,35,59,.2)}
+  .time.disabled{cursor:not-allowed}
+  .modal{scrollbar-width:thin;scrollbar-color:#37363c transparent}
+
+  .booking-success{
+    position:fixed;inset:0;z-index:260;background:rgba(0,0,0,.88);backdrop-filter:blur(16px);
+    display:grid;place-items:center;padding:18px
+  }
+  .booking-success-card{
+    width:min(470px,100%);border:1px solid #34333a;border-radius:28px;
+    background:radial-gradient(circle at 80% 0,rgba(50,213,131,.13),transparent 33%),#111114;
+    padding:26px;text-align:center;box-shadow:0 35px 120px rgba(0,0,0,.65)
+  }
+  .booking-success-icon{
+    width:68px;height:68px;border-radius:22px;margin:0 auto 16px;
+    display:grid;place-items:center;background:rgba(50,213,131,.1);
+    border:1px solid rgba(50,213,131,.2);color:#5ce09d;font-size:27px
+  }
+  .booking-success-card h3{font:800 27px "Manrope";letter-spacing:-.055em;color:#fff;margin:0}
+  .booking-success-card p{font-size:10px;color:#77737b;line-height:1.7;margin:9px auto 18px;max-width:350px}
+  .success-code{
+    border:1px solid #2a292f;background:#0e0e10;border-radius:15px;padding:12px;margin-bottom:14px
+  }
+  .success-code small{display:block;font-size:7px;color:#5f5b63;letter-spacing:.13em;text-transform:uppercase}
+  .success-code strong{display:block;color:#fff;font:800 18px "Space Grotesk";letter-spacing:.08em;margin-top:4px}
+  .success-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+
+  .appointments-filter{display:flex;gap:7px;margin:0 0 13px;overflow:auto}
+  .appointments-filter button{
+    border:1px solid #29282e;background:#111113;color:#77737b;border-radius:999px;
+    padding:8px 11px;font-size:8px;font-weight:900;white-space:nowrap
+  }
+  .appointments-filter button.active{background:#f3233b;border-color:#f3233b;color:#fff}
+</style>
+
+<style>.firestore-status{display:none!important}</style>
+</head>
+
+<body>
+  <div id="toast" class="toast"></div>
+  <div id="firestoreStatus" class="firestore-status syncing"><i></i><span>AGENDA • CONECTANDO</span></div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-mark">ED</div>
+          <div class="brand-copy">
+            <div class="brand-title">EDUARDO • D'MASSA</div>
+            <div class="brand-sub">Agenda inteligente • atendimento especializado</div>
+          </div>
+        </div>
+        <div class="top-actions">
+          <button class="icon-btn" id="refreshBtn" title="Atualizar dados">↻</button>
+          <button class="profile-btn" id="loginBtn">◉ <span>Entrar</span></button>
+        </div>
+      </div>
+    </header>
+
+    <section id="personalWelcome" class="personal-welcome hidden">
+      <div>
+        <span class="hello">BEM-VINDO DE VOLTA</span>
+        <strong id="personalWelcomeName">Sua agenda está pronta.</strong>
+      </div>
+      <button id="personalWelcomeAppointments">VER MEUS HORÁRIOS ↗</button>
+    </section>
+
+    <section class="hero">
+      <div class="hero-grid">
+        <div class="hero-content">
+          <div class="eyebrow">EDUARDO / BARBEIRO</div>
+          <h1>Seu estilo não é detalhe.<br><span>É assinatura.</span></h1>
+          <p>Precisão no corte, presença no visual e zero tempo perdido. Escolha seu serviço, reserve o melhor horário.</p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" id="heroSchedule">＋ Agendar meu horário</button>
+            <button class="btn btn-dark" id="heroAppointments">▣ Ver meus horários</button>
+          </div>
+          <div class="hero-trust"><span><i></i> Agenda sincronizada</span><span><i></i> Confirmação rápida</span><span><i></i> D'MASSA</span></div>
+        </div>
+        <div class="hero-showcase" aria-hidden="true">
+          <div class="showcase-glow"></div>
+          <div class="showcase-card main-card">
+            <div class="showcase-top"><span>ED</span><b>01</b></div>
+            <div class="showcase-word">BARBEIRO</div>
+            <div class="showcase-line"></div>
+            <div class="showcase-caption">PRECISÃO • PRESENÇA • ESTILO</div>
+          </div>
+          <div class="showcase-card float-card top-card"><small>ATENDIMENTO</small><strong>PERSONALIZADO</strong><span>do seu jeito</span></div>
+          <div class="showcase-card float-card bottom-card"><small>SEU PRÓXIMO</small><strong>HORÁRIO</strong><span>começa aqui ↗</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="experience-strip">
+      <div><span class="strip-number">01</span><strong>Escolha</strong><small>o serviço ideal</small></div>
+      <div><span class="strip-number">02</span><strong>Reserve</strong><small>dia e horário</small></div>
+      <div><span class="strip-number">03</span><strong>Chegue</strong><small>sem perder tempo</small></div>
+      <div><span class="strip-number">04</span><strong>Saia</strong><small>com sua assinatura</small></div>
+    </section>
+
+
+
+    <section class="portfolio-section" id="portfolio">
+      <div class="portfolio-head">
+        <div>
+          <div class="kicker">Cortes & referências</div>
+          <h2>Encontre seu próximo visual.</h2>
+          <p>Veja referências de cortes, acabamentos e estilos. Toque em qualquer destaque para abrir a galeria.</p>
+        </div>
+        <button class="btn btn-soft" id="openAllCuts">Ver todos ↗</button>
+      </div>
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+    </section>
+
+    <section class="quick-actions" aria-label="Ações rápidas">
+      <a href="#bookingSection" class="quick-action"><span class="quick-action-icon">＋</span><span><strong>Agendar</strong><small>Escolher horário</small></span></a>
+      <button class="quick-action" id="quickViewHours"><span class="quick-action-icon">◷</span><span><strong>Ver horários</strong><small>Disponibilidade agora</small></span></button>
+      <a href="#contato" class="quick-action"><span class="quick-action-icon">↗</span><span><strong>Contato</strong><small>Falar com Eduardo</small></span></a>
+      <button class="quick-action" id="shareSite"><span class="quick-action-icon">⌁</span><span><strong>Compartilhar</strong><small>Enviar o site</small></span></button>
+    </section>
+
+    <section class="business-zone" id="sobre">
+      <div class="business-title">
+        <div class="kicker">Mais que um horário</div>
+        <h2>Um studio pensado nos detalhes.</h2>
+      </div>
+
+      <div class="business-layout">
+        <article class="business-card">
+          <div id="openNowBadge" class="open-now"><span class="open-dot"></span><span>Consultando horário...</span></div>
+          <h3>Sobre & comodidades</h3>
+          <p class="lead">Conforto para você chegar tranquilo e aproveitar seu atendimento.</p>
+
+          <div class="amenities">
+            <div class="amenity"><span class="amenity-icon">⌁</span><strong>Wi‑Fi disponível</strong></div>
+            <div class="amenity"><span class="amenity-icon">♿</span><strong>Acessibilidade</strong></div>
+            <div class="amenity"><span class="amenity-icon">☺</span><strong>Aceita crianças</strong></div>
+          </div>
+
+          <div style="margin-top:18px">
+            <div class="info-label">Horários</div>
+            <div class="hours" style="margin-top:8px">
+              <div class="hours-row"><b>Segunda</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Terça</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Quarta</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Quinta</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Sexta</b><span>14:00 — 21:00</span></div>
+              <div class="hours-row"><b>Sábado</b><span>09:00 — 17:00</span></div>
+            </div>
+          </div>
+
+          <div class="payment-box">
+            <div class="info-label">Formas de pagamento aceitas</div>
+            <div class="payment-pills">
+              <span class="payment-pill">PIX</span>
+              <span class="payment-pill">Crédito</span>
+              <span class="payment-pill">Débito</span>
+              <span class="payment-pill">Dinheiro</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="business-card contact-premium" id="contato">
+          <div>
+            <div class="eyebrow">CONTATO DIRETO</div>
+            <div class="contact-word">Fale com o <span>Eduardo.</span></div>
+            <p class="contact-desc">Dúvida sobre corte, horário ou atendimento? Abra uma conversa direto no WhatsApp.</p>
+          </div>
+          <a href="#" class="whatsapp-action" id="whatsappAction">
+            <span>Chamar no WhatsApp<small>Abre uma conversa com mensagem pronta</small></span>
+            <span class="wa-arrow">↗</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <main>
+      <section id="bookingSection">
+        <div class="section-head">
+          <div>
+            <h2>Encontre seu serviço</h2>
+            <p>Serviços, preços e disponibilidade atualizados em tempo real.</p>
+          </div>
+        </div>
+
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-tab="services">Serviços</button>
+          <button class="tab" data-tab="subscriptions">Assinaturas</button>
+          <button class="tab" data-tab="professionals">Profissionais</button>
+          <button class="tab" data-tab="reviews">Avaliações</button>
+        </div>
+
+        <div id="tab-services" class="tab-panel">
+          <div id="servicesList" class="service-list">
+            <div class="loading"><div><div class="spinner"></div>Carregando serviços...</div></div>
+          </div>
+        </div>
+
+        <div id="tab-subscriptions" class="tab-panel hidden">
+          <div id="subscriptionsList" class="grid-3"></div>
+        </div>
+
+        <div id="tab-professionals" class="tab-panel hidden">
+          <div id="professionalsList" class="grid-3"></div>
+        </div>
+
+        <div id="tab-reviews" class="tab-panel hidden">
+          <div id="reviewsList" class="reviews-grid"></div>
+        </div>
+      </section>
+
+      <section id="appointmentsSection" class="hidden">
+        <div class="section-head">
+          <div>
+            <h2>Meus agendamentos</h2>
+            <p>Acompanhe seus próximos horários.</p>
+          </div>
+          <button class="btn btn-soft" id="newAppointmentBtn">＋ Novo</button>
+        </div>
+        <div class="appointments-filter" id="appointmentsFilter">
+          <button class="active" data-appt-filter="upcoming">Próximos</button>
+          <button data-appt-filter="all">Todos</button>
+          <button data-appt-filter="cancelled">Cancelados</button>
+        </div>
+        <div id="appointmentsList"></div>
+      </section>
+    </main>
+  </div>
+
+  <nav class="bottom-nav">
+    <div class="bottom-inner">
+      <button class="nav-item active" data-nav="book">
+        <span class="nav-icon">＋</span><span>Agendar</span>
+      </button>
+      <button class="nav-item" data-nav="appointments">
+        <span class="nav-icon">▣</span><span>Agendamentos</span>
+      </button>
+      <button class="nav-item" data-nav="login">
+        <span class="nav-icon">↪</span><span id="bottomLoginText">Entrar</span>
+      </button>
+    </div>
+  </nav>
+
+
+  <div id="storyModal" class="story-modal hidden" aria-hidden="true">
+    <div class="story-view">
+      <div class="story-progress"><i id="storyProgress"></i></div>
+      <button class="story-close" id="storyClose">×</button>
+      <div class="story-view-content">
+        <div class="story-view-icon" id="storyIcon">✂</div>
+        <div class="story-view-kicker" id="storyKicker">EDUARDO • DESTAQUES</div>
+        <h3 id="storyTitle">Serviços</h3>
+        <p id="storyText">Escolha seu serviço e reserve seu horário.</p>
+      </div>
+    </div>
+  </div>
+
+
+  <div id="cutsGalleryModal" class="gallery-modal hidden" aria-hidden="true">
+    <div class="gallery-shell">
+      <div class="gallery-top">
+        <div><h3 id="galleryTitle">Cortes em destaque</h3><p>Referências para escolher seu próximo estilo.</p></div>
+        <button class="gallery-close" id="galleryClose">×</button>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </div>
+
+  <button class="mobile-book-cta" id="mobileBookCta">＋ Agendar meu horário</button>
+
+
+  <div id="bookingSuccess" class="booking-success hidden">
+    <div class="booking-success-card">
+      <div class="booking-success-icon">✓</div>
+      <h3>Horário reservado.</h3>
+      <p id="bookingSuccessText">Seu agendamento foi confirmado e já está na sua agenda.</p>
+      <div class="success-code"><small>Código da reserva</small><strong id="bookingSuccessCode">—</strong></div>
+      <div class="success-actions">
+        <button class="btn btn-outline" id="bookingSuccessClose">Fechar</button>
+        <button class="btn btn-dark" id="bookingSuccessAppointments">Ver minha agenda</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment modal -->
+  <div id="appointmentModal" class="modal-backdrop hidden">
+    <div class="modal" role="dialog" aria-modal="true">
+      <div class="modal-head">
+        <div>
+          <h2 id="modalTitle">Agendar serviço</h2>
+          <p id="modalSubtitle">Escolha as opções do seu atendimento.</p>
+        </div>
+        <button class="close" id="closeModal">×</button>
+      </div>
+      <div class="steps">
+        <div class="step active" data-step-line="1"></div>
+        <div class="step" data-step-line="2"></div>
+        <div class="step" data-step-line="3"></div>
+        <div class="step" data-step-line="4"></div>
+      </div>
+
+      <div class="modal-body">
+        <div id="step1">
+          <div class="selection-card">
+            <div class="selection-row">
+              <div>
+                <div class="selection-title" id="selectedServiceName">Selecione um serviço</div>
+                <div class="selection-sub" id="selectedServiceMeta">Você poderá trocar a qualquer momento.</div>
+              </div>
+              <strong id="selectedServicePrice">—</strong>
+            </div>
+          </div>
+          <div class="section-head" style="margin-top:20px">
+            <div><h2 style="font-size:16px">Profissional</h2><p>Escolha quem vai cuidar do seu visual.</p></div>
+          </div>
+          <div id="professionalOptions" class="option-grid"></div>
+          <div class="modal-footer">
+            <button class="btn btn-outline" id="cancelStep1">Cancelar</button>
+            <button class="btn btn-dark" id="next1">Continuar →</button>
+          </div>
+        </div>
+
+        <div id="step2" class="hidden">
+          <div class="section-head" style="margin-top:0">
+            <div><h2 style="font-size:16px">Escolha o dia</h2><p>Próximos dias disponíveis.</p></div>
+          </div>
+          <div id="dateOptions" class="date-strip"></div>
+          <div class="section-head" style="margin-top:22px">
+            <div><h2 style="font-size:16px">Horário</h2><p>Horários livres atualizam automaticamente.</p></div>
+          </div>
+          <div id="timeOptions" class="time-grid"></div>
+          <div class="modal-footer">
+            <button class="btn btn-outline" id="back2">← Voltar</button>
+            <button class="btn btn-dark" id="next2">Continuar →</button>
+          </div>
+        </div>
+
+        <div id="step3" class="hidden">
+          <div class="booking-identity" id="bookingIdentity">
+            <div><small>Agendando como</small><strong id="bookingIdentityUser">@usuario</strong></div>
+            <span>CONTA VERIFICADA</span>
+          </div>
+          <div class="selection-card">
+            <div class="selection-row">
+              <div>
+                <div class="selection-title" id="summaryService">Serviço</div>
+                <div class="selection-sub" id="summaryProfessional">Profissional</div>
+              </div>
+              <strong id="summaryPrice">R$ 0,00</strong>
+            </div>
+            <div class="selection-sub" style="margin-top:10px" id="summaryDate">Data e horário</div>
+          </div>
+
+          <div class="section-head" style="margin-top:20px">
+            <div><h2 style="font-size:16px">Seus dados</h2><p>Usaremos para identificar o agendamento.</p></div>
+          </div>
+          <div class="form-grid">
+            <div class="field">
+              <label>Nome</label>
+              <input id="customerName" placeholder="Seu nome" autocomplete="name">
+            </div>
+            <div class="field">
+              <label>WhatsApp</label>
+              <input id="customerPhone" placeholder="(00) 00000-0000" autocomplete="tel">
+            </div>
+            <div class="field full">
+              <label>Observação (opcional)</label>
+              <textarea id="customerNote" rows="3" placeholder="Ex.: preferência de máquina, acabamento..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-outline" id="back3">← Voltar</button>
+            <button class="btn btn-dark" id="next3">Revisar →</button>
+          </div>
+        </div>
+
+        <div id="step4" class="hidden">
+          <div class="selection-card" style="padding:18px">
+            <div class="eyebrow" style="color:var(--primary);opacity:1">Resumo</div>
+            <h2 id="confirmService" style="font-family:Manrope;font-size:23px;margin:7px 0">Serviço</h2>
+            <div style="display:grid;gap:10px;margin-top:16px">
+              <div class="selection-row"><span class="selection-sub">Profissional</span><strong id="confirmProfessional">—</strong></div>
+              <div class="selection-row"><span class="selection-sub">Data</span><strong id="confirmDate">—</strong></div>
+              <div class="selection-row"><span class="selection-sub">Horário</span><strong id="confirmTime">—</strong></div>
+              <div class="selection-row"><span class="selection-sub">Cliente</span><strong id="confirmCustomer">—</strong></div>
+              <div class="selection-row" style="padding-top:10px;border-top:1px solid var(--line)"><span class="selection-sub">Total</span><strong id="confirmPrice" style="color:var(--success);font-size:18px">—</strong></div>
+            </div>
+          </div>
+          <p style="font-size:11px;color:var(--muted);line-height:1.6;margin-top:14px">
+            Ao confirmar, o horário será reservado com segurança e ficará indisponível para outras pessoas.
+          </p>
+          <div class="security-note"><span>◆</span><span><b>Reserva protegida:</b> o sistema valida o horário novamente no instante da confirmação.</span></div>
+          <div class="modal-footer">
+            <button class="btn btn-outline" id="back4">← Alterar</button>
+            <button class="btn btn-dark" id="confirmBtn">✓ Confirmar agendamento</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login modal -->
+  <div id="loginModal" class="modal-backdrop hidden">
+    <div class="modal" style="max-width:500px">
+      <div class="modal-head">
+        <div><h2 id="loginModalTitle">Sua conta</h2><p id="loginModalSubtitle">Entre para acessar sua agenda pessoal.</p></div>
+        <button class="close" id="closeLogin">×</button>
+      </div>
+      <div class="modal-body">
+        <div id="authPanel">
+          <div class="auth-switch">
+            <button class="auth-switch-btn active" id="authLoginTab" type="button">Entrar</button>
+            <button class="auth-switch-btn" id="authRegisterTab" type="button">Criar conta</button>
+          </div>
+
+          <div class="form-grid">
+            <div class="field full">
+              <label>Usuário</label>
+              <input id="loginUsername" type="text" placeholder="seu.usuario" autocomplete="username" maxlength="24" autocapitalize="none" spellcheck="false">
+              <div class="field-help">3 a 24 caracteres • letras, números, ponto, _ ou -</div>
+            </div>
+
+            <div class="field full">
+              <label>Senha</label>
+              <div class="password-wrap">
+                <input id="loginPassword" type="password" placeholder="••••••••" autocomplete="current-password" minlength="6">
+                <button class="password-toggle" id="togglePassword" type="button" aria-label="Mostrar senha">◉</button>
+              </div>
+            </div>
+
+            <div class="field full hidden" id="confirmPasswordField">
+              <label>Confirmar senha</label>
+              <div class="password-wrap">
+                <input id="confirmPassword" type="password" placeholder="••••••••" autocomplete="new-password" minlength="6">
+                <button class="password-toggle" id="toggleConfirmPassword" type="button" aria-label="Mostrar confirmação de senha">◉</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="auth-strength hidden" id="passwordStrength">
+            <div class="auth-strength-bar"><i id="passwordStrengthFill"></i></div>
+            <span id="passwordStrengthText">Crie uma senha segura.</span>
+          </div>
+
+          <div class="auth-hint" id="authHint">Entre com o mesmo usuário e senha usados no seu cadastro.</div>
+
+          <button class="btn btn-dark auth-main-btn" id="doLogin">Entrar na minha conta</button>
+          <button class="btn btn-dark auth-main-btn hidden" id="registerBtn">Criar minha conta</button>
+
+          <p id="loginStatus" class="auth-status"></p>
+        </div>
+
+        <div id="accountPanel" class="hidden">
+          <div class="account-hero">
+            <div class="account-avatar">ED</div>
+            <div>
+              <div class="account-kicker">CONTA ATIVA</div>
+              <h3 id="accountUsername">@usuario</h3>
+              <p id="accountSummary">Sua agenda pessoal está sincronizada.</p>
+            </div>
+          </div>
+          <div class="account-stats">
+            <div><strong id="accountUpcomingCount">0</strong><span>Próximos</span></div>
+            <div><strong id="accountHistoryCount">0</strong><span>Total</span></div>
+          </div>
+          <div class="account-actions">
+            <button class="btn btn-dark" id="accountAppointments">▣ Meus horários</button>
+            <button class="btn btn-outline" id="accountLogout">Sair da conta</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
+    import {
+      getFirestore, collection, getDocs, query, where, orderBy, limit,
+      serverTimestamp, doc, updateDoc, getDoc, setDoc,
+      runTransaction, onSnapshot, deleteDoc
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
+    import {
+      getAuth, onAuthStateChanged, signInWithEmailAndPassword,
+      createUserWithEmailAndPassword, signOut, setPersistence, browserLocalPersistence
+    } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+    /*
+      ==========================================================
+      CONFIGURAÇÃO FIREBASE
+      ==========================================================
+      Substitua somente os valores abaixo pelo seu projeto.
+      As coleções usadas pelo site são:
+
+      services
+      subscriptions
+      professionals
+      reviews
+      appointments
+      bookingSlots
+      users
+      settings/business
+
+      Exemplos de documentos:
+
+      services:
+      {
+        name: "Cabelo",
+        price: 45,
+        duration: 30,
+        image: "https://...",
+        active: true,
+        order: 1
+      }
+
+      professionals:
+      {
+        name: "Eduardo",
+        specialty: "Barbeiro",
+        image: "https://...",
+        rating: 4.9,
+        available: true
+      }
+
+      subscriptions:
+      {
+        name: "CABELO SEG A SEX",
+        description: "Cabelo ilimitado todos os dias",
+        price: 149.90,
+        benefits: ["Cortes ilimitados", "Prioridade de agenda"],
+        featured: true,
+        active: true
+      }
+
+      reviews:
+      {
+        name: "Cliente",
+        text: "Atendimento excelente!",
+        rating: 5,
+        image: "https://...",
+        createdAt: serverTimestamp()
+      }
+
+      appointments:
+      {
+        userId: "...",
+        customerName: "...",
+        customerPhone: "...",
+        serviceId: "...",
+        serviceName: "Cabelo",
+        professionalId: "...",
+        professionalName: "Eduardo",
+        date: "2026-08-25",
+        time: "14:30",
+        price: 45,
+        duration: 30,
+        note: "...",
+        status: "confirmed",
+        createdAt: serverTimestamp()
+      }
+    */
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyC4ThDGOVEXyr-TqW4TwcUVB-QQEnaPOU4",
+      authDomain: "eduardo-36ee6.firebaseapp.com",
+      projectId: "eduardo-36ee6",
+      storageBucket: "eduardo-36ee6.firebasestorage.app",
+      messagingSenderId: "1066379972250",
+      appId: "1:1066379972250:web:64e38df2faa51dbde45923"
+    };
+
+    const firebaseReady = Boolean(firebaseConfig.apiKey && firebaseConfig.projectId && firebaseConfig.appId);
+
+    let db = null;
+    let auth = null;
+
+    if (firebaseReady) {
+      const app = initializeApp(firebaseConfig);
+      db = getFirestore(app);
+      auth = getAuth(app);
+      setPersistence(auth,browserLocalPersistence).catch(()=>{});
+    }
+
+    const demo = { services:[], professionals:[], subscriptions:[], reviews:[] };
+
+
+    const DEFAULT_PROFESSIONALS = [
+      {
+        id:"eduardo",
+        name:"Eduardo",
+        specialty:"Corte • Barba • Acabamento",
+        rating:5,
+        available:true,
+        order:1,
+        image:"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=600&q=85"
+      }
+    ];
+
+    const DEFAULT_SUBSCRIPTIONS = [
+      {
+        id:"club-cabelo",
+        name:"CLUBE DO CORTE",
+        description:"Para manter o corte sempre alinhado durante o mês.",
+        price:109.90,
+        benefits:["Agendamento facilitado","Prioridade na agenda","Visual sempre em dia"],
+        featured:true,
+        active:true
+      },
+      {
+        id:"club-completo",
+        name:"CLUBE COMPLETO",
+        description:"Cabelo e barba para quem quer manter o estilo completo.",
+        price:179.90,
+        benefits:["Cabelo + barba","Prioridade na agenda","Atendimento recorrente"],
+        active:true
+      }
+    ];
+
+    const DEFAULT_REVIEWS = [
+      {id:"r1",name:"Cliente",rating:5,text:"Atendimento excelente, horário certinho e corte impecável."},
+      {id:"r2",name:"Cliente",rating:5,text:"Muito prático para agendar e acompanhar meu horário."},
+      {id:"r3",name:"Cliente",rating:5,text:"Ambiente bom e acabamento muito bem feito."}
+    ];
+
+    const EDUARDO_CATALOG = [
+      {id:"cabelo", name:"Cabelo", price:45, duration:30, active:true, order:1},
+      {id:"barba", name:"Barba", price:40, duration:30, active:true, order:2},
+      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, active:true, order:3},
+      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, active:true, order:4}
+    ];
+
+    const EDUARDO_BUSINESS_DEFAULT = {
+      name:"EDUARDO • D'MASSA",
+      whatsapp:"",
+      amenities:["Wi-Fi","Acessibilidade","Aceita crianças"],
+      payments:["PIX","Cartão de crédito","Cartão de débito","Dinheiro"],
+      hours:{
+        monday:{open:"14:00",close:"21:00"},
+        tuesday:{open:"14:00",close:"21:00"},
+        wednesday:{open:"14:00",close:"21:00"},
+        thursday:{open:"14:00",close:"21:00"},
+        friday:{open:"14:00",close:"21:00"},
+        saturday:{open:"09:00",close:"17:00"},
+        sunday:null
+      }
+    };
+
+    let businessSettings = {...EDUARDO_BUSINESS_DEFAULT};
+
+    async function seedEduardoDataIfNeeded(){
+      // Dados públicos usam fallback visual quando a coleção ainda está vazia.
+      // Reservas e contas continuam sendo gravadas normalmente.
+      return;
+    }
+
+    async function loadBusinessSettings(){
+      if(!db) return;
+      try{
+        const snap=await getDoc(doc(db,"settings","business"));
+        if(snap.exists()) businessSettings={...EDUARDO_BUSINESS_DEFAULT,...snap.data()};
+      }catch(err){ console.warn(err); }
+      updateBusinessUI();
+    }
+
+    function updateBusinessUI(){
+      const wa=document.getElementById("whatsappAction");
+      if(wa){
+        wa.onclick=(e)=>{
+          e.preventDefault();
+          const phone=String(businessSettings.whatsapp||"").replace(/\D/g,"");
+          if(!phone){
+            toast("Contato do WhatsApp ainda não foi configurado.");
+            return;
+          }
+          const text=encodeURIComponent("Olá, Eduardo! Vim pelo site e gostaria de falar sobre um horário.");
+          window.open(`https://wa.me/${phone}?text=${text}`,"_blank","noopener");
+        };
+      }
+      updateOpenBadge();
+    }
+
+    function updateOpenBadge(){
+      const badge=document.getElementById("openNowBadge");
+      if(!badge) return;
+      const now=new Date();
+      const keys=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+      const current=businessSettings.hours?.[keys[now.getDay()]];
+      let open=false;
+      if(current){
+        const mins=now.getHours()*60+now.getMinutes();
+        const toM=v=>{const [h,m]=v.split(":").map(Number);return h*60+m};
+        open=mins>=toM(current.open)&&mins<toM(current.close);
+      }
+      badge.classList.toggle("closed",!open);
+      badge.innerHTML=`<span class="open-dot"></span><span>${open?"Aberto agora":"Fechado agora"}</span>`;
+    }
+
+    function businessHoursForISO(iso){
+      const d=new Date(iso+"T12:00:00");
+      const keys=["sunday","monday","tuesday","wednesday","thursday","friday","saturday"];
+      return businessSettings.hours?.[keys[d.getDay()]] || null;
+    }
+
+
+    let state = {
+      services:[], professionals:[], subscriptions:[], reviews:[], appointments:[],
+      user:null, userProfile:null, step:1,
+      booking:{service:null,professional:null,date:null,time:null,name:"",phone:"",note:""}
+    };
+
+    const $ = (id) => document.getElementById(id);
+    const money = n => Number(n || 0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+    const escapeHtml = s => String(s ?? "").replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+
+
+
+    const DEFAULT_CUTS = [
+      {id:"degrade", title:"Degradê", category:"Fade", image:"https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=900&q=86", active:true, order:1},
+      {id:"texturizado", title:"Texturizado", category:"Texture", image:"https://images.unsplash.com/photo-1599351431202-1e0f0137899a?auto=format&fit=crop&w=900&q=86", active:true, order:2},
+      {id:"barba", title:"Barba alinhada", category:"Beard", image:"https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=900&q=86", active:true, order:3},
+      {id:"classico", title:"Clássico", category:"Classic", image:"https://images.unsplash.com/photo-1622288432450-277d0fef5ed8?auto=format&fit=crop&w=900&q=86", active:true, order:4},
+      {id:"acabamento", title:"Acabamento", category:"Finish", image:"https://images.unsplash.com/photo-1593702295094-aea639b5d9c9?auto=format&fit=crop&w=900&q=86", active:true, order:5},
+      {id:"navalhado", title:"Navalhado", category:"Detail", image:"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=900&q=86", active:true, order:6}
+    ];
+    let cutsGallery=[...DEFAULT_CUTS];
+
+    async function loadCutsGallery(){
+      cutsGallery=[...DEFAULT_CUTS];
+      renderPortfolio();
+    }
+
+    function renderPortfolio(){
+      const grid=$("portfolioGrid");
+      if(!grid) return;
+      const items=cutsGallery.slice(0,5);
+      grid.innerHTML=items.map((item,index)=>`
+        <button class="portfolio-card" data-cut="${escapeHtml(item.id)}">
+          <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy">
+          <span class="portfolio-open">↗</span>
+          <span class="portfolio-copy"><small>${escapeHtml(item.category||"Destaque")}</small><strong>${escapeHtml(item.title)}</strong></span>
+        </button>`).join("");
+      grid.querySelectorAll("[data-cut]").forEach(btn=>btn.addEventListener("click",()=>openCutsGallery(btn.dataset.cut)));
+    }
+
+    function openCutsGallery(focusId=null){
+      const ordered=[...cutsGallery];
+      if(focusId){
+        ordered.sort((a,b)=>(a.id===focusId?-1:b.id===focusId?1:0));
+      }
+      $("galleryGrid").innerHTML=ordered.map(item=>`
+        <article class="gallery-item">
+          <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.title)}" loading="lazy">
+          <div><strong>${escapeHtml(item.title)}</strong><span>${escapeHtml(item.category||"Referência")}</span></div>
+        </article>`).join("");
+      $("cutsGalleryModal").classList.remove("hidden");
+      $("cutsGalleryModal").setAttribute("aria-hidden","false");
+      document.body.style.overflow="hidden";
+    }
+
+    function closeCutsGallery(){
+      $("cutsGalleryModal").classList.add("hidden");
+      $("cutsGalleryModal").setAttribute("aria-hidden","true");
+      document.body.style.overflow="";
+    }
+
+    async function shareSite(){
+      const data={title:"EDUARDO • D'MASSA",text:"Agende seu horário com o Eduardo.",url:location.href};
+      try{
+        if(navigator.share) await navigator.share(data);
+        else{
+          await navigator.clipboard.writeText(location.href);
+          toast("Link copiado.");
+        }
+      }catch(e){}
+    }
+
+    let unsubscribeSlots = null;
+    let unsubscribeAppointments = null;
+
+    function setFirestoreStatus(mode,label){
+      const el=document.getElementById("firestoreStatus");
+      if(!el) return;
+      el.className=`firestore-status ${mode}`;
+      el.innerHTML=`<i></i><span>${escapeHtml(label)}</span>`;
+    }
+
+    function slotIdFor(professionalId,date,time){
+      return `${professionalId}__${date}__${time}`.replace(/[^a-zA-Z0-9_-]/g,"_");
+    }
+
+    function bookingCodeFromId(id){
+      return String(id||"").replace(/[^a-zA-Z0-9]/g,"").slice(-8).toUpperCase();
+    }
+
+
+
+    let authMode="login";
+    let appointmentsFilterMode="upcoming";
+
+    function setAuthStatus(message,type=""){
+      const el=$("loginStatus");
+      if(!el) return;
+      el.textContent=message||"";
+      el.className=`auth-status ${type}`.trim();
+    }
+
+    function setAuthMode(mode){
+      authMode=mode==="register"?"register":"login";
+      const register=authMode==="register";
+      $("authLoginTab")?.classList.toggle("active",!register);
+      $("authRegisterTab")?.classList.toggle("active",register);
+      $("confirmPasswordField")?.classList.toggle("hidden",!register);
+      $("passwordStrength")?.classList.toggle("hidden",!register);
+      $("doLogin")?.classList.toggle("hidden",register);
+      $("registerBtn")?.classList.toggle("hidden",!register);
+      $("loginPassword").autocomplete=register?"new-password":"current-password";
+      $("authHint").textContent=register
+        ?"Crie um usuário único e uma senha. Guarde esses dados para acessar sua agenda."
+        :"Entre com o mesmo usuário e senha usados no seu cadastro.";
+      setAuthStatus("");
+      setTimeout(()=>$("loginUsername")?.focus(),20);
+    }
+
+    function passwordScore(value){
+      let score=0;
+      if(value.length>=6) score++;
+      if(value.length>=10) score++;
+      if(/[A-Z]/.test(value)&&/[a-z]/.test(value)) score++;
+      if(/\d/.test(value)) score++;
+      if(/[^A-Za-z0-9]/.test(value)) score++;
+      return Math.min(score,4);
+    }
+
+    function updatePasswordStrength(){
+      const pass=$("loginPassword")?.value||"";
+      const score=passwordScore(pass);
+      const widths=["0%","25%","50%","75%","100%"];
+      const labels=["Muito curta","Fraca","Boa","Forte","Muito forte"];
+      $("passwordStrengthFill").style.width=widths[score];
+      $("passwordStrengthText").textContent=labels[score];
+      const colors=["#ff5968","#ff5968","#fdb022","#63d99b","#32d583"];
+      $("passwordStrengthFill").style.background=colors[score];
+    }
+
+    function togglePasswordField(inputId,buttonId){
+      const input=$(inputId),btn=$(buttonId);
+      if(!input||!btn) return;
+      const showing=input.type==="text";
+      input.type=showing?"password":"text";
+      btn.textContent=showing?"◉":"○";
+      btn.setAttribute("aria-label",showing?"Mostrar senha":"Ocultar senha");
+    }
+
+    function firebaseAuthMessage(error,creating=false){
+      const code=String(error?.code||"");
+      if(code.includes("invalid-credential")||code.includes("wrong-password")||code.includes("user-not-found")) return "Usuário ou senha incorretos.";
+      if(code.includes("email-already-in-use")) return "Esse usuário já existe. Entre com sua senha ou escolha outro.";
+      if(code.includes("weak-password")) return "Escolha uma senha mais forte.";
+      if(code.includes("too-many-requests")) return "Muitas tentativas. Aguarde um pouco e tente novamente.";
+      if(code.includes("network-request-failed")) return "Sem conexão. Verifique sua internet e tente novamente.";
+      if(code.includes("operation-not-allowed")) return creating
+        ?"O cadastro ainda precisa ser habilitado no sistema de autenticação."
+        :"O acesso por usuário e senha ainda precisa ser habilitado.";
+      return creating?"Não foi possível criar a conta agora.":"Não foi possível entrar agora.";
+    }
+
+    function normalizeUsername(value){
+      return String(value||"")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD").replace(/[\u0300-\u036f]/g,"")
+        .replace(/\s+/g,".")
+        .replace(/[^a-z0-9._-]/g,"")
+        .replace(/\.{2,}/g,".")
+        .replace(/^[._-]+|[._-]+$/g,"")
+        .slice(0,24);
+    }
+
+    function validUsername(value){
+      const username=normalizeUsername(value);
+      return username.length>=3 && /^[a-z0-9][a-z0-9._-]*[a-z0-9]$/.test(username);
+    }
+
+    function usernameToInternalEmail(username){
+      return `${normalizeUsername(username)}@usuarios.eduardo.app`;
+    }
+
+    async function loadUserProfile(user){
+      if(!user || !db) return null;
+      try{
+        const snap=await getDoc(doc(db,"users",user.uid));
+        if(snap.exists()) return snap.data();
+      }catch(err){ console.warn("Perfil:",err); }
+      return null;
+    }
+
+    async function saveUserBookingProfile(){
+      if(!db || !state.user) return;
+      const name=$("customerName")?.value?.trim()||state.booking.name||"";
+      const phone=normalizePhone($("customerPhone")?.value||state.booking.phone||"");
+      try{
+        await setDoc(doc(db,"users",state.user.uid),{
+          uid:state.user.uid,
+          username:state.userProfile?.username || normalizeUsername((state.user.email||"").split("@")[0]),
+          customerName:name.slice(0,80),
+          customerPhone:phone,
+          updatedAt:serverTimestamp()
+        },{merge:true});
+        state.userProfile={...(state.userProfile||{}),customerName:name,customerPhone:phone};
+      }catch(err){ console.warn("Perfil:",err); }
+    }
+
+    function refreshAccountUI(){
+      const logged=Boolean(state.user);
+      $("authPanel")?.classList.toggle("hidden",logged);
+      $("accountPanel")?.classList.toggle("hidden",!logged);
+
+      if(logged){
+        const username=state.userProfile?.username || normalizeUsername((state.user.email||"").split("@")[0]) || "usuario";
+        const upcoming=state.appointments.filter(a=>a.status==="confirmed" && appointmentStartMs(a)>Date.now()).length;
+        $("accountUsername").textContent=`@${username}`;
+        $("accountUpcomingCount").textContent=String(upcoming);
+        $("accountHistoryCount").textContent=String(state.appointments.length);
+        $("personalWelcome")?.classList.remove("hidden");
+        $("personalWelcomeName").textContent=`Olá, ${state.userProfile?.customerName || username}.`;
+        $("loginModalTitle").textContent="Minha conta";
+        $("loginModalSubtitle").textContent="Sua agenda é exclusiva deste usuário.";
+      }else{
+        $("personalWelcome")?.classList.add("hidden");
+        $("loginModalTitle").textContent="Sua conta";
+        $("loginModalSubtitle").textContent="Entre com usuário e senha para acessar sua agenda pessoal.";
+      }
+    }
+
+    function normalizePhone(value){
+      return String(value||"").replace(/\D/g,"");
+    }
+
+    function isValidPhone(value){
+      const digits=normalizePhone(value);
+      return digits.length>=10 && digits.length<=13;
+    }
+
+    function appointmentStartMs(a){
+      if(!a?.date || !a?.time) return 0;
+      return new Date(`${a.date}T${a.time}:00`).getTime();
+    }
+
+    function canCancelAppointment(a){
+      return a?.status==="confirmed" && appointmentStartMs(a) > Date.now();
+    }
+
+    function toast(message){
+      const el=$("toast"); el.textContent=message; el.classList.add("show");
+      clearTimeout(window.__toast); window.__toast=setTimeout(()=>el.classList.remove("show"),3000);
+    }
+
+    async function getCollection(name, fallback=[]){
+      if(!db) return [];
+      try{
+        const snap=await getDocs(collection(db,name));
+        return snap.docs.map(d=>({id:d.id,...d.data()}));
+      }catch(err){
+        console.error("Firestore:",name,err);
+        toast("Não foi possível carregar os dados agora.");
+        return [];
+      }
+    }
+
+    async function loadData(){
+      state.services=[...EDUARDO_CATALOG];
+      state.subscriptions=[...DEFAULT_SUBSCRIPTIONS];
+      state.professionals=[...DEFAULT_PROFESSIONALS];
+      state.reviews=[...DEFAULT_REVIEWS];
+      businessSettings={...EDUARDO_BUSINESS_DEFAULT};
+      renderAll();
+      updateBusinessUI();
+    }
+
+    function renderAll(){
+      renderServices();
+      renderSubscriptions();
+      renderProfessionals();
+      renderReviews();
+      renderProfessionalOptions();
+    }
+
+    function renderServices(){
+      const el=$("servicesList");
+      if(!state.services.length){el.innerHTML='<div class="loading">Nenhum serviço disponível.</div>';return}
+      el.innerHTML=state.services.map((s,index)=>`
+        <article class="service-card" data-index="${String(index+1).padStart(2,'0')}">
+          <img class="service-img" src="${escapeHtml(s.image || "https://images.unsplash.com/photo-1621605815971-fbc98d665033?auto=format&fit=crop&w=300&q=80")}" alt="">
+          <div>
+            <div class="service-name">${escapeHtml(s.name)}</div>
+            <div class="service-price">${money(s.price)}</div>
+            <div class="service-meta"><span>◷ ${Number(s.duration||30)} min</span><span class="service-feature">✓ Confirmação imediata</span></div><span class="service-badge">Agenda online</span>
+          </div>
+          <button class="schedule-btn" data-service="${escapeHtml(s.id)}">Agendar</button>
+        </article>`).join("");
+      el.querySelectorAll("[data-service]").forEach(b=>b.addEventListener("click",()=>openAppointment(b.dataset.service)));
+    }
+
+    function renderSubscriptions(){
+      $("subscriptionsList").innerHTML=state.subscriptions.map(s=>`
+        <article class="subscription ${s.featured?'featured':''}">
+          ${s.featured?'<span class="subscription-badge">MAIS POPULAR</span>':''}
+          <h3>${escapeHtml(s.name)}</h3>
+          <div class="desc">${escapeHtml(s.description||"Plano para manter seu visual sempre em dia.")}</div>
+          <div class="sub-price">${money(s.price)} <small>/mês</small></div>
+          <ul class="sub-list">${(s.benefits||[]).map(x=>`<li>${escapeHtml(x)}</li>`).join("")}</ul>
+          <button class="btn btn-dark" style="width:100%" data-sub="${escapeHtml(s.id)}">Ver assinatura</button>
+        </article>`).join("");
+      $("subscriptionsList").querySelectorAll("[data-sub]").forEach(b=>b.addEventListener("click",()=>{
+        const s=state.subscriptions.find(x=>x.id===b.dataset.sub);
+        toast(`Plano ${s?.name||""} selecionado.`);
+      }));
+    }
+
+    function renderProfessionals(){
+      $("professionalsList").innerHTML=state.professionals.map(p=>`
+        <article class="professional">
+          <div class="professional-top">
+            <img class="avatar" src="${escapeHtml(p.image||"https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=300&q=80")}" alt="">
+            <div><h3>${escapeHtml(p.name)}</h3><p>${escapeHtml(p.specialty||"Barbeiro")}</p><div class="rating">★ ${Number(p.rating||5).toFixed(1)}</div></div>
+          </div>
+          <div class="availability">● Disponível para agendamento</div>
+        </article>`).join("");
+    }
+
+    function renderReviews(){
+      $("reviewsList").innerHTML=state.reviews.map(r=>`
+        <article class="review-card">
+          <div class="review-stars">${"★".repeat(Math.max(1,Math.min(5,Number(r.rating||5))))}</div>
+          <p style="font-size:13px;color:#38445a;margin-top:12px">“${escapeHtml(r.text||"Excelente atendimento.")}”</p>
+          <div class="review-author">
+            <img class="avatar" src="${escapeHtml(r.image||"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80")}" alt="">
+            <div><h3>${escapeHtml(r.name||"Cliente")}</h3><span>Cliente verificado</span></div>
+          </div>
+        </article>`).join("");
+    }
+
+    function renderProfessionalOptions(){
+      $("professionalOptions").innerHTML=state.professionals.map(p=>`
+        <button class="option ${state.booking.professional?.id===p.id?'selected':''}" data-prof="${escapeHtml(p.id)}">
+          <strong>${escapeHtml(p.name)}</strong>
+          <span>★ ${Number(p.rating||5).toFixed(1)} • ${escapeHtml(p.specialty||"Barbeiro")}</span>
+        </button>`).join("");
+      $("professionalOptions").querySelectorAll("[data-prof]").forEach(b=>b.addEventListener("click",()=>{
+        state.booking.professional=state.professionals.find(p=>p.id===b.dataset.prof);
+        state.booking.time=null;
+        if(state.booking.date) renderTimes();
+        $("professionalOptions").querySelectorAll(".option").forEach(x=>x.classList.remove("selected"));
+        b.classList.add("selected");
+      }));
+    }
+
+    function openAppointment(serviceId){
+      const service=state.services.find(s=>s.id===serviceId) || state.services[0];
+      const defaultProfessional=state.professionals[0]||null;
+      state.booking={
+        service,
+        professional:defaultProfessional,
+        date:null,
+        time:null,
+        name:state.userProfile?.customerName||"",
+        phone:state.userProfile?.customerPhone||"",
+        note:""
+      };
+      $("selectedServiceName").textContent=service?.name||"Serviço";
+      $("selectedServiceMeta").textContent=`${service?.duration||30} minutos`;
+      $("selectedServicePrice").textContent=money(service?.price);
+      $("customerName").value=state.booking.name;
+      $("customerPhone").value=state.booking.phone;
+      resetModal();
+      $("appointmentModal").classList.remove("hidden");
+    }
+
+    function resetModal(){
+      state.step=1;
+      [1,2,3,4].forEach(i=>$(`step${i}`).classList.toggle("hidden",i!==1));
+      document.querySelectorAll("[data-step-line]").forEach((x,i)=>x.classList.toggle("active",i===0));
+      renderProfessionalOptions();
+      buildDates();
+    }
+
+    function buildDates(){
+      const el=$("dateOptions"); el.innerHTML="";
+      const names=["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+      const today=new Date();
+      let added=0, offset=0, firstOpen=null;
+
+      while(added<14 && offset<25){
+        const d=new Date(today);
+        d.setDate(today.getDate()+offset++);
+        const localIso=[
+          d.getFullYear(),
+          String(d.getMonth()+1).padStart(2,"0"),
+          String(d.getDate()).padStart(2,"0")
+        ].join("-");
+
+        const hours=businessHoursForISO(localIso);
+        if(!hours) continue;
+
+        const b=document.createElement("button");
+        b.className="date";
+        b.dataset.date=localIso;
+        b.innerHTML=`<small>${offset===1?"Hoje":names[d.getDay()]}</small><strong>${String(d.getDate()).padStart(2,"0")}</strong>`;
+        b.addEventListener("click",()=>selectDate(localIso,b));
+        el.appendChild(b);
+        if(!firstOpen) firstOpen=b;
+        added++;
+      }
+
+      if(firstOpen) selectDate(firstOpen.dataset.date,firstOpen);
+    }
+
+    async function selectDate(iso,button){
+      state.booking.date=iso;
+      $("dateOptions").querySelectorAll(".date").forEach(x=>x.classList.remove("selected"));
+      button.classList.add("selected");
+      await renderTimes();
+    }
+
+    async function renderTimes(){
+      const el=$("timeOptions");
+      const hours=businessHoursForISO(state.booking.date);
+
+      if(unsubscribeSlots){ unsubscribeSlots(); unsubscribeSlots=null; }
+
+      if(!hours){
+        state.booking.time=null;
+        el.innerHTML='<div style="grid-column:1/-1" class="selection-card"><strong>Fechado neste dia.</strong><div class="selection-sub">Escolha outra data.</div></div>';
+        return;
+      }
+
+      const toMinutes=v=>{const [h,m]=v.split(":").map(Number);return h*60+m};
+      const toClock=m=>`${String(Math.floor(m/60)).padStart(2,"0")}:${String(m%60).padStart(2,"0")}`;
+      const start=toMinutes(hours.open), end=toMinutes(hours.close);
+      const times=[];
+      for(let m=start;m<end;m+=30) times.push(toClock(m));
+
+      const paint=(booked=[],own=[])=>{
+        const previous=state.booking.time;
+        if(previous && booked.includes(previous)) state.booking.time=null;
+
+        el.innerHTML=`
+          <div class="availability-summary">
+            <span><strong>Disponibilidade</strong><br><span>Atualização automática</span></span>
+            <span><b>${times.length-booked.length}</b> horários livres</span>
+          </div>
+          ${times.map(t=>{
+            const busy=booked.includes(t);
+            const mine=own.includes(t);
+            return `<button class="time ${busy?"disabled":""} ${mine?"user-owned":""} ${state.booking.time===t?"selected":""}" data-time="${t}" ${busy?"disabled":""}>${t}</button>`;
+          }).join("")}
+        `;
+        el.querySelectorAll(".time:not(.disabled)").forEach(btn=>btn.addEventListener("click",()=>{
+          state.booking.time=btn.dataset.time;
+          el.querySelectorAll(".time").forEach(x=>x.classList.remove("selected"));
+          btn.classList.add("selected");
+        }));
+      };
+
+      paint([]);
+
+      if(!db || !state.booking.professional || !state.booking.date) return;
+
+      setFirestoreStatus("syncing","AGENDA • SINCRONIZANDO");
+      const slotsQuery=query(
+        collection(db,"bookingSlots"),
+        where("professionalId","==",state.booking.professional.id),
+        where("date","==",state.booking.date)
+      );
+
+      unsubscribeSlots=onSnapshot(slotsQuery,(snap)=>{
+        const slots=snap.docs.map(d=>d.data()).filter(s=>s.status==="confirmed");
+        const booked=slots.map(s=>s.time).filter(Boolean);
+        const own=state.user ? slots.filter(s=>s.userId===state.user.uid).map(s=>s.time).filter(Boolean) : [];
+        paint(booked,own);
+        setFirestoreStatus("online","AGENDA • AO VIVO");
+      },(err)=>{
+        console.warn("Realtime slots:",err);
+        setFirestoreStatus("offline","AGENDA • INDISPONÍVEL");
+        toast("Não foi possível atualizar a agenda em tempo real.");
+      });
+    }
+
+    function updateStep(n){
+      state.step=n;
+      [1,2,3,4].forEach(i=>$(`step${i}`).classList.toggle("hidden",i!==n));
+      document.querySelectorAll("[data-step-line]").forEach((x,i)=>x.classList.toggle("active",i<n));
+      if(n===3){
+        const b=state.booking;
+        const username=state.userProfile?.username || normalizeUsername((state.user?.email||"").split("@")[0]) || "usuario";
+        if($("bookingIdentityUser")) $("bookingIdentityUser").textContent=`@${username}`;
+        $("summaryService").textContent=b.service?.name||"—";
+        $("summaryProfessional").textContent=b.professional?.name||"—";
+        $("summaryPrice").textContent=money(b.service?.price);
+        $("summaryDate").textContent=`${formatDate(b.date)} às ${b.time}`;
+      }
+      if(n===4){
+        const b=state.booking;
+        $("confirmService").textContent=b.service?.name||"—";
+        $("confirmProfessional").textContent=b.professional?.name||"—";
+        $("confirmDate").textContent=formatDate(b.date);
+        $("confirmTime").textContent=b.time||"—";
+        $("confirmCustomer").textContent=b.name||"—";
+        $("confirmPrice").textContent=money(b.service?.price);
+      }
+    }
+
+    function formatDate(iso){
+      if(!iso) return "—";
+      return new Date(iso+"T12:00:00").toLocaleDateString("pt-BR",{weekday:"long",day:"2-digit",month:"long"});
+    }
+
+    async function saveAppointment(){
+      const b=state.booking;
+
+      if(!db || !firebaseReady){
+        toast("A agenda ainda não está pronta para reservas.");
+        return;
+      }
+
+      if(!state.user){
+        toast("Entre na sua conta para proteger e acompanhar seu agendamento.");
+        $("appointmentModal").classList.add("hidden");
+        openLogin();
+        return;
+      }
+
+      if(!b.service||!b.professional||!b.date||!b.time||!b.name||!b.phone){
+        toast("Preencha todos os campos obrigatórios.");
+        return;
+      }
+
+      if(!isValidPhone(b.phone)){
+        toast("Informe um WhatsApp válido com DDD.");
+        return;
+      }
+
+      const hours=businessHoursForISO(b.date);
+      if(!hours){
+        toast("A barbearia está fechada nessa data.");
+        return;
+      }
+
+      const appointmentRef=doc(collection(db,"appointments"));
+      const slotId=slotIdFor(b.professional.id,b.date,b.time);
+      const slotRef=doc(db,"bookingSlots",slotId);
+
+      await saveUserBookingProfile();
+
+      const payload={
+        userId:state.user.uid,
+        customerName:b.name.trim().slice(0,80),
+        customerPhone:normalizePhone(b.phone),
+        serviceId:b.service.id,
+        serviceName:b.service.name,
+        professionalId:b.professional.id,
+        professionalName:b.professional.name,
+        date:b.date,
+        time:b.time,
+        price:Number(b.service.price||0),
+        duration:Number(b.service.duration||30),
+        note:(b.note||"").trim().slice(0,500),
+        status:"confirmed",
+        bookingCode:bookingCodeFromId(appointmentRef.id),
+        slotId,
+        createdAt:serverTimestamp(),
+        updatedAt:serverTimestamp()
+      };
+
+      $("confirmBtn").disabled=true;
+      $("confirmBtn").textContent="Reservando com segurança...";
+      setFirestoreStatus("syncing","AGENDA • RESERVANDO");
+
+      try{
+        await runTransaction(db,async(tx)=>{
+          const slotSnap=await tx.get(slotRef);
+          if(slotSnap.exists() && slotSnap.data()?.status==="confirmed"){
+            const err=new Error("SLOT_TAKEN");
+            err.code="SLOT_TAKEN";
+            throw err;
+          }
+
+          tx.set(slotRef,{
+            appointmentId:appointmentRef.id,
+            userId:state.user.uid,
+            professionalId:b.professional.id,
+            date:b.date,
+            time:b.time,
+            status:"confirmed",
+            createdAt:serverTimestamp(),
+            updatedAt:serverTimestamp()
+          });
+
+          tx.set(appointmentRef,payload);
+        });
+
+        $("appointmentModal").classList.add("hidden");
+        setFirestoreStatus("online","AGENDA • RESERVADO");
+        $("bookingSuccessCode").textContent=payload.bookingCode;
+        $("bookingSuccessText").textContent=`${b.service.name} com ${b.professional.name}, ${formatDate(b.date)} às ${b.time}.`;
+        $("bookingSuccess").classList.remove("hidden");
+        await loadAppointments();
+      }catch(err){
+        console.error(err);
+        if(err?.code==="SLOT_TAKEN" || err?.message==="SLOT_TAKEN"){
+          toast("Esse horário acabou de ser reservado. Escolha outro.");
+          updateStep(2);
+          await renderTimes();
+        }else if(String(err?.code||"").includes("permission-denied")){
+          toast("Não foi possível concluir a reserva. Tente novamente.");
+        }else{
+          toast("Não foi possível confirmar agora. Tente novamente.");
+        }
+        setFirestoreStatus("offline","AGENDA • FALHA NA RESERVA");
+      }finally{
+        $("confirmBtn").disabled=false;
+        $("confirmBtn").textContent="✓ Confirmar agendamento";
+      }
+    }
+
+    async function loadAppointments(){
+      if(unsubscribeAppointments){ unsubscribeAppointments(); unsubscribeAppointments=null; }
+      if(!db || !state.user){state.appointments=[];return}
+
+      await new Promise((resolve)=>{
+        const q=query(collection(db,"appointments"),where("userId","==",state.user.uid));
+        let first=true;
+        unsubscribeAppointments=onSnapshot(q,(snap)=>{
+          state.appointments=snap.docs
+            .map(d=>({id:d.id,...d.data()}))
+            .sort((a,b)=>String(a.date+a.time).localeCompare(String(b.date+b.time)));
+
+          if(!$("appointmentsSection").classList.contains("hidden")) renderAppointmentsList();
+          refreshAccountUI();
+          setFirestoreStatus("online","AGENDA • AO VIVO");
+          if(first){first=false;resolve();}
+        },(err)=>{
+          console.warn(err);
+          state.appointments=[];
+          setFirestoreStatus("offline","AGENDA • INDISPONÍVEL");
+          if(first){first=false;resolve();}
+        });
+      });
+    }
+
+    function renderAppointmentsList(){
+      if(!state.user && db){
+        $("appointmentsList").innerHTML='<div class="selection-card"><strong>Entre na sua conta</strong><p class="selection-sub">Faça login para ver os agendamentos vinculados ao seu perfil.</p><button class="btn btn-dark" id="appointmentLogin" style="margin-top:14px">Entrar</button></div>';
+        $("appointmentLogin").onclick=openLogin;
+        return;
+      }
+
+      if(!state.appointments.length){
+        $("appointmentsList").innerHTML='<div class="smart-empty"><div class="empty-icon">✂</div><strong>Sua agenda está livre.</strong><p>Quando você reservar um horário, ele aparece aqui apenas nesta conta.</p><button class="btn btn-dark" id="emptyNew">Agendar agora</button></div>';
+        $("emptyNew").onclick=()=>showBooking();
+        return;
+      }
+
+      const filteredAppointments=state.appointments.filter(a=>{
+        if(appointmentsFilterMode==="cancelled") return a.status==="cancelled";
+        if(appointmentsFilterMode==="upcoming") return a.status==="confirmed" && appointmentStartMs(a)>=Date.now()-30*60*1000;
+        return true;
+      });
+
+      if(!filteredAppointments.length){
+        $("appointmentsList").innerHTML='<div class="smart-empty"><div class="empty-icon">◷</div><strong>Nada por aqui.</strong><p>Não há agendamentos nesta categoria.</p></div>';
+        return;
+      }
+
+      $("appointmentsList").innerHTML=filteredAppointments.map(a=>{
+        const dt=new Date(`${a.date}T12:00:00`);
+        const day=String(dt.getDate()).padStart(2,"0");
+        const month=dt.toLocaleDateString("pt-BR",{month:"short"}).replace(".","");
+        const status=a.status||"confirmed";
+        return `
+          <article class="appointment-card-v4">
+            <div class="appointment-date-v4"><div><strong>${day}</strong><small>${escapeHtml(month)}</small></div></div>
+            <div>
+              <h3>${escapeHtml(a.serviceName||"Serviço")}</h3>
+              <div class="appointment-meta-v4">
+                <span>◷ ${escapeHtml(a.time||"—")}</span>
+                <span>✂ ${escapeHtml(a.professionalName||"Eduardo")}</span>
+                <span>${money(a.price)}</span>
+              </div>
+              <div class="appointment-code">RESERVA • ${escapeHtml(a.bookingCode||bookingCodeFromId(a.id))}</div>
+            </div>
+            <div class="appointment-actions">
+              <span class="status-chip ${escapeHtml(status)}">${status==="cancelled"?"Cancelado":"Confirmado"}</span>
+              ${canCancelAppointment(a)?`<button class="cancel-appointment" data-cancel-id="${escapeHtml(a.id)}">Cancelar</button>`:""}
+            </div>
+          </article>`;
+      }).join("");
+
+      $("appointmentsList").querySelectorAll("[data-cancel-id]").forEach(btn=>{
+        btn.addEventListener("click",()=>cancelAppointment(btn.dataset.cancelId));
+      });
+    }
+
+    async function cancelAppointment(appointmentId){
+      const a=state.appointments.find(x=>x.id===appointmentId);
+      if(!a || !state.user || !db) return;
+      if(!confirm("Cancelar este agendamento e liberar o horário?")) return;
+
+      const appointmentRef=doc(db,"appointments",appointmentId);
+      const slotId=a.slotId || slotIdFor(a.professionalId,a.date,a.time);
+      const slotRef=doc(db,"bookingSlots",slotId);
+
+      try{
+        setFirestoreStatus("syncing","AGENDA • CANCELANDO");
+        await runTransaction(db,async(tx)=>{
+          const appointmentSnap=await tx.get(appointmentRef);
+          const slotSnap=await tx.get(slotRef);
+
+          if(!appointmentSnap.exists()) throw new Error("Agendamento não encontrado.");
+          const current=appointmentSnap.data();
+          if(current.userId!==state.user.uid) throw new Error("Sem permissão.");
+          if(current.status!=="confirmed") return;
+
+          tx.update(appointmentRef,{
+            status:"cancelled",
+            cancelledAt:serverTimestamp(),
+            updatedAt:serverTimestamp()
+          });
+
+          if(slotSnap.exists() && slotSnap.data()?.appointmentId===appointmentId){
+            tx.delete(slotRef);
+          }
+        });
+        toast("Agendamento cancelado e horário liberado.");
+        setFirestoreStatus("online","AGENDA • SINCRONIZADA");
+      }catch(err){
+        console.error(err);
+        toast("Não foi possível cancelar o agendamento.");
+        setFirestoreStatus("offline","AGENDA • INDISPONÍVEL");
+      }
+    }
+
+    async function showAppointments(){
+      $("bookingSection").classList.add("hidden");
+      $("appointmentsSection").classList.remove("hidden");
+      document.querySelectorAll(".nav-item").forEach(x=>x.classList.remove("active"));
+      document.querySelector('[data-nav="appointments"]').classList.add("active");
+      $("appointmentsList").innerHTML='<div class="loading"><div><div class="spinner"></div>Sincronizando seus agendamentos...</div></div>';
+      await loadAppointments();
+      renderAppointmentsList();
+    }
+
+    function showBooking(){
+      $("appointmentsSection").classList.add("hidden");
+      $("bookingSection").classList.remove("hidden");
+      document.querySelectorAll(".nav-item").forEach(x=>x.classList.remove("active"));
+      document.querySelector('[data-nav="book"]').classList.add("active");
+    }
+
+
+    function openAvailability(){
+      const firstService=state.services[0];
+      if(!firstService){
+        toast("Os serviços ainda estão carregando.");
+        return;
+      }
+      openAppointment(firstService.id);
+      if(state.professionals.length){
+        state.booking.professional=state.professionals[0];
+        renderProfessionalOptions();
+        updateStep(2);
+        renderTimes();
+      }
+    }
+
+    function openLogin(){
+      setAuthStatus("");
+      refreshAccountUI();
+      if(!state.user) setAuthMode("login");
+      $("loginModal").classList.remove("hidden");
+    }
+
+    async function doLogin(){
+      if(!auth){setAuthStatus("O acesso está temporariamente indisponível.","error");return}
+
+      const username=normalizeUsername($("loginUsername").value);
+      const password=$("loginPassword").value;
+
+      if(!validUsername(username)){
+        setAuthStatus("Informe um usuário válido com 3 a 24 caracteres.","error");
+        $("loginUsername").focus();
+        return;
+      }
+      if(password.length<6){
+        setAuthStatus("A senha precisa ter pelo menos 6 caracteres.","error");
+        $("loginPassword").focus();
+        return;
+      }
+
+      $("doLogin").disabled=true;
+      setAuthStatus("Entrando na sua conta...","loading");
+      try{
+        await setPersistence(auth,browserLocalPersistence);
+        const cred=await signInWithEmailAndPassword(auth,usernameToInternalEmail(username),password);
+        state.user=cred.user;
+        $("loginPassword").value="";
+        setAuthStatus("Conta acessada.","success");
+        setTimeout(()=>$("loginModal").classList.add("hidden"),180);
+        toast(`Bem-vindo, @${username}.`);
+      }catch(error){
+        console.warn(error);
+        setAuthStatus(firebaseAuthMessage(error,false),"error");
+      }finally{
+        $("doLogin").disabled=false;
+      }
+    }
+
+    async function register(){
+      if(!auth){setAuthStatus("O cadastro está temporariamente indisponível.","error");return}
+
+      const username=normalizeUsername($("loginUsername").value);
+      const password=$("loginPassword").value;
+      const confirmation=$("confirmPassword").value;
+
+      if(!validUsername(username)){
+        setAuthStatus("Crie um usuário válido com 3 a 24 caracteres.","error");
+        $("loginUsername").focus();
+        return;
+      }
+      if(password.length<6){
+        setAuthStatus("A senha precisa ter pelo menos 6 caracteres.","error");
+        $("loginPassword").focus();
+        return;
+      }
+      if(password!==confirmation){
+        setAuthStatus("As duas senhas precisam ser iguais.","error");
+        $("confirmPassword").focus();
+        return;
+      }
+
+      $("registerBtn").disabled=true;
+      setAuthStatus("Criando sua conta...","loading");
+      try{
+        await setPersistence(auth,browserLocalPersistence);
+        const cred=await createUserWithEmailAndPassword(auth,usernameToInternalEmail(username),password);
+
+        if(db){
+          await setDoc(doc(db,"users",cred.user.uid),{
+            uid:cred.user.uid,
+            username,
+            createdAt:serverTimestamp(),
+            updatedAt:serverTimestamp()
+          });
+        }
+
+        state.user=cred.user;
+        state.userProfile={uid:cred.user.uid,username};
+        $("loginPassword").value="";
+        $("confirmPassword").value="";
+        setAuthStatus("Conta criada com sucesso.","success");
+        refreshAccountUI();
+        setTimeout(()=>$("loginModal").classList.add("hidden"),220);
+        toast(`Conta @${username} criada. Você já está conectado.`);
+      }catch(error){
+        console.warn(error);
+        setAuthStatus(firebaseAuthMessage(error,true),"error");
+      }finally{
+        $("registerBtn").disabled=false;
+      }
+    }
+
+
+    const STORY_DATA={
+      cortes:{icon:"▦",title:"Cortes em destaque",text:"Toque fora deste destaque e abra a seção Cortes & referências para ver a galeria completa."},
+      servicos:{icon:"✂",title:"Cortes & serviços",text:"Veja referências de cortes e encontre o estilo que combina com você."},
+      horarios:{icon:"◷",title:"Horários",text:"De segunda a sexta, das 14:00 às 21:00. Aos sábados, das 09:00 às 17:00. Domingo fechado."},
+      studio:{icon:"ED",title:"Experiência Eduardo",text:"Um atendimento com foco em precisão, conforto e estilo — do agendamento à finalização."},
+      wifi:{icon:"⌁",title:"Wi‑Fi",text:"Wi‑Fi disponível para você continuar conectado enquanto espera ou durante o atendimento."},
+      familia:{icon:"☺",title:"Aceita crianças",text:"Crianças são bem-vindas. O espaço foi pensado para receber diferentes idades com conforto."},
+      pagamento:{icon:"R$",title:"Pagamento",text:"Aceitamos PIX, cartão de crédito, cartão de débito e dinheiro."},
+      contato:{icon:"↗",title:"Contato",text:"Fale direto com o Eduardo pelo botão de WhatsApp do site para dúvidas e informações."}
+    };
+
+    function openStory(key){
+      const data=STORY_DATA[key]; if(!data) return;
+      $("storyIcon").textContent=data.icon;
+      $("storyTitle").textContent=data.title;
+      $("storyText").textContent=data.text;
+      $("storyModal").classList.remove("hidden");
+      $("storyModal").setAttribute("aria-hidden","false");
+      const bar=$("storyProgress");
+      bar.style.animation="none"; void bar.offsetWidth;
+      bar.style.animation="storyTimer 6s linear forwards";
+    }
+
+    // Tabs
+    document.querySelectorAll(".tab").forEach(tab=>tab.addEventListener("click",()=>{
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));tab.classList.add("active");
+      document.querySelectorAll(".tab-panel").forEach(x=>x.classList.add("hidden"));
+      $(`tab-${tab.dataset.tab}`).classList.remove("hidden");
+    }));
+
+
+    document.querySelectorAll("[data-story]").forEach(btn=>btn.addEventListener("click",()=>{
+      if(btn.dataset.story==="horarios"){ openAvailability(); return; }
+      if(btn.dataset.story==="cortes"){ openCutsGallery(); return; }
+      openStory(btn.dataset.story);
+    }));
+    $("storyClose").onclick=()=>{$("storyModal").classList.add("hidden");$("storyModal").setAttribute("aria-hidden","true")};
+    $("storyModal").addEventListener("click",e=>{if(e.target===e.currentTarget)$("storyClose").click()});
+
+
+    $("openAllCuts")?.addEventListener("click",()=>openCutsGallery());
+    $("galleryClose")?.addEventListener("click",closeCutsGallery);
+    $("cutsGalleryModal")?.addEventListener("click",e=>{if(e.target===e.currentTarget)closeCutsGallery()});
+    $("shareSite")?.addEventListener("click",shareSite);
+    $("quickViewHours")?.addEventListener("click",openAvailability);
+    $("mobileBookCta")?.addEventListener("click",()=>{
+      showBooking();
+      $("bookingSection")?.scrollIntoView({behavior:"smooth"});
+    });
+
+
+    document.querySelectorAll("[data-appt-filter]").forEach(btn=>btn.addEventListener("click",()=>{
+      appointmentsFilterMode=btn.dataset.apptFilter;
+      document.querySelectorAll("[data-appt-filter]").forEach(x=>x.classList.toggle("active",x===btn));
+      renderAppointmentsList();
+    }));
+
+    // Navigation
+    document.querySelectorAll(".nav-item").forEach(btn=>btn.addEventListener("click",()=>{
+      const nav=btn.dataset.nav;
+      if(nav==="book")showBooking();
+      else if(nav==="appointments")showAppointments();
+      else openLogin();
+    }));
+    $("heroSchedule").onclick=()=>showBooking();
+    $("heroAppointments").onclick=()=>showAppointments();
+    $("newAppointmentBtn").onclick=()=>showBooking();
+    $("refreshBtn").onclick=()=>loadData();
+    $("loginBtn").onclick=openLogin;
+    $("closeLogin").onclick=()=>$("loginModal").classList.add("hidden");
+$("accountLogout")?.addEventListener("click",async()=>{
+      if(auth) await signOut(auth);
+      $("loginModal").classList.add("hidden");
+      toast("Você saiu da conta.");
+      showBooking();
+    });
+    $("accountAppointments")?.addEventListener("click",()=>{
+      $("loginModal").classList.add("hidden");
+      showAppointments();
+    });
+    $("personalWelcomeAppointments")?.addEventListener("click",showAppointments);
+
+
+    $("bookingSuccessClose")?.addEventListener("click",()=>{
+      $("bookingSuccess").classList.add("hidden");
+      showBooking();
+    });
+    $("bookingSuccessAppointments")?.addEventListener("click",()=>{
+      $("bookingSuccess").classList.add("hidden");
+      showAppointments();
+    });
+
+
+    $("authLoginTab")?.addEventListener("click",()=>setAuthMode("login"));
+    $("authRegisterTab")?.addEventListener("click",()=>setAuthMode("register"));
+    $("doLogin")?.addEventListener("click",doLogin);
+    $("registerBtn")?.addEventListener("click",register);
+    $("togglePassword")?.addEventListener("click",()=>togglePasswordField("loginPassword","togglePassword"));
+    $("toggleConfirmPassword")?.addEventListener("click",()=>togglePasswordField("confirmPassword","toggleConfirmPassword"));
+    $("loginPassword")?.addEventListener("input",updatePasswordStrength);
+    $("loginUsername")?.addEventListener("input",e=>{
+      const normalized=normalizeUsername(e.target.value);
+      if(e.target.value!==normalized) e.target.value=normalized;
+    });
+    $("loginPassword")?.addEventListener("keydown",e=>{
+      if(e.key==="Enter") authMode==="register"?register():doLogin();
+    });
+    $("confirmPassword")?.addEventListener("keydown",e=>{
+      if(e.key==="Enter" && authMode==="register") register();
+    });
+
+    // Modal
+    $("closeModal").onclick=()=>$("appointmentModal").classList.add("hidden");
+    $("cancelStep1").onclick=()=>$("appointmentModal").classList.add("hidden");
+    $("next1").onclick=()=>{
+      if(!state.booking.professional){toast("Escolha um profissional.");return}
+      renderTimes();updateStep(2);
+    };
+    $("back2").onclick=()=>updateStep(1);
+    $("next2").onclick=()=>{
+      if(!state.booking.date||!state.booking.time){toast("Escolha data e horário.");return}
+      updateStep(3);
+    };
+    $("back3").onclick=()=>updateStep(2);
+    $("next3").onclick=()=>{
+      state.booking.name=$("customerName").value.trim();
+      state.booking.phone=$("customerPhone").value.trim();
+      state.booking.note=$("customerNote").value.trim();
+      if(!state.booking.name||!state.booking.phone){toast("Informe nome e WhatsApp.");return}
+      updateStep(4);
+    };
+    $("back4").onclick=()=>updateStep(3);
+    $("confirmBtn").onclick=saveAppointment;
+
+    // Auth
+    if(auth){
+      onAuthStateChanged(auth,async user=>{
+        state.user=user;
+
+        if(unsubscribeAppointments){
+          unsubscribeAppointments();
+          unsubscribeAppointments=null;
+        }
+        state.appointments=[];
+
+        if(user){
+          const loadedProfile=await loadUserProfile(user);
+          state.userProfile=loadedProfile || state.userProfile || {};
+          const username=state.userProfile?.username || normalizeUsername((user.email||"").split("@")[0]) || "usuario";
+
+          $("loginBtn").innerHTML=`◉ <span>@${escapeHtml(username)}</span>`;
+          $("loginBtn").onclick=openLogin;
+          $("bottomLoginText").textContent="Conta";
+
+          await loadAppointments();
+          refreshAccountUI();
+
+          if(!$("appointmentsSection").classList.contains("hidden")) renderAppointmentsList();
+        }else{
+          state.userProfile=null;
+          $("loginBtn").innerHTML='◉ <span>Entrar</span>';
+          $("loginBtn").onclick=openLogin;
+          $("bottomLoginText").textContent="Entrar";
+          refreshAccountUI();
+          if(!$("appointmentsSection").classList.contains("hidden")) renderAppointmentsList();
+        }
+      });
+    }else{
+      $("loginBtn").onclick=openLogin;
+    }
+
+    // Máscara simples de telefone
+    $("customerPhone").addEventListener("input",e=>{
+      let v=e.target.value.replace(/\D/g,"").slice(0,11);
+      if(v.length>6)v=v.replace(/^(\d{2})(\d{5})(\d{0,4}).*/,"($1) $2-$3");
+      else if(v.length>2)v=v.replace(/^(\d{2})(\d{0,5}).*/,"($1) $2");
+      e.target.value=v;
+    });
+
+    // Close when clicking backdrop
+    $("appointmentModal").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.classList.add("hidden")});
+    $("loginModal").addEventListener("click",e=>{if(e.target===e.currentTarget)e.currentTarget.classList.add("hidden")});
+
+
+    window.addEventListener("online",()=>{
+      if(db){ setFirestoreStatus("syncing","AGENDA • RECONECTANDO"); loadData(); }
+    });
+    window.addEventListener("offline",()=>{
+      setFirestoreStatus("offline","SEM CONEXÃO");
+    });
+
+    if(location.protocol==="file:"){
+      console.info("Para testar login e agenda sem restrições do navegador, sirva a pasta em http://localhost em vez de abrir por file://.");
+    }
+
+    // Start
+    loadData();
+    loadCutsGallery();
+
+    if(!firebaseReady){
+      state.services=EDUARDO_CATALOG;
+      renderServices();
+      updateBusinessUI();
+      setFirestoreStatus("offline","AGENDA • CONFIGURAÇÃO NECESSÁRIA");
+      toast("Agenda em modo de demonstração.");
+    }
+  </script>
+</body>
+</html>
