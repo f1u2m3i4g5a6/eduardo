@@ -1688,6 +1688,80 @@
   }
 </style>
 
+
+<style id="eduardo-v21-service-selector">
+  .booking-step-head{margin-bottom:10px!important}
+  .booking-summary-card{
+    position:relative;overflow:hidden;
+    background:
+      linear-gradient(145deg,rgba(243,35,59,.09),transparent 48%),
+      #18181b!important
+  }
+  .booking-summary-card:after{
+    content:"";position:absolute;width:120px;height:120px;border-radius:50%;
+    right:-65px;top:-75px;background:rgba(243,35,59,.16);filter:blur(28px);pointer-events:none
+  }
+  .booking-summary-card>*{position:relative;z-index:1}
+  .booking-summary-card #selectedServicePrice{
+    color:#fff;font:800 16px "Manrope";white-space:nowrap
+  }
+
+  .booking-service-grid{
+    display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px
+  }
+  .booking-service-option{
+    position:relative;display:grid;
+    grid-template-columns:50px minmax(0,1fr) auto;
+    gap:10px;align-items:center;text-align:left;
+    min-width:0;padding:8px 10px 8px 8px;
+    border:1px solid #2d2c31;border-radius:15px;
+    background:#111113;color:#fff;overflow:hidden;
+    transition:.2s ease
+  }
+  .booking-service-option:hover{
+    border-color:#473136;background:#151316;transform:translateY(-1px)
+  }
+  .booking-service-option.selected{
+    border-color:#f3233b;
+    background:linear-gradient(145deg,rgba(243,35,59,.16),rgba(243,35,59,.055));
+    box-shadow:0 0 0 1px rgba(243,35,59,.07) inset
+  }
+  .booking-service-option img{
+    width:50px;height:50px;object-fit:cover;border-radius:11px;
+    background:#1a1a1d
+  }
+  .booking-service-option span{display:block;min-width:0}
+  .booking-service-option strong{
+    display:block;font:700 10px "Space Grotesk";
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+  }
+  .booking-service-option small{
+    display:block;margin-top:4px;color:#77737b;font-size:8px
+  }
+  .booking-service-option b{
+    color:#dedade;font-size:10px;white-space:nowrap
+  }
+  .booking-service-option i{
+    position:absolute;right:6px;top:5px;
+    width:15px;height:15px;border-radius:50%;
+    display:grid;place-items:center;
+    background:#f3233b;color:#fff;font-size:7px;font-style:normal;
+    opacity:0;transform:scale(.7);transition:.18s
+  }
+  .booking-service-option.selected i{opacity:1;transform:scale(1)}
+
+  @media(max-width:620px){
+    .booking-service-grid{grid-template-columns:1fr}
+    .booking-service-option{
+      grid-template-columns:54px minmax(0,1fr) auto;
+      padding:8px 11px 8px 8px
+    }
+    .booking-service-option img{width:54px;height:54px}
+    .booking-service-option strong{font-size:11px}
+    .booking-service-option b{font-size:11px}
+  }
+</style>
+
 </head>
 
 <body>
@@ -1960,16 +2034,22 @@
 
       <div class="modal-body">
         <div id="step1">
-          <div class="selection-card">
+          <div class="selection-card booking-summary-card">
             <div class="selection-row">
               <div>
                 <div class="selection-title" id="selectedServiceName">Selecione um serviço</div>
-                <div class="selection-sub" id="selectedServiceMeta">Você poderá trocar a qualquer momento.</div>
+                <div class="selection-sub" id="selectedServiceMeta">Escolha uma opção abaixo.</div>
               </div>
               <strong id="selectedServicePrice">—</strong>
             </div>
           </div>
-          <div class="section-head" style="margin-top:20px">
+
+          <div class="section-head booking-step-head" style="margin-top:18px">
+            <div><h2 style="font-size:16px">Serviço</h2><p>Você pode trocar o serviço antes de continuar.</p></div>
+          </div>
+          <div id="bookingServiceOptions" class="booking-service-grid"></div>
+
+          <div class="section-head booking-step-head" style="margin-top:20px">
             <div><h2 style="font-size:16px">Profissional</h2><p>Escolha quem vai cuidar do seu visual.</p></div>
           </div>
           <div id="professionalOptions" class="option-grid"></div>
@@ -2287,10 +2367,10 @@
     ];
 
     const EDUARDO_CATALOG = [
-      {id:"cabelo", name:"Cabelo", price:45, duration:30, image:"imagens/corte.png", active:true, order:1},
-      {id:"barba", name:"Barba", price:40, duration:30, image:"imagens/corte.png", active:true, order:2},
-      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, image:"imagens/corte.png", active:true, order:3},
-      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, image:"imagens/corte.png", active:true, order:4}
+      {id:"cabelo", name:"Cabelo", price:45, duration:30, image:"imagens/cabelo.png", active:true, order:1},
+      {id:"barba", name:"Barba", price:40, duration:30, image:"imagens/barba.png", active:true, order:2},
+      {id:"cabelo-barba", name:"Cabelo e barba", price:80, duration:60, image:"imagens/cabelo-barba.png", active:true, order:3},
+      {id:"cabelo-barba-sobrancelha", name:"Cabelo, barba e sobrancelha", price:90, duration:60, image:"imagens/completo.png", active:true, order:4}
     ];
 
     const EDUARDO_BUSINESS_DEFAULT = {
@@ -3129,6 +3209,58 @@ const DEFAULT_CUTS = [
     }
 
 
+
+    function updateBookingServiceSummary(){
+      const service=state.booking.service;
+      $("selectedServiceName").textContent=service?.name||"Selecione um serviço";
+      $("selectedServiceMeta").textContent=service
+        ? `${Number(service.duration||30)} minutos`
+        : "Escolha uma opção abaixo.";
+      $("selectedServicePrice").textContent=service?money(service.price):"—";
+    }
+
+    function renderBookingServiceOptions(){
+      const el=$("bookingServiceOptions");
+      if(!el) return;
+
+      el.innerHTML=state.services.map(service=>`
+        <button
+          class="booking-service-option ${state.booking.service?.id===service.id?"selected":""}"
+          type="button"
+          data-booking-service="${escapeHtml(service.id)}"
+        >
+          <img
+            src="${escapeHtml(serviceImage(service))}"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+          <span>
+            <strong>${escapeHtml(service.name)}</strong>
+            <small>◷ ${Number(service.duration||30)} min</small>
+          </span>
+          <b>${money(service.price)}</b>
+          <i>✓</i>
+        </button>
+      `).join("");
+
+      wireImageFallbacks(el);
+
+      el.querySelectorAll("[data-booking-service]").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          const service=state.services.find(s=>s.id===btn.dataset.bookingService);
+          if(!service) return;
+
+          state.booking.service=service;
+          state.booking.time=null;
+          updateBookingServiceSummary();
+
+          el.querySelectorAll(".booking-service-option").forEach(x=>x.classList.remove("selected"));
+          btn.classList.add("selected");
+        });
+      });
+    }
+
     function renderProfessionalOptions(){
       $("professionalOptions").innerHTML=state.professionals.map(p=>`
         <button class="option ${state.booking.professional?.id===p.id?'selected':''}" data-prof="${escapeHtml(p.id)}">
@@ -3144,11 +3276,12 @@ const DEFAULT_CUTS = [
       }));
     }
 
-    function openAppointment(serviceId){
-      const service=state.services.find(s=>s.id===serviceId) || state.services[0];
+    function openAppointment(serviceId=null){
+      const requested=serviceId?state.services.find(s=>s.id===serviceId):null;
       const defaultProfessional=state.professionals[0]||null;
+
       state.booking={
-        service,
+        service:requested||null,
         professional:defaultProfessional,
         date:null,
         time:null,
@@ -3156,9 +3289,8 @@ const DEFAULT_CUTS = [
         phone:state.userProfile?.customerPhone||"",
         note:""
       };
-      $("selectedServiceName").textContent=service?.name||"Serviço";
-      $("selectedServiceMeta").textContent=`${service?.duration||30} minutos`;
-      $("selectedServicePrice").textContent=money(service?.price);
+
+      updateBookingServiceSummary();
       $("customerName").value=state.booking.name;
       $("customerPhone").value=state.booking.phone;
       resetModal();
@@ -3169,6 +3301,7 @@ const DEFAULT_CUTS = [
       state.step=1;
       [1,2,3,4].forEach(i=>$(`step${i}`).classList.toggle("hidden",i!==1));
       document.querySelectorAll("[data-step-line]").forEach((x,i)=>x.classList.toggle("active",i===0));
+      renderBookingServiceOptions();
       renderProfessionalOptions();
       buildDates();
     }
@@ -3556,7 +3689,7 @@ const DEFAULT_CUTS = [
         toast("Os serviços ainda estão carregando.");
         return;
       }
-      openAppointment(state.services[0].id);
+      openAppointment();
     }
 
     async function heroOpenAppointments(){
@@ -3821,6 +3954,7 @@ $("accountLogout")?.addEventListener("click",async()=>{
     $("closeModal").onclick=()=>$("appointmentModal").classList.add("hidden");
     $("cancelStep1").onclick=()=>$("appointmentModal").classList.add("hidden");
     $("next1").onclick=async()=>{
+      if(!state.booking.service){toast("Escolha um serviço.");return}
       if(!state.booking.professional){toast("Escolha um profissional.");return}
       const permission=await checkAgendaPermissions();
       if(!permission.ok){
